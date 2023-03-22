@@ -1,5 +1,5 @@
 <?php
-
+// Controller créé par make:home
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

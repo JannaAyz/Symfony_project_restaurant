@@ -1,5 +1,5 @@
 <?php
-
+// Controller créé par make:registration
 namespace App\Controller;
 
 use App\Entity\User;

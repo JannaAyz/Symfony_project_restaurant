@@ -1,4 +1,5 @@
 <?php
+// Ceci est un fichier résulant de la commande make:auth
 
 namespace App\Security;
 

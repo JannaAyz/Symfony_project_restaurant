@@ -1,5 +1,5 @@
 <?php
-
+// Entité créée à partir de la commande make:user, il faudra l'update pour rajouter tous les champs que l'on souhaite pour l'utilisateur
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -28,6 +28,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lastname = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $gender = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $phone = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $city = null;
+
+    #[ORM\Column]
+    private ?int $zipcode = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $country = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $address = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image_url = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updated_at = null;
 
     public function getId(): ?int
     {
@@ -97,5 +130,137 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getZipcode(): ?int
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(int $zipcode): self
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->image_url;
+    }
+
+    public function setImageUrl(?string $image_url): self
+    {
+        $this->image_url = $image_url;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
     }
 }

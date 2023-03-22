@@ -1,4 +1,5 @@
 <?php
+// Fichier résulant de la commande make:registration
 
 namespace App\Form;
 
