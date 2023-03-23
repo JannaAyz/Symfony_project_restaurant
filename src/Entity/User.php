@@ -7,9 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il y a déjà un compte qui utilise cet email.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -18,6 +19,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Email(
+        message: 'The email {{ value }} is not a valid email.',
+    )]
+    #[Assert\NotBlank(message: 'Veuillez renseigner votre email')]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -27,30 +32,83 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez renseigner mot de passe')]
+    #[Assert\Length(
+        min: 6,
+        max: 50,
+        minMessage: 'Votre mot de passe doit faire au moins 6 caractères',
+        maxMessage: 'Votre mot de passe doit faire au plus 50 caractères',
+    )]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    
+    #[Assert\NotBlank(message: 'Veuillez renseigner prénom')]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Votre prénom doit faire au moins 2 caractères',
+        maxMessage: 'Votre prénom doit faire au plus 50 caractères',
+    )]
     private ?string $firstname = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner nom')]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Votre nom doit faire au moins 2 caractères',
+        maxMessage: 'Votre nom doit faire au plus 50 caractères',
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner votre genre')]
     private ?string $gender = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner numéro de téléphone')]
+    #[Assert\Length(
+        min: 7,
+        max: 13,
+        minMessage: 'Vérifiez que votre numéro est correct',
+        maxMessage: 'Vérifiez que votre numéro est correct',
+    )]
     private ?string $phone = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner votre ville')]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Votre ville doit faire au moins 2 caractères',
+        maxMessage: 'Votre ville doit faire au plus 50 caractères',
+    )]
+
     private ?string $city = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez renseigner votre code postal')]
+    
+    #[Assert\Length(
+        min: 5,
+        max: 5,
+        exactMessage: 'Votre code postal doit faire 5 caractères'
+    )]
+    #[Assert\Regex(pattern: '/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/', message: 'Votre code postal doit être composé de 5 chiffres')]
     private ?int $zipcode = null;
 
     #[ORM\Column(length: 255)]
     private ?string $country = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner votre adresse')]
+    #[Assert\Length(
+        min: 10,
+        max: 50,
+        minMessage: 'Votre adresse doit faire au moins 10 caractères',
+        maxMessage: 'Votre adresse doit faire au plus 50 caractères',
+    )]
     private ?string $address = null;
 
     #[ORM\Column(length: 255, nullable: true)]

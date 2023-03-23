@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -30,6 +31,16 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
+            ->add('gender', ChoiceType::class, [
+                'choices'  => [
+                    'Femme' => 'Femme',
+                    'Homme' => 'Homme',
+                    'Autre' => 'Autre',
+                ],
+                'attr' => [
+                    'class' => 'form-select'
+                ]
+            ])
             ->add('lastname',TextType::class,[
                 
                 'attr' => [
@@ -41,6 +52,13 @@ class RegistrationFormType extends AbstractType
                 
                 'attr' => [
                     'placeholder' => 'Votre prénom ',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('phone',TextType::class,[
+                
+                'attr' => [
+                    'placeholder' => 'Votre numéro de téléphone ',
                     'class' => 'form-control'
                 ]
             ])
@@ -74,7 +92,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('zipscode',IntegerType::class,[
+            ->add('zipcode',IntegerType::class,[
                 
                 'attr' => [
                     'placeholder' => 'Votre code postal ',
@@ -99,7 +117,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('sumbit', SubmitType::class,[
+            ->add('submit', SubmitType::class,[
                 'label' => 'S\'inscrire',
                 'attr' => [
     

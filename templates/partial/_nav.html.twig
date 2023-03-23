@@ -1,10 +1,102 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    
+{# <nav class="navbar navbar-dark bg-dark">
     <ul>
-        <li><a>Home</a></li>
-        <li><a>Réservation</a></li>
-        <li><a>Login</a></li>
-        <li><a>Register</a></li>
-        <li><a>Contact</a></li>
+        <li>
+       <a href= "{{ path('app_home') }}">Home</a>
+       </li>
+        <li>
+        <a href= "#">Reservez dès maintenant
+        </a></li>
+        <li>
+        <a href= "#">Nous contacter</a>
+        </li>
+        <li>
+        <a href="#">L'équipe</a>
+        </li>
+        <li>
+        <a href="#">La carte</a>
+        </li>
+        <li>
+        <a href="#">La carte</a>
+        </li>
+        {% if app.user is null %}
+        <li>
+        <a href= "{{ path('app_login') }}">Login</a>
+        </li>
+        <li>
+        <a href= "{{ path('app_register') }}">Register</a>
+        </li>
+        {% endif %}
+        {# OU #}
+        {# {% if app.user is not null %} #}
+        {# <li> 
+        <a href= "{{ path('app_logout') }}">Logout</a>
+        </li>
+        <li>
+        <a href= "#">My account</a>
+        </li> #}
+        {# {% endif %} #}
+    {# </ul>         #}
+{# </nav> #}
+{#{% endblock %} #}
 
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand logo" href="#">LOGO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href= "{{ path('app_home') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">La carte</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            A propos de nous
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Création</a></li>
+            <li><a class="dropdown-item" href="#">Nos restaurants</a></li>
+            <li><a class="dropdown-item" href="#">L'équipe</a></li>
+            <li><a class="dropdown-item" href="#">Le chef</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href= "#">Nous contacter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href= "#">Reservez une table</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href= "#">Livraison</a>
+        </li>
+      </ul>
+        {% if app.user is null %}
+        <li>
+        <a class="btn btn-outline-success" href= "{{ path('app_login') }}">Login</a>
+        </li>
+        <li>
+        <a class="btn btn-outline-success" href= "{{ path('app_register') }}">Register</a>
+        </li>
+        {% endif %}
+        {# OU #}
+        {% if app.user is not null %}
+        <li> 
+        <a class="btn btn-outline-success button" href= "{{ path('app_logout') }}">Logout</a>
+        </li>
+        <li>
+        <a class="btn btn-outline-success button" href= "#">My account</a>
+        </li>
+        {% endif %}
+    </div>
+  </div>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
