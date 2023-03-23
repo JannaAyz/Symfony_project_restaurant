@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de contact{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    .my-label {
+        font-size:30px;
+    }
+    .message-input {
+        height: 250px;
+        width: 25vw;
+    }
+    {# Ceci est un commentaire Twig en Symfony #}
+    .mail-input {
+        width: 20vw;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Contactez-nous</h1>
+    <div>
+        {{ form_start(formulaire) }}
+            {{ form_errors(formulaire) }}
+
+            <div class="form-group">
+                {{ form_label(formulaire.mail, 'Votre adresse e-mail', {'label_attr': {'class': 'my-label'}}) }}
+                {{ form_widget(formulaire.mail, {'attr': {'class': 'mail-input'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(formulaire.message, 'Votre message', {'label_attr': {'class': 'my-label'}}) }}
+                {{ form_widget(formulaire.message, {'attr': {'class': 'message-input'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(formulaire.envoyer, {'label': 'Envoyer', 'attr': {'class': 'my-button'}}) }}
+            </div>
+        {{ form_end(formulaire) }}
+    </div>
+</div>
+{% endblock %}
