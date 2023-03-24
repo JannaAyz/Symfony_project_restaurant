@@ -6,17 +6,70 @@ use App\Entity\Reservation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ReservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date')
-            ->add('reservation_name')
-            ->add('restaurant_name')
-            ->add('number')
-            ->add('email')
+        // Chercher un calendrier avec que les dates futures
+            ->add('date', DateType::class,[
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('heure', ChoiceType::class, [
+                'choices' => $options['available_hours'],
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('reservation_name',TextType::class,[
+                
+                'attr' => [
+                    'placeholder' => 'Nom de la réservation ',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('restaurant_name',ChoiceType::class,[
+                'choices'  => [
+                    'Paris 17 - Emile Level' => 'Paris 17 - Emile Level',
+                    'Paris 14 - Alesia' => 'Paris 14 - Alesia',
+                    'Paris 5 - Monge' => 'Paris 5 - Monge',
+                ],
+                'attr' => [
+                    'placeholder' => 'Restaurant à choisir',
+                    'class' => 'form-select'
+                ]
+            ])
+            ->add('number', IntegerType::class,[
+                
+                'attr' => [
+                    'placeholder' => 'Nombre de personnes ',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('email', EmailType::class,[
+                
+                'attr' => [
+                    'placeholder' => 'Email',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('submit', SubmitType::class,[
+                'label' => 'Réservez',
+                'attr' => [
+    
+                    'class' => 'btn btn-primary'
+                    ]
+                ]);
         ;
     }
 
@@ -25,5 +78,8 @@ class ReservationType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Reservation::class,
         ]);
+
+        $resolver->setRequired('available_hours');
+        $resolver->setAllowedTypes('available_hours', 'array');
     }
 }

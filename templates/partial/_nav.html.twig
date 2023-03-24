@@ -1,51 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    
-{# <nav class="navbar navbar-dark bg-dark">
-    <ul>
-        <li>
-       <a href= "{{ path('app_home') }}">Home</a>
-       </li>
-        <li>
-        <a href= "#">Reservez dès maintenant
-        </a></li>
-        <li>
-        <a href= "#">Nous contacter</a>
-        </li>
-        <li>
-        <a href="#">L'équipe</a>
-        </li>
-        <li>
-        <a href="#">La carte</a>
-        </li>
-        <li>
-        <a href="#">La carte</a>
-        </li>
-        {% if app.user is null %}
-        <li>
-        <a href= "{{ path('app_login') }}">Login</a>
-        </li>
-        <li>
-        <a href= "{{ path('app_register') }}">Register</a>
-        </li>
-        {% endif %}
-        {# OU #}
-        {# {% if app.user is not null %} #}
-        {# <li> 
-        <a href= "{{ path('app_logout') }}">Logout</a>
-        </li>
-        <li>
-        <a href= "#">My account</a>
-        </li> #}
-        {# {% endif %} #}
-    {# </ul>         #}
-{# </nav> #}
-{#{% endblock %} #}
-
 
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand logo" href="#">LOGO</a>
+    <a class="navbar-brand logo" href="{{ path('app_home') }}">LOGO</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -72,7 +30,7 @@
           <a class="nav-link" href= "#">Nous contacter</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href= "#">Reservez une table</a>
+          <a class="nav-link" href= "{{ path('app_reservation') }}">Reservez une table</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href= "#">Livraison</a>
@@ -80,10 +38,10 @@
       </ul>
         {% if app.user is null %}
         <li>
-        <a class="btn btn-outline-success" href= "{{ path('app_login') }}">Login</a>
+        <a class="btn btn-outline-success button" href= "{{ path('app_login') }}">Login</a>
         </li>
         <li>
-        <a class="btn btn-outline-success" href= "{{ path('app_register') }}">Register</a>
+        <a class="btn btn-outline-success button" href= "{{ path('app_register') }}">Register</a>
         </li>
         {% endif %}
         {# OU #}
@@ -92,7 +50,7 @@
         <a class="btn btn-outline-success button" href= "{{ path('app_logout') }}">Logout</a>
         </li>
         <li>
-        <a class="btn btn-outline-success button" href= "#">My account</a>
+        <a class="btn btn-outline-success button" href= "{{ path('app_account', {'id': app.user.id}) }}">My account</a>
         </li>
         {% endif %}
     </div>

@@ -20,7 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Email(
-        message: 'The email {{ value }} is not a valid email.',
+        message: '{{ value }} n\'est pas un email valide.',
     )]
     #[Assert\NotBlank(message: 'Veuillez renseigner votre email')]
     private ?string $email = null;
@@ -89,12 +89,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez renseigner votre code postal')]
-    
-    #[Assert\Length(
-        min: 5,
-        max: 5,
-        exactMessage: 'Votre code postal doit faire 5 caractères'
-    )]
     #[Assert\Regex(pattern: '/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/', message: 'Votre code postal doit être composé de 5 chiffres')]
     private ?int $zipcode = null;
 

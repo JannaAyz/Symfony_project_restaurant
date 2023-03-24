@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
+use Assert\LessThan;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReservationRepository;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -24,10 +25,14 @@ class Reservation
     private ?string $restaurant_name = null;
 
     #[ORM\Column]
+    #[LessThan(20)]
     private ?int $number = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $heure = null;
 
     public function getId(): ?int
     {
@@ -93,4 +98,44 @@ class Reservation
 
         return $this;
     }
+
+    public function getHeure(): ?\DateTimeInterface
+    {
+        return $this->heure;
+    }
+
+    public function setHeure(\DateTimeInterface $heure): self
+    {
+        $this->heure = $heure;
+
+        return $this;
+    }
+    // Ceci est une fonction permettant lors du formulaire de réservation de selectionner toutes les tranches de 30 min, entre 11H et 23h30
+    // Ca corresponds aux heures d'ouverture du resto
+    public function generateHourOptions(): array
+{
+    $heureOptions = [];
+    $h = 11;
+    $m = 0;
+
+    // Boucle pour ajouter toutes les heures possibles
+    while ($h < 24 || ($h == 24 && $m == 0)) {
+        $hour = str_pad($h, 2, '0', STR_PAD_LEFT);
+        $min = str_pad($m, 2, '0', STR_PAD_LEFT);
+        $heure = new \DateTime("{$hour}:{$min}");
+        $heureOptions[$heure->format('H:i')] = $heure;
+        $m += 30;
+        if ($m == 60) {
+            $m = 0;
+            $h++;
+        }
+        // On s'arrête à 23H30
+        if ($h == 24 && $m == 0) {
+            break;
+        }
+    }
+
+    return $heureOptions;
 }
+}
+

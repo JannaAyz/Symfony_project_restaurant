@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de réservation{% endblock %}
+
+{% block body %}
+{% include "partial/_nav.html.twig" %}
+    <h1 style='text-align:center;'>Merci pour votre réservation !</h1>
+    <div>
+    <h2>Voici le récapitulatif de votre réservation</h2>
+    <p>Nom : {{ reservation.reservationName }}</p>
+    <p>Email : {{ reservation.email }}</p>
+    <p>Téléphone : {{ reservation.number }}</p>
+    <p>Date : {{ reservation.date|date('d/m/Y') }}</p>
+    <p>Heure : {{ reservation.heure|date('H:i') }}</p>
+    </div>
+    <h3>Pour modifier votre réservation du {{ reservation.date|date('d') }}/{{ reservation.date|date('m') }}  rendez vous sur votre <a href="{{ path('app_account') }}">profil.</a></h3>
+    <h4>Si vous avez la moindre question n'hésitez pas à nous <a href="#">contacter.</a></h4>
+    <p> Nous avons hâte de vous retrouver</p>
+{% endblock %}

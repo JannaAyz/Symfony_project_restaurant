@@ -63,4 +63,13 @@ class ReservationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+// public function findByEmail(string $email): array
+// {
+//     return $this->createQueryBuilder('r')
+//         ->andWhere('r.email = :email')
+//         ->setParameter('email', $email)
+//         ->orderBy('r.date', 'ASC')
+//         ->getQuery()
+//         ->getResult();
+// }
 }
