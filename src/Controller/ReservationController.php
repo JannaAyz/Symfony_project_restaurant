@@ -36,7 +36,7 @@ class ReservationController extends AbstractController
             'available_hours' => $heureOptions,
         ]);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $reservationDate = $form->get('date')->getData();
             // Récupérer les données de réservation à partir du formulaire
@@ -51,7 +51,6 @@ class ReservationController extends AbstractController
             // Rediriger l'utilisateur vers une page de confirmation
             return $this->redirectToRoute('app_reservation_confirm', ['id' => $reservation->getId()]);
         }
-
         return $this->render('reservation/index.html.twig', [
             'form' => $form->createView(),
         ]);

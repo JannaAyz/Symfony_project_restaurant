@@ -17,7 +17,7 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\GreaterThan('today', message: 'Vous ne pouvez pas réserver à une date antérieure.')]
+    #[Assert\GreaterThan('today', message: 'La date de réservation doit être supérieure à {{ compared_value }}. Date de réservation: {{ value }}')]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]

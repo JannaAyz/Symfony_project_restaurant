@@ -24,8 +24,9 @@ class ReservationType extends AbstractType
             // ->add('date',TextType::class, $this->getConfiguration("Date d'arrivée", "Veuillez saisir votre date d'arrivée..."
             // ))
             ->add('date', DateTimeType::class,[
-                //  'widget' => 'single_text',
-                //  'html5' => false,
+                 'widget' => 'single_text',
+                 'html5' => false,
+                 'format' => 'dd-MM-yyyy',
                 'attr' => ['class' => 'js-datepicker'],
                 'data'=> new DateTime('now'),
             ])
@@ -53,10 +54,26 @@ class ReservationType extends AbstractType
                     'class' => 'form-select'
                 ]
             ])
-            ->add('number', IntegerType::class,[
-                
+            ->add('number', ChoiceType::class, [
+                'choices' => [
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5,
+                    '6' => 6,
+                    '7' => 7,
+                    '8' => 8,
+                    '9' => 9,
+                    '10' => 10,
+                    '11' => 11,
+                    '12' => 12,
+                    '13' => 13,
+                    '14' => 14,
+                    '15' => 15,
+                ],
                 'attr' => [
-                    'placeholder' => 'Nombre de personnes ',
+                    'placeholder' => 'Nombre de personnes',
                     'class' => 'form-control'
                 ]
             ])
