@@ -2,9 +2,20 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 
+
+
+
+
 {% block body %}
+<body>
+
+
 {% include "partial/_nav.html.twig"%}
     <h1>Hello {{ controller_name }}! ✅</h1>
+
+     
+
+
 
     This friendly message is coming from:
     <ul>
@@ -12,4 +23,16 @@
         <li>Your template at <code><a href="{{ 'C:/Users/augus/Symfony/restaurant/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
     </ul>
 </div>
+
+
+
+</body> 
+{% endblock %}
+{% block javascript %}
+    {% if app.request.cookies.has('launch') %}
+        <script>
+            //launchModal();
+            {{ app.request.cookies.remove('launch') }}
+        </script>
+    {% endif %}
 {% endblock %}

@@ -22,12 +22,25 @@
     .mail-input {
         width: 20vw;
     }
+    .ddd {
+      display: block;
+    }
+    .nnn {
+      display: none;
+    }
+    
 </style>
 
+
+
+
+
 <div class="example-wrapper">
+
+
     <h1>Contactez-nous</h1>
     <div>
-        {{ form_start(formulaire) }}
+        {{ form_start(formulaire, {'attr': {'id': 'mon-formulaire', 'onsubmit':'launchModal()'}}) }}
             {{ form_errors(formulaire) }}
 
             <div class="form-group">
@@ -41,9 +54,11 @@
             </div>
 
             <div class="form-group">
-                {{ form_row(formulaire.envoyer, {'label': 'Envoyer', 'attr': {'class': 'my-button'}}) }}
+              {{ form_widget(formulaire.envoyer, {'label': 'Envoyer'}) }}
             </div>
         {{ form_end(formulaire) }}
     </div>
 </div>
+<h3 class='nnn' id='trucModal'>sljvnzjfnv</h3>
+
 {% endblock %}
