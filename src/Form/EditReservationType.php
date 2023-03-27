@@ -16,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class ReservationType extends AbstractType
+class EditReservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -104,14 +104,5 @@ class ReservationType extends AbstractType
 
         $resolver->setRequired('available_hours');
         $resolver->setAllowedTypes('available_hours', 'array');
-    }
-    private function getConfiguration($label, $placeholder)
-    {
-        return [
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder
-            ]
-        ];
     }
 }
