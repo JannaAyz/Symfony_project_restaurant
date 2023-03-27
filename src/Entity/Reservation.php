@@ -140,9 +140,5 @@ class Reservation
 
     return $heureOptions;
 }
-public function __toString(){
-
-    return $this->date;
-}
 }
 

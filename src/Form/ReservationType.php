@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use DateTime;
 use App\Entity\Reservation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,15 +14,21 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ReservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        // Chercher un calendrier avec que les dates futures
-        ->add('date',TextType::class, $this->getConfiguration("Date d'arrivée", "Veuillez saisir votre date d'arrivée..."
-        ))
+            // ->add('date',TextType::class, $this->getConfiguration("Date d'arrivée", "Veuillez saisir votre date d'arrivée..."
+            // ))
+            ->add('date', DateTimeType::class,[
+                //  'widget' => 'single_text',
+                //  'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'data'=> new DateTime('now'),
+            ])
             ->add('heure', ChoiceType::class, [
                 'choices' => $options['available_hours'],
                 'attr' => [
@@ -80,7 +87,6 @@ class ReservationType extends AbstractType
         $resolver->setRequired('available_hours');
         $resolver->setAllowedTypes('available_hours', 'array');
     }
-    
     private function getConfiguration($label, $placeholder)
     {
         return [

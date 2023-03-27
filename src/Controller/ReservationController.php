@@ -29,7 +29,7 @@ class ReservationController extends AbstractController
         // Définition de l'heure actuelle pour que les champs date et heure soient pré-remplis au moment de la réservation
         $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
         $reservationTime = DateTime::createFromFormat('H:i', $now->format('H:i'));
-        $reservation->setHeure($reservationTime);
+        // $reservation->setHeure($reservationTime);
         $reservation->setDate($now);
         $heureOptions = $reservation->generateHourOptions();
         $form = $this->createForm(ReservationType::class, $reservation, [
@@ -38,7 +38,9 @@ class ReservationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $reservationDate = $form->get('date')->getData();
             // Récupérer les données de réservation à partir du formulaire
+            $reservation-> setDate($reservationDate);
             $reservation = $form->getData();
 
             // Enregistrer la réservation en base de données
