@@ -1,8 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Formulaire de réservation{% endblock %}
-
 {% block body %}
-{% include "partial/_nav.html.twig" %}
-    {{ form(form) }}
+    {% include "partial/_nav.html.twig" %}
+    {{ dump(form.date) }}
+    {{ form_start(form) }}
+        {# <div class="outline mb-4">
+          {{ form_label(form.date) }}
+          {{ form_widget(form.date, {'attr': {'class' :'js-datepicker'}}) }}
+          {{ form_errors(form.date, {'attr': {'class' : 'text-danger'}}) }}
+        </div> #}
+        {{ form_row(form.heure, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.reservation_name, {'attr': {'placeholder': 'Nom de la réservation', 'class': 'form-control'}}) }}
+        {{ form_row(form.restaurant_name, {'attr': {'placeholder': 'Restaurant à choisir', 'class': 'form-select'}}) }}
+        {{ form_row(form.number, {'attr': {'placeholder': 'Nombre de personnes', 'class': 'form-control'}}) }}
+        {{ form_row(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'}}) }}
+        {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+
+<script>
+   $(document).on('ready', function() {
+         $('.js-datepicker').datepicker({
+              format: 'dd-mm-yyyy',
+              startDate: new Date(),
+         });
+     });
+</script>
 {% endblock %}

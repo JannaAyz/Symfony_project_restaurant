@@ -6,6 +6,7 @@ use Assert\LessThan;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ReservationRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -16,6 +17,7 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThan('today', message: 'Vous ne pouvez pas réserver à une date antérieure.')]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
@@ -110,6 +112,7 @@ class Reservation
 
         return $this;
     }
+
     // Ceci est une fonction permettant lors du formulaire de réservation de selectionner toutes les tranches de 30 min, entre 11H et 23h30
     // Ca corresponds aux heures d'ouverture du resto
     public function generateHourOptions(): array
@@ -136,6 +139,10 @@ class Reservation
     }
 
     return $heureOptions;
+}
+public function __toString(){
+
+    return $this->date;
 }
 }
 

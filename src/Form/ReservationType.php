@@ -20,11 +20,8 @@ class ReservationType extends AbstractType
     {
         $builder
         // Chercher un calendrier avec que les dates futures
-            ->add('date', DateType::class,[
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
+        ->add('date',TextType::class, $this->getConfiguration("Date d'arrivée", "Veuillez saisir votre date d'arrivée..."
+        ))
             ->add('heure', ChoiceType::class, [
                 'choices' => $options['available_hours'],
                 'attr' => [
@@ -59,6 +56,7 @@ class ReservationType extends AbstractType
             ->add('email', EmailType::class,[
                 
                 'attr' => [
+                    // 'value' => user.email
                     'placeholder' => 'Email',
                     'class' => 'form-control'
                 ]
@@ -81,5 +79,15 @@ class ReservationType extends AbstractType
 
         $resolver->setRequired('available_hours');
         $resolver->setAllowedTypes('available_hours', 'array');
+    }
+    
+    private function getConfiguration($label, $placeholder)
+    {
+        return [
+            'label' => $label,
+            'attr' => [
+                'placeholder' => $placeholder
+            ]
+        ];
     }
 }
