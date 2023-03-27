@@ -30,28 +30,13 @@ class ContactController extends AbstractController
             ->text($message);
             //->html('<p>See Twig integration for better HTML integration!</p>');
              
-            // $mailer->send($email);
-            // $response = $this->redirectToRoute('app_home');
-            // $response->headers->setCookie(new Cookie('launch', 'true'));
-
-            echo '<script>setTimeout(() => {
-                launchModal();
-              }, "300");</script>';
+            //mail sending is limited without a domain       
+            // $mailer->send($email); 
+            echo '<script>setTimeout(() => {launchModal();}, "300");</script>';
+            //so that the modal has time to appear
             sleep(6);
             $response = $this->redirectToRoute('app_home');
-            
-            // Définir la date d'expiration du cookie
-            $expireDate = (new \DateTimeImmutable())->modify('+1 minute');
-
-            // Créer un nouveau cookie avec la date d'expiration
-            $response->headers->setCookie(new Cookie('launch', 'true', $expireDate)); 
             return $response;
-            // $home = (new HomeController());
-            // $home->launchModal(); 
-
-
-            // return $this->redirectToRoute('app_home', ['show_modal' => true]);
-            // return $this->redirect($request->getUri());
         }
 
         return $this->renderForm('contact/index.html.twig', [
