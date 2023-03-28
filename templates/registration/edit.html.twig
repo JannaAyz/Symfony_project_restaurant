@@ -80,18 +80,9 @@
             {{ form_widget(registrationForm.imageUrl) }}
             {{ form_errors(registrationForm.imageUrl, {'attr': {'class' : 'text-danger'}}) }}
          </div>
-         <div class="outline mb-4">
-            <label class="form-check-label" >
-               {{ form_widget(registrationForm.agreeTerms) }}
-               <span>
-                  I agree to the <a href="#">terms and conditions</a>
-               </span>
-            </label>
-            {{ form_errors(registrationForm.agreeTerms) }}
-            </div>
 
             <div class="outline mb-4">
-            {{ form_end(registrationForm, {'label': 'S\'inscrire', 'attr': {'class': 'btn btn-primary'}}) }}
+            {{ form_end(registrationForm, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}
             </div>
             </div>
             </div>

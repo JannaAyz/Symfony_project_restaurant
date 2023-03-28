@@ -1,14 +1,44 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+<style>
+  .nav-item {
+    font-size:1.3em;
+  }
+  .boutons{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+  }
+  .boutons a{
+    font-size:1.3em;
+  }
+  .navbarflex{
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+  }
+ #navbarSupportedContent {
+  
+  justify-content: center;
+}
+.navbarflex{
+  background-color: white;
+}
+</style>
+{% endblock %}
 {% block body %}
 
 <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
+    <div class="navbarflex">
     {# <a class="navbar-brand logo" href="{{ path('app_home') }}">LOGO</a> #}
-    <a class="navbar-brand logo" href="{{ path('app_home') }}"><img src="../../public/IMG/logo.png"></a>
+    <div>
+    <a style="width:100px;" href="{{ path('app_home') }}"><img style="width:100px; height:100px;" src="{{ asset('/IMG/logotestrogne.png') }}"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="centernav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href= "{{ path('app_home') }}">Home</a>
@@ -37,7 +67,11 @@
           <a class="nav-link" href= "#">Livraison</a>
         </li>
       </ul>
+      </div>
+      </div>
+      <div class="boutons">
         {% if app.user is null %}
+        
         <li>
         <a class="btn btn-outline-success button" href= "{{ path('app_login') }}">Login</a>
         </li>
@@ -54,8 +88,8 @@
         <a class="btn btn-outline-success button" href= "{{ path('app_account', {'id': app.user.id}) }}">My account</a>
         </li>
         {% endif %}
-    </div>
-  </div>
+        </div>
+        </div>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}

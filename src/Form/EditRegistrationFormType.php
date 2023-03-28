@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Form;
-
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\HttpFoundation\Request; 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -15,9 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\FileToDataTransformer;
 
 class EditRegistrationFormType extends AbstractType
 {
@@ -106,17 +106,6 @@ class EditRegistrationFormType extends AbstractType
                 'class' => 'form-control'
             ]
         ])
-        ->add('agreeTerms', CheckboxType::class, [
-            'mapped' => false,
-            'attr' => [
-                'class' => 'form-check-input'
-            ],
-            'constraints' => [
-                new IsTrue([
-                    'message' => 'You should agree to our terms.',
-                ]),
-            ],
-        ])
         ->add('imageUrl', FileType::class, [
             'label' => 'Photo de profil',
             'mapped' => false,
@@ -136,7 +125,7 @@ class EditRegistrationFormType extends AbstractType
             ],
         ])
         ->add('submit', SubmitType::class, [
-            'label' => 'S\'inscrire',
+            'label' => 'Modifier',
             'attr' => [
                 'class' => 'btn btn-primary'
             ]

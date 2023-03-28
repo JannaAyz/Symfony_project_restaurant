@@ -108,6 +108,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image_url = null;
+    
+    #[ORM\Column(type: "binary", nullable: true)]
+ 
+    private $imageData;
+
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -311,6 +316,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imageData
+     */ 
+    public function getImageData()
+    {
+        return $this->imageData;
+    }
+
+    /**
+     * Set the value of imageData
+     *
+     * @return  self
+     */ 
+    public function setImageData($imageData)
+    {
+        $this->imageData = $imageData;
 
         return $this;
     }

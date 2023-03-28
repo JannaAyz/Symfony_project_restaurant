@@ -4,13 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Form\EditRegistrationFormType;
 use App\Security\UserAuthenticator;
+use App\Form\EditRegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -46,7 +47,7 @@ class RegistrationController extends AbstractController
         ]);
     }
     #[Route('/register/{id}/edit', name: 'app_register_edit')]
-    public function updateAccount(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager, ManagerRegistry $doctrine, int $id): Response
+    public function updateAccount(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager, ManagerRegistry $doctrine, int $id , SluggerInterface $slugger): Response
     {
         $entityManager = $doctrine->getManager();
         $user = $entityManager->getRepository(User::class)->find($id); 
@@ -59,6 +60,19 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('imageUrl')->getData();
+            if ($file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                    $file->move(
+                        $this->getParameter('image_directory'),
+                        $newFilename
+                    );
+
+                $user->setImageUrl($newFilename);
+            }
             $user->setCreatedAt($user->getCreatedAt());
             $user->setUpdatedAt(new \DateTime());
 
