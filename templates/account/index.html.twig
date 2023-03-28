@@ -12,7 +12,7 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
 {% set currentDate = date("now") %}
 
         <section class="vh-100" style="background-color: #f4f5f7;">
-            <h1 style="text-align:center;">Mon profil</h1>
+            <h1 style="text-align:center; padding-top:30px;">Mon profil</h1>
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-6 mb-4 mb-lg-0">
@@ -73,57 +73,56 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
     </div>
   </div>
 </section>
-        <div class="row">
-
-            <div class="col-md-4">
-            <h2 class="h3 mb-3 font-weight-normal">Mes réservations</h2>        
-                    {# {{ dump(currentDate) }} #}
-
-                <h3> Vos réservations à venir</h3>
-                 {# {% set currentDate = "now"|date("Y-m-d H:i:s") %} #}
-                {% for reservatione in reservations %}
-                {% if reservatione.date > currentDate %}
-                     <div>
-                    {# {{ dump(reservatione.date) }} #}
-</div>
-             <div class="col-sm-6">
-            <div class="card">
+<section style="background-color: #f4f5f7;">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 style="text-align:center;" class="h3 mb-3 font-weight-normal">Mes réservations à venir</h2>
+      <div class="row">
+        {% for reservation in reservations %}
+          {% if reservation.date > currentDate %}
+            <div class="col-sm-6">
+              <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Au nom de {{ reservatione.reservationName }}</h5>
-                    <p class="card-text">Date: {{ reservatione.date|date("d-m-Y") }}</p>
-                    <p class="card-text">Heure: {{ reservatione.heure|date('H:i') }}</p>
-                    <p class="card-text">Restaurant: {{ reservatione.restaurantName }}</p>
-                    <a href="{{ path('app_reservation_edit', {'id': reservatione.id}) }}" class="btn btn-primary">Modifier</a>
+                  <h5 class="card-title">Au nom de {{ reservation.reservationName }}</h5>
+                  <p class="card-text">Date: {{ reservation.date|date("d-m-Y") }}</p>
+                  <p class="card-text">Heure: {{ reservation.heure|date('H:i') }}</p>
+                  <p class="card-text">Restaurant: {{ reservation.restaurantName }}</p>
+                  <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}" class="btn gradient-custom">Modifier</a>
                 </div>
+              </div>
             </div>
+            {% endif %}
+          {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2 style="text-align:center;" class="h3 mb-3 font-weight-normal">Mes réservations passées</h2>
+      <div class="row">
+{% set hasReservations = false %}
+{% for reservation in reservations %}
+  {% if reservation.date < currentDate %}
+    {% set hasReservations = true %}
+    <div class="col-sm-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Au nom de {{ reservation.reservationName }}</h5>
+          <p class="card-text">Date: {{ reservation.date|date("d-m-Y") }}</p>
+          <p class="card-text">Heure: {{ reservation.heure|date('H:i') }}</p>
+          <p class="card-text">Restaurant: {{ reservation.restaurantName }}</p>
         </div>
-                {% endif %}
-                {% endfor %}
-            
-                <h3> Vos réservations passées</h3>
-                {% for reservatione in reservations %}
-                {% if reservatione.date < currentDate %}
-            
-                <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Au nom de {{ reservatione.reservationName }}</h5>
-                    <p class="card-text">Date: {{ reservatione.date|date("d-m-Y") }}</p>
-                    <p class="card-text">Heure: {{ reservatione.heure|date('H:i') }}</p>
-                    <p class="card-text">Restaurant: {{ reservatione.restaurantName }}</p>
-                </div>
-            </div>
-        </div>
-                {% endif %}
-                {% endfor %}
-                </ul>
-                </div>
-            
-        </div>
-         <div class="row">
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
 
-            <div class="col-md-4">
-            
-            </div>
-        </div>
+{% if not hasReservations %}
+  <p style="text-align:center; padding-top:100px;">Vous n'avez pas encore mangé chez nous, nous avons hâte de vous retrouver.</p>
+{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 {% endblock %}

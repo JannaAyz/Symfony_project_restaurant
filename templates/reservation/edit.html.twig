@@ -16,6 +16,10 @@
 {% block body %}
     {% include "partials/_nav.html.twig" %}
     {# {{ dump(form.date) }} #}
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-6">
+<h1 style="text-align:center;">Modification de la réservation</h1>
 {{ form_start(form) }}
     <div class="outline mb-4">
         {{ form_label(form.date, 'Date') }}
@@ -51,6 +55,9 @@
     {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
     </div>
 {{ form_end(form) }}
+</div>
+</div>
+</div>
 
 {% endblock %}
 {% block javascripts %}
