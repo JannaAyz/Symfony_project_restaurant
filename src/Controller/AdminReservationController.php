@@ -9,16 +9,41 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\DBAL\Connection;
+use DateTime;
 
 #[Route('/admin/reservation')]
 class AdminReservationController extends AbstractController
 {
     #[Route('/', name: 'app_admin_reservation_index', methods: ['GET'])]
-    public function index(ReservationRepository $reservationRepository): Response
+    public function index(ReservationRepository $reservationRepository,Connection $connection): Response
     {
+        $reservations = $connection->fetchAllAssociative('SELECT DISTINCT date FROM reservation');
+        $today = date('Y-m-d H:i:s');
+        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $today);
+
         return $this->render('admin_reservation/index.html.twig', [
-            'reservations' => $reservationRepository->findAll(),
+            // 'reservations' => $reservationRepository->findAll(),
+            'reservations' => $reservations,
+            'selectedDate' => $date,
         ]);
+    }
+
+    #[Route('/{date}', name: 'app_admin_reservation_select', methods: ['GET'])]
+    public function select(ReservationRepository $reservationRepository, Connection $connection, Request $request): Response
+    {
+        $dateString = $request->attributes->get('date');
+        $reservations = $connection->fetchAllAssociative('SELECT DISTINCT date FROM reservation');
+        
+        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
+        $selectedReservations = $reservationRepository->findBy(['date' => $date]);
+
+        return $this->render('admin_reservation/index.html.twig', [
+            'reservations' => $reservations,
+            'selectedReservations' => $selectedReservations,
+            'selectedDate' => $date,
+        ]);
+
     }
 
     #[Route('/new', name: 'app_admin_reservation_new', methods: ['GET', 'POST'])]
@@ -43,6 +68,7 @@ class AdminReservationController extends AbstractController
     #[Route('/{id}', name: 'app_admin_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
     {
+        
         return $this->render('admin_reservation/show.html.twig', [
             'reservation' => $reservation,
         ]);

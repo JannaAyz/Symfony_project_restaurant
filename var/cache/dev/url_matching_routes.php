@@ -16,7 +16,6 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/account' => [[['_route' => 'app_account', '_controller' => 'App\\Controller\\AccountController::index'], null, null, null, false, false, null]],
         '/admin/reservation' => [[['_route' => 'app_admin_reservation_index', '_controller' => 'App\\Controller\\AdminReservationController::index'], null, ['GET' => 0], null, true, false, null]],
-        '/admin/reservation/new' => [[['_route' => 'app_admin_reservation_new', '_controller' => 'App\\Controller\\AdminReservationController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
@@ -41,16 +40,21 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/admin/reservation/([^/]++)(?'
-                    .'|(*:199)'
-                    .'|/edit(*:212)'
-                    .'|(*:220)'
+                .'|/admin/reservation/(?'
+                    .'|([^/]++)(*:199)'
+                    .'|new(*:210)'
+                    .'|([^/]++)(?'
+                        .'|(*:229)'
+                        .'|/edit(*:242)'
+                        .'|(*:250)'
+                    .')'
+                    .'|select(*:265)'
                 .')'
                 .'|/re(?'
-                    .'|gister/([^/]++)/edit(*:255)'
+                    .'|gister/([^/]++)/edit(*:300)'
                     .'|servation/(?'
-                        .'|([^/]++)/edit(*:289)'
-                        .'|confirm/([^/]++)(*:313)'
+                        .'|([^/]++)/edit(*:334)'
+                        .'|confirm/([^/]++)(*:358)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -63,12 +67,15 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        199 => [[['_route' => 'app_admin_reservation_show', '_controller' => 'App\\Controller\\AdminReservationController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        212 => [[['_route' => 'app_admin_reservation_edit', '_controller' => 'App\\Controller\\AdminReservationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        220 => [[['_route' => 'app_admin_reservation_delete', '_controller' => 'App\\Controller\\AdminReservationController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        255 => [[['_route' => 'app_register_edit', '_controller' => 'App\\Controller\\RegistrationController::updateAccount'], ['id'], null, null, false, false, null]],
-        289 => [[['_route' => 'app_reservation_edit', '_controller' => 'App\\Controller\\ReservationController::editReservation'], ['id'], null, null, false, false, null]],
-        313 => [
+        199 => [[['_route' => 'app_admin_reservation_select', '_controller' => 'App\\Controller\\AdminReservationController::select'], ['date'], ['GET' => 0], null, false, true, null]],
+        210 => [[['_route' => 'app_admin_reservation_new', '_controller' => 'App\\Controller\\AdminReservationController::new'], [], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        229 => [[['_route' => 'app_admin_reservation_show', '_controller' => 'App\\Controller\\AdminReservationController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        242 => [[['_route' => 'app_admin_reservation_edit', '_controller' => 'App\\Controller\\AdminReservationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        250 => [[['_route' => 'app_admin_reservation_delete', '_controller' => 'App\\Controller\\AdminReservationController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        265 => [[['_route' => 'app_admin_reservation_index_select', '_controller' => 'App\\Controller\\AdminReservationController::select'], [], ['GET' => 0], null, false, false, null]],
+        300 => [[['_route' => 'app_register_edit', '_controller' => 'App\\Controller\\RegistrationController::updateAccount'], ['id'], null, null, false, false, null]],
+        334 => [[['_route' => 'app_reservation_edit', '_controller' => 'App\\Controller\\ReservationController::editReservation'], ['id'], null, null, false, false, null]],
+        358 => [
             [['_route' => 'app_reservation_confirm', '_controller' => 'App\\Controller\\ReservationController::confirmUpdate'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

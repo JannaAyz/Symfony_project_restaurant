@@ -6634,6 +6634,13 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
+    <service id=".service_locator.TaY6V.j" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="connection" type="service_closure" id="doctrine.dbal.default_connection"/>
+        <argument key="reservationRepository" type="service_closure" id="App\Repository\ReservationRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.caJHb8S" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6691,14 +6698,15 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.VOqx6nD" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.eX95Qsz" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AccountController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\AdminReservationController::delete" type="service_closure" id=".service_locator.doLz9ae"/>
         <argument key="App\Controller\AdminReservationController::edit" type="service_closure" id=".service_locator.doLz9ae"/>
-        <argument key="App\Controller\AdminReservationController::index" type="service_closure" id=".service_locator.caJHb8S"/>
+        <argument key="App\Controller\AdminReservationController::index" type="service_closure" id=".service_locator.TaY6V.j"/>
         <argument key="App\Controller\AdminReservationController::new" type="service_closure" id=".service_locator.caJHb8S"/>
+        <argument key="App\Controller\AdminReservationController::select" type="service_closure" id=".service_locator.TaY6V.j"/>
         <argument key="App\Controller\AdminReservationController::show" type="service_closure" id=".service_locator.h9c0uBq"/>
         <argument key="App\Controller\ContactController::index" type="service_closure" id=".service_locator.uVvF4gL"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.xVV8u.q"/>
@@ -6715,8 +6723,9 @@
         <argument key="App\Controller\AccountController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\AdminReservationController:delete" type="service_closure" id=".service_locator.doLz9ae"/>
         <argument key="App\Controller\AdminReservationController:edit" type="service_closure" id=".service_locator.doLz9ae"/>
-        <argument key="App\Controller\AdminReservationController:index" type="service_closure" id=".service_locator.caJHb8S"/>
+        <argument key="App\Controller\AdminReservationController:index" type="service_closure" id=".service_locator.TaY6V.j"/>
         <argument key="App\Controller\AdminReservationController:new" type="service_closure" id=".service_locator.caJHb8S"/>
+        <argument key="App\Controller\AdminReservationController:select" type="service_closure" id=".service_locator.TaY6V.j"/>
         <argument key="App\Controller\AdminReservationController:show" type="service_closure" id=".service_locator.h9c0uBq"/>
         <argument key="App\Controller\ContactController:index" type="service_closure" id=".service_locator.uVvF4gL"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.xVV8u.q"/>
@@ -7599,12 +7608,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.VOqx6nD"/>
+      <argument type="service" id=".service_locator.eX95Qsz"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.VOqx6nD"/>
+      <argument type="service" id=".service_locator.eX95Qsz"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8576,7 +8585,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.VOqx6nD"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.eX95Qsz"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8597,9 +8606,10 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
+    <service id=".service_locator.zCfd8bu" alias=".service_locator.TaY6V.j"/>
     <service id=".service_locator.i55Vd0x" alias=".service_locator.xVV8u.q"/>
     <service id=".service_locator.l.j4QyZ" alias=".service_locator.QF7zLgg"/>
-    <service id=".service_locator.WfKqKtJ" alias=".service_locator.VOqx6nD"/>
+    <service id=".service_locator.0hjZPGP" alias=".service_locator.eX95Qsz"/>
     <service id=".service_locator.9XMoc9I" alias=".service_locator.kzegaci"/>
     <service id=".service_locator.9lciWlt" alias=".service_locator.9uZAa.x"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -8652,6 +8662,7 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
     <service id=".service_locator.9e2t_lq" alias=".service_locator.CsMkqUa"/>
+    <service id=".service_locator.ssQrbqQ" alias=".service_locator.TaY6V.j"/>
     <service id=".service_locator.LuS44bc" alias=".service_locator.caJHb8S"/>
     <service id=".service_locator.bRbdH2p" alias=".service_locator.h9c0uBq"/>
     <service id=".service_locator.y7DUdZ3" alias=".service_locator.doLz9ae"/>

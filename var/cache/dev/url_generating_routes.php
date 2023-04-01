@@ -18,6 +18,7 @@ return [
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'app_account' => [[], ['_controller' => 'App\\Controller\\AccountController::index'], [], [['text', '/account']], [], [], []],
     'app_admin_reservation_index' => [[], ['_controller' => 'App\\Controller\\AdminReservationController::index'], [], [['text', '/admin/reservation/']], [], [], []],
+    'app_admin_reservation_select' => [['date'], ['_controller' => 'App\\Controller\\AdminReservationController::select'], [], [['variable', '/', '[^/]++', 'date', true], ['text', '/admin/reservation']], [], [], []],
     'app_admin_reservation_new' => [[], ['_controller' => 'App\\Controller\\AdminReservationController::new'], [], [['text', '/admin/reservation/new']], [], [], []],
     'app_admin_reservation_show' => [['id'], ['_controller' => 'App\\Controller\\AdminReservationController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/reservation']], [], [], []],
     'app_admin_reservation_edit' => [['id'], ['_controller' => 'App\\Controller\\AdminReservationController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'id', true], ['text', '/admin/reservation']], [], [], []],
@@ -31,4 +32,5 @@ return [
     'app_reservation_confirm' => [['id'], ['_controller' => 'App\\Controller\\ReservationController::confirmUpdate'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/reservation/confirm']], [], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
+    'app_admin_reservation_index_select' => [[], ['_controller' => 'App\\Controller\\AdminReservationController::select'], [], [['text', '/admin/reservation/select']], [], [], []],
 ];
