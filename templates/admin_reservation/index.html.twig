@@ -40,7 +40,9 @@
   </div>
 </div>
 
-<h2>Réservations pour la date {{selectedDate|date('Y-m-d')}}</h2>
+{# <h2>Réservations pour la date {{selectedDate|date('Y-m-d')}}</h2> #}
+<h2>Réservations pour la date {{selectedDate}}</h2>
+
 {% if selectedReservations is defined and selectedReservations|length > 0 %}
 <table>
     <thead>
@@ -56,8 +58,8 @@
     <tbody>
         {% for selected in selectedReservations %}
             <tr>
-                <td>{{ selected.reservationName }}</td>
-                <td>{{ selected.restaurantName }}</td>
+                <td>{{ selected.reservation_name }}</td>
+                <td>{{ selected.restaurant_name }}</td>
                 <td>{{ selected.heure|date('H:i:s') }}</td>
                 <td>{{ selected.number }}</td>
                 <td>{{ selected.email }}</td> 
