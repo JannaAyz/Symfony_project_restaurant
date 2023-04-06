@@ -50,21 +50,7 @@ class AdminReservationController extends AbstractController
 
     #[Route('/new', name: 'app_admin_reservation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ReservationRepository $reservationRepository): Response
-    {
-        $reservation = new Reservation();
-        $form = $this->createForm(Reservation2Type::class, $reservation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $reservationRepository->save($reservation, true);
-
-            return $this->redirectToRoute('app_grumpy_puppy_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('grumpy_puppy/new.html.twig', [
-            'reservation' => $reservation,
-            'form' => $form,
-        ]);
+{}
     
         // $reservation = new Reservation();
         // if ($this->getUser()) {
@@ -120,8 +106,8 @@ class AdminReservationController extends AbstractController
         // return $this->renderForm('admin_reservation/new.html.twig', [
         //     'reservation' => $reservation,
         //     'form' => $form->createView(),
+
         // ]);
-    }
     
 
     #[Route('/{id}', name: 'app_admin_reservation_show', methods: ['GET'])]

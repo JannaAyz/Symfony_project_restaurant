@@ -36,6 +36,24 @@ class Reservation
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $heure = null;
 
+    /**
+     * @ORM\Column(type="integer", nullable=false, options={"default":0})
+     */
+    private $vip;
+
+    public function getVip(): bool
+    {
+        return (bool) $this->vip;
+    }
+
+    public function setVip(int $vip): self
+    {
+        $this->vip = (int) $vip;
+
+        return $this;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

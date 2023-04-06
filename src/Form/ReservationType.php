@@ -15,11 +15,24 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class ReservationType extends AbstractType
 {
+    private $authorizationChecker;
+
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker)
+    {
+        $this->authorizationChecker = $authorizationChecker;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        
+
+        
         $builder
             // ->add('date',TextType::class, $this->getConfiguration("Date d'arrivée", "Veuillez saisir votre date d'arrivée..."
             // ))
@@ -54,6 +67,14 @@ class ReservationType extends AbstractType
                     'class' => 'form-select'
                 ]
             ])
+            ->add('email', EmailType::class,[
+                
+                'attr' => [
+                    // 'value' => user.email
+                    'placeholder' => 'Email',
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('number', ChoiceType::class, [
                 'choices' => [
                     '1' => 1,
@@ -77,23 +98,22 @@ class ReservationType extends AbstractType
                     'placeholder' => 'Nombre de personnes',
                     'class' => 'form-control'
                 ]
-            ])
-            ->add('email', EmailType::class,[
-                
-                'attr' => [
-                    // 'value' => user.email
-                    'placeholder' => 'Email',
-                    'class' => 'form-control'
-                ]
-            ])
+                ])
             ->add('submit', SubmitType::class,[
                 'label' => 'Réservez',
                 'attr' => [
-    
                     'class' => 'btn btn-primary'
                     ]
                 ]);
-        ;
+                if ($this->authorizationChecker->isGranted('ROLE_ADMIN')) {
+                    $builder->add('vip', CheckboxType::class, [
+                        'label' => 'VIP?',
+                        'required' => false,
+                        // 'value' => false,
+                        'empty_data' => null, // La valeur par défaut est null
+                    ]);
+                }
+                
     }
 
     public function configureOptions(OptionsResolver $resolver): void

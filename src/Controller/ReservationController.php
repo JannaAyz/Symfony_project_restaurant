@@ -12,14 +12,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\DBAL\Connection;
 
 class ReservationController extends AbstractController
 {
 
     #[Route('/reservation', name: 'app_reservation')]
-    public function index(Request $request, ManagerRegistry $doctrine): Response
-    {
-        
+    public function index(Request $request, ManagerRegistry $doctrine, Connection $connection): Response
+    {  
         $reservation = new Reservation();
         if ($this->getUser()) {
             $user = $this->getUser();
@@ -38,15 +38,42 @@ class ReservationController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+        
+        
             $reservationDate = $form->get('date')->getData();
             // Récupérer les données de réservation à partir du formulaire
             $reservation-> setDate($reservationDate);
             $reservation = $form->getData();
-
+            
+           
             // Enregistrer la réservation en base de données
             $entityManager = $doctrine->getManager();
             $entityManager->persist($reservation);
             $entityManager->flush();
+
+
+            // if the VIP option is checked 
+            $vipChecked = $form->get('vip')->getData();
+
+        if ($vipChecked) {
+            $reservation->setVip(1);
+            $vipOption = $request->attributes->get('vip');
+    
+            // Recherche de l'utilisateur correspondant à la réservation
+            $user = $connection->fetchAssociative(
+                'SELECT * FROM reservation WHERE reservation_name = ?',
+                array($reservation->getReservationName())
+            );
+    
+            if ($user) {
+                // Exécution de la requête SQL pour mettre à jour la colonne 'VIP'
+                $connection->executeUpdate(
+                'UPDATE reservation SET vip = ? WHERE id = ?',
+                array(1, $user['id'])
+            );}
+        } else {
+            $reservation->setVip(0);
+        };
 
             // Rediriger l'utilisateur vers une page de confirmation
             return $this->redirectToRoute('app_reservation_confirm', ['id' => $reservation->getId()]);
@@ -63,7 +90,6 @@ class ReservationController extends AbstractController
             'reservation' => $reservation,
         ]);
     }
-
 
     
     #[Route("/reservation/{id}/edit", name:"app_reservation_edit")]
