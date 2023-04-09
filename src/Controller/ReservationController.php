@@ -61,8 +61,10 @@ class ReservationController extends AbstractController
     
             // Recherche de l'utilisateur correspondant à la réservation
             $user = $connection->fetchAssociative(
-                'SELECT * FROM reservation WHERE reservation_name = ?',
-                array($reservation->getReservationName())
+                // 'SELECT * FROM reservation WHERE reservation_name = ?',
+                // array($reservation->getReservationName())
+                'SELECT * FROM reservation WHERE id = ?',
+                array($reservation->getId())
             );
     
             if ($user) {

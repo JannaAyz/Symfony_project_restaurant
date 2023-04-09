@@ -1,42 +1,261 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 <style>
-  .nav-item {
-    font-size:1.3em;
-  }
-  .boutons{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-  }
-  .boutons a{
-    font-size:1.3em;
-  }
-  .navbarflex{
-    width:100%;
-    display:flex;
-    justify-content:space-around;
-  }
- #navbarSupportedContent {
-  
-  justify-content: center;
+:root {
+  --background: #f08632;
 }
-.navbarflex{
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+header {
+  background: var(--background);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  margin-top: -90px;
+}
+
+#logo {
+  width: 90px;
+  padding: 8px;
+}
+
+.logo {
   background-color: white;
 }
+
+{#
+#nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  /*background: var(--background);*/
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+#nav ul {
+  text-align: left;  
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  /*opacity: 0;*/
+  transition: opacity 150ms ease-in-out;
+}
+#}
+
+
+.nav-toggle {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+.nav-toggle:focus ~ .nav-toggle-label {
+  outline: 3px solid rgba(lightblue, .75);
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background: var(--background);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+.nav-toggle-label {
+  cursor :pointer;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media screen and (min-width: 800px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+  }
+  
+  .logo {
+    grid-column: 2 / 3;
+  }
+  
+  nav {
+    // all: unset; /* this causes issues with Edge, since it's unsupported */
+    
+    /* the following lines are not from my video, but add Edge support */
+    position: relative;
+    text-align: left;
+    transition: none;
+    transform: scale(1,1);
+    background: none;
+    top: initial;
+    left: initial;
+    /* end Edge support stuff */
+    
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  nav ul {
+    display: flex;
+  }
+  
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+  
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+  
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    bottom: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+}
+
+
+
 </style>
 {% endblock %}
 {% block body %}
+<header>
+  <div class="log">
+    <img id="logo" src="{{ asset('IMG/laCocosine-logo.svg')}}">
+  </div>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <nav id="nav">
+  {# <div class="logo"> #}
+  {# </div> #}
+    <ul>
+      <li><a href= "{{ path('app_home') }}">Accueil</a></li>
+      <li><a href= "{{ path('app_reservation') }}">Reservation</a></li>
+      <li><a href= "{{ path('app_contact') }}">Contact</a></li>
+      <li><a href= "{{ path('app_account') }}">Ma page</a></li>
+      <li><a href= "{{ path('app_admin_reservation_index') }}">Admin</a></li>
+    </ul>
+  </nav>
+  <label for="nav-toggle" class="nav-toggle-label">
+    <span></span>
+  </label>
+</header>
 
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="navbarflex">
+{# <nav class="navbar navbar-expand-lg bg-light">
+    <div class="navbarflex"> #}
     {# <a class="navbar-brand logo" href="{{ path('app_home') }}">LOGO</a> #}
-    <div>
-    <a style="width:100px;" href="{{ path('app_home') }}"><img style="width:100px; height:100px;" src="{{ asset('/IMG/logotestrogne.png') }}"></a>
+    {# <div>
+    <a style="width:100px;" href="{{ path('app_home') }}"><img style="width:100px; height:100px;" src="{{ asset('IMG/laCocosine-logo.svg') }}"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
-    </div>
+    </button> #}
+    {# </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="centernav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -63,33 +282,33 @@
         <li class="nav-item">
           <a class="nav-link" href= "{{ path('app_reservation') }}">Reservez une table</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"> #}
           {# <a class="nav-link" href= "{{ path('app_recrutement') }}">Nous rejoindre</a> #}
-        </li>
+        {# </li>
       </ul>
       </div>
       </div>
-      <div class="boutons">
-        {% if app.user is null %}
-        
+      <div class="boutons"> #}
+        {# {% if app.user is null %} #}
+{#         
         <li>
         <a class="btn btn-outline-success button" href= "{{ path('app_login') }}">Login</a>
         </li>
         <li>
         <a class="btn btn-outline-success button" href= "{{ path('app_register') }}">Register</a>
-        </li>
-        {% endif %}
+        </li> #}
+        {# {% endif %} #}
         {# OU #}
-        {% if app.user is not null %}
-        <li> 
+        {# {% if app.user is not null %} #}
+        {# <li> 
         <a class="btn btn-outline-success button" href= "{{ path('app_logout') }}">Logout</a>
         </li>
         <li>
         <a class="btn btn-outline-success button" href= "{{ path('app_account', {'id': app.user.id}) }}">My account</a>
-        </li>
-        {% endif %}
-        </div>
-        </div>
-</nav>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        </li> #}
+        {# {% endif %} #}
+        {# </div>
+        </div> #}
+{# </nav> #}
+{# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> #}
 {% endblock %}
