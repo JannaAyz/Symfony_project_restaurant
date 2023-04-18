@@ -1,21 +1,15 @@
-{% extends 'base.html.twig' %}
 {% block stylesheets %}
 <style>
-:root {
-  --background: #f08632;
-}
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
 
 header {
-  background: var(--background);
+  background: var(--orange);
   text-align: center;
   position: fixed;
   z-index: 999;
   width: 100%;
-  margin-top: -90px;
+  /*margin-top: -90px;*/
+  box-shadow: 3px 0px 17px rgba(0, 0, 0, 0.1);
 }
 
 #logo {
@@ -26,41 +20,6 @@ header {
 .logo {
   background-color: white;
 }
-
-{#
-#nav {
-  position: absolute;
-  text-align: left;
-  top: 100%;
-  left: 0;
-  /*background: var(--background);*/
-  width: 100%;
-  transform: scale(1, 0);
-  transform-origin: top;
-  transition: transform 400ms ease-in-out;
-}
-#nav ul {
-  text-align: left;  
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-nav li {
-  margin-bottom: 1em;
-  margin-left: 1em;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  /*opacity: 0;*/
-  transition: opacity 150ms ease-in-out;
-}
-#}
-
 
 .nav-toggle {
   position: absolute !important;
@@ -112,11 +71,12 @@ nav {
   text-align: left;
   top: 100%;
   left: 0;
-  background: var(--background);
+  background: var(--orange);
   width: 100%;
   transform: scale(1, 0);
   transform-origin: top;
   transition: transform 400ms ease-in-out;
+  font-family: 'Montserrat', sans-serif;
 }
 
 nav ul {
@@ -140,7 +100,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #000;
+  color: var(--raisinBlack);
 }
 
 .nav-toggle-label {
@@ -206,8 +166,8 @@ nav a:hover {
   nav a::before {
     content: '';
     display: block;
-    height: 5px;
-    background: black;
+    height: 3px;/*5*/
+    background: var(--raisinBlack);
     position: absolute;
     bottom: -.75em;
     left: 0;
@@ -220,8 +180,6 @@ nav a:hover {
     transform: scale(1,1);
   }
 }
-
-
 
 </style>
 {% endblock %}
@@ -239,76 +197,13 @@ nav a:hover {
       <li><a href= "{{ path('app_reservation') }}">Reservation</a></li>
       <li><a href= "{{ path('app_contact') }}">Contact</a></li>
       <li><a href= "{{ path('app_account') }}">Ma page</a></li>
+      {% if is_granted('ROLE_ADMIN') %}
       <li><a href= "{{ path('app_admin_reservation_index') }}">Admin</a></li>
+      {% endif %}
     </ul>
   </nav>
   <label for="nav-toggle" class="nav-toggle-label">
     <span></span>
   </label>
 </header>
-
-{# <nav class="navbar navbar-expand-lg bg-light">
-    <div class="navbarflex"> #}
-    {# <a class="navbar-brand logo" href="{{ path('app_home') }}">LOGO</a> #}
-    {# <div>
-    <a style="width:100px;" href="{{ path('app_home') }}"><img style="width:100px; height:100px;" src="{{ asset('IMG/laCocosine-logo.svg') }}"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> #}
-    {# </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class="centernav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href= "{{ path('app_home') }}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">La carte</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            A propos de nous
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Création</a></li>
-            <li><a class="dropdown-item" href="#">Nos restaurants</a></li>
-            <li><a class="dropdown-item" href="#">L'équipe</a></li>
-            <li><a class="dropdown-item" href="#">Le chef</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href= "/contact">Nous contacter</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href= "{{ path('app_reservation') }}">Reservez une table</a>
-        </li>
-        <li class="nav-item"> #}
-          {# <a class="nav-link" href= "{{ path('app_recrutement') }}">Nous rejoindre</a> #}
-        {# </li>
-      </ul>
-      </div>
-      </div>
-      <div class="boutons"> #}
-        {# {% if app.user is null %} #}
-{#         
-        <li>
-        <a class="btn btn-outline-success button" href= "{{ path('app_login') }}">Login</a>
-        </li>
-        <li>
-        <a class="btn btn-outline-success button" href= "{{ path('app_register') }}">Register</a>
-        </li> #}
-        {# {% endif %} #}
-        {# OU #}
-        {# {% if app.user is not null %} #}
-        {# <li> 
-        <a class="btn btn-outline-success button" href= "{{ path('app_logout') }}">Logout</a>
-        </li>
-        <li>
-        <a class="btn btn-outline-success button" href= "{{ path('app_account', {'id': app.user.id}) }}">My account</a>
-        </li> #}
-        {# {% endif %} #}
-        {# </div>
-        </div> #}
-{# </nav> #}
-{# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> #}
 {% endblock %}

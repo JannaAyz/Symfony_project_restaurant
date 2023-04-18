@@ -1,17 +1,382 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello HomeController!{% endblock %}
+{% block stylesheets %}
+<style>
 
+#background {
+/*width : 100vw;*/
+    height: 90vh;
+    transform: translateY(75px);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#background::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('{{ asset('IMG/photomania.jpg') }}');
+    background-size: cover;
+    z-index:-1;
+}
+#background::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    opacity: 1;
+    top: 0; left: 0;
+    transform: translateY(900%);
+    width: 100%; height: 10%;
+    background: linear-gradient(rgba(0, 0, 0, 0), white 99%);
+    }
+.text-bckg {
+    height: 370px;
+    width: 530px;
+    background-color: #f08632;
+    opacity: .98;
+    position relative;
+    box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.21);
+    background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
+    background-size: cover;
+    z-index:1;
+}
+.text-bckg-color {
+    height: 370px;
+    width: 530px;
+    background-color: rgba(46, 43, 44, 0.02);
+   
+    position relative;
+    /*box-shadow: 3px 0px 13px rgba(0, 0, 0, 0.1);
+    background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
+    background-size: cover; */
+    z-index:1;
+}
+
+#background h2 {
+    height: 370px;
+    width: 530px;
+    font-family: 'Montserrat', sans-serif;
+    color: rgba(51, 112, 9, 1);
+    position: absolute;
+    z-index: 2;
+    font-size: 56px;    
+    font-weight: 500;
+    font-style: italic;
+    padding: 20px;
+    position:fixed;
+}
+.presentation {
+    display:flex;
+    justify-content: center;
+    margin: 50px;
+    margin-top: 200px; 
+}
+
+.presentation img {
+    box-shadow: 3px 0px 13px rgba(0, 0, 0, 0.15);
+    padding: 0;
+}
+
+#straw {
+    object-fit:cover;
+    padding:40px;
+    height: 370px;
+    width: 530px;
+    opacity:1;
+    position:absolute;
+    z-index: 2; 
+}
+
+.card1 {
+    transition: transform 1100ms, opacity 800ms ease-in-out;
+    transform: translate(-50%, 0%) rotate(-8deg);
+    opacity: 0;
+    background:rgba(232, 233, 243, 0.3);
+    padding:20px;
+}
+.card1 > h2, .card1 > p {
+    transform: rotate(4deg);
+    text-align: center;
+    animation: visible 3s ease-out forwards;
+}
+
+.card1 > h2 {
+    color: #DD2D4A;
+    font-size:45px;
+    margin:20px;
+}
+.card1 > p {
+    font-size:20px;
+    margin:20px;
+}
+
+.card2 {
+    transition: transform 1100ms, opacity 1500ms ease-in-out;
+    scale: .8;
+    transform: translate(50%, 40%) rotate(5deg);
+    opacity: 0;
+    background:rgba(232, 233, 243, 0.5);
+}
+.left-card {
+    transition: transform 1100ms, opacity 1500ms ease-in-out;
+    transform: translate(0%, 0%) rotate(-5deg);
+    opacity: 1;
+}
+.right-card {
+    transition: transform 1100ms, opacity 1500ms ease-in-out;
+    transform: translate(-10%, 0%) rotate(0deg);
+    opacity: 1; 
+}
+.card3 {
+    transition: transform 1100ms, opacity 1500ms ease-in-out;
+    transform: translate(-50%, 0%) rotate(-8deg);
+    opacity: 0;
+    transform: scale(.85);
+    background-color: rgba(232, 233, 243, 0.3);
+}
+.card4 {
+    transition: transform 1100ms, opacity 1500ms ease-in-out;
+    transform: translate(50%, 40%) rotate(5deg);
+    opacity: 0;
+    background-color: rgba(232, 233, 243, 0.5);
+}
+.third-card {
+    transition: transform 1100ms, opacity 1500ms ease-in-out;
+    transform: translate(0%, 0%);
+    opacity: 1;
+}
+.fourth-card {
+    transition: transform 1100ms, opacity 1500ms ease-in-out;
+    transform: translate(10%, 0%) rotate(5deg);
+    opacity: 1; 
+}
+
+.btn-parent {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:20px;
+    position: relative;
+    transform: translateY(8%);
+    padding: 0px 100px 500px;
+}
+
+.gallery::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    width: 100%;
+    height: 120%;
+    background: linear-gradient( #F08632 10%, #DD2D4A 90%);
+    /*background: linear-gradient( #DD2D4A, #F08632);*/
+    -webkit-mask-image: url('{{ asset('IMG/zig-zags.png') }}');
+    mask-image: url('{{ asset('IMG/zig-zags.png') }}');
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    top: 25%;  
+}
+
+.gallery figure {   
+    filter: saturate(1.3) sepia(0.23) url('#grain');
+}
+
+.gallery figure img {
+    opacity: 0;
+    width: 350px;
+    height: 350px;
+    position: relative;
+    box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.21);
+    cursor: pointer;
+}
+
+.gallery figure::after {
+content: '';
+display: block;
+height: 0%;
+width:100%;
+background: var(--raisinBlack);
+position: absolute;
+bottom: 0;
+z-index:1;
+opacity: .7;
+cursor: pointer;
+}
+
+.gallery > figure:nth-child(2)::after, .gallery > figure:nth-child(5)::after {
+    bottom: -7%;
+}
+
+.gallery figure:hover::after {
+animation: grow 350ms ease-in-out;
+height: 100%;
+}
+
+.gallery > figure:nth-child(2) img, .gallery > figure:nth-child(5) img {
+    transform: translateY(7%);
+}
+
+
+.makeVisible {
+    opacity: 1;
+    animation: visible 1s ease forwards;
+    animation-delay: calc(var(--order)*100ms)
+}
+
+.button-89 {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #272635;
+ 
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.button-89:hover,
+.button-89:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.button-89:active {
+  background: var(--color);
+  /*color: white;*/
+}
+.button-89 {
+    color: #272635;/*raisin black*/
+    position: relative;
+    z-index: 3;
+    margin-top: 50px;
+    font-weight: 500;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+</style>
+{% endblock %}
 {% block body %}
 <body>
 {% include "partials/_nav.html.twig"%}
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/augus/Symfony/restaurant/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/augus/Symfony/restaurant/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div id="background">
+        <h2>Cuisine vitaminée</h2>
+        <div class="text-bckg"></div>
+    </div>
+    <section class="presentation">
+        <h2></h2>
+        <div class="card1 text-bckg-color">
+            <h2>Légèreté des fruits</h2>
+            <p>Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.</p>
+        </div>
+        <div class="card2 text-bckg-color">
+            <img id="straw" src="{{ asset('IMG/coconut-mango.jpg')}}" alt="">
+        </div>
+    </section>
+    <section class="presentation">
+        <div class="card3 text-bckg-color">
+            <img id="straw" src="{{ asset('IMG/dinner.jpg')}}" alt="">
+        </div>
+        <div class="card4 text-bckg-color"></div>
+    </section>
+        <div class="btn-parent">
+            <button class="button-89" role="button"><a>Reserver</a></button>
+        </div>
+    <section class="gallery">
+        <figure>
+            <img style="--order:1" src="{{ asset('IMG/mango-dish.jpg')}}">
+        </figure>
+        <figure>
+            <img style="--order:2" src="{{ asset('IMG/blue-dish.jpg')}}">
+        </figure>
+        <figure>
+            <img style="--order:3" src="{{ asset('IMG/mango-dish.jpg')}}">
+        </figure>
+        <figure>
+            <img style="--order:4" src="{{ asset('IMG/blue-dish.jpg')}}">
+        </figure>
+        <figure>
+            <img style="--order:5" src="{{ asset('IMG/mango-dish.jpg')}}">
+        </figure>
+        <figure>
+            <img style="--order:6" src="{{ asset('IMG/blue-dish.jpg')}}">
+        </figure>
+            {# <img style="--order:7" src="{{ asset('IMG/mango-dish.jpg')}}"> #}
+            {# <img style="--order:8" src="{{ asset('IMG/blue-dish.jpg')}}">
+            <img style="--order:9" src="{{ asset('IMG/mango-dish.jpg')}}"> #}
+    </section>
+{# {% include "partials/footer.html.twig"%} #}
+<script>
+  window.addEventListener("scroll", function () {
+    const CARD1 = document.querySelector(".card1");
+    const CARD2 = document.querySelector(".card2");
+    const CARD3 = document.querySelector(".card3");
+    const CARD4 = document.querySelector(".card4");
+    const IMG = document.querySelectorAll(".gallery figure img");
+    {# document.querySelector("body > section.gallery > figure > img") #}
+    const BTN = document.querySelector(".button-89");
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop >= 250 && scrollTop <= 1150) {
+      CARD1.classList.add("left-card");
+      CARD2.classList.add("right-card");
+    } else {
+      CARD1.classList.remove("left-card");
+      CARD2.classList.remove("right-card");
+    }
+
+    if (scrollTop >= 700 && scrollTop <= 1750) {
+      CARD3.classList.add("third-card");
+      CARD4.classList.add("fourth-card");
+      BTN.classList.add("make-visible");
+    } else {
+      CARD3.classList.remove("third-card");
+      CARD4.classList.remove("fourth-card");
+    }
+
+    if (scrollTop >= 1560) {
+      IMG.forEach(function(img) {
+        img.classList.add("makeVisible");
+      });
+    }
+
+    if (scrollTop <= 1160) {
+        IMG.forEach(function(img) {
+        img.classList.remove("makeVisible");
+      });
+    }
+  });
+</script>
 </body> 
 {% endblock %}
 

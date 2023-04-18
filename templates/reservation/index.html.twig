@@ -10,6 +10,9 @@
 #reservation_date_time{
     display:none;
 } #}
+.container {
+    transform: translateY(120px);
+}
 </style>
 {% endblock %}
 {% block title %}Formulaire de réservation{% endblock %}
@@ -57,7 +60,7 @@
     {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
     {{ form_errors(form.vip) }}
     </div>
-    {%endif%} 
+    {% endif %} 
     <div class="outline mb-4">
     {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
     </div>
@@ -66,6 +69,7 @@
 </div>
 </div>
 
+{% include "partials/footer.html.twig"%}
 
 {% endblock %}
 {% block javascripts %}
@@ -75,7 +79,9 @@
          $('.js-datepicker').datepicker({
               format: 'yyyy-MM-dd HH:mm:ss',
               startDate: new Date(),
+              
          });
      });
+    
 </script>
 {% endblock %}
