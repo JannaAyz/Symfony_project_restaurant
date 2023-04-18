@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\DBAL\Connection;
 
+
 class ReservationController extends AbstractController
 {
 
@@ -52,8 +53,13 @@ class ReservationController extends AbstractController
             $entityManager->flush();
 
 
-            // if the VIP option is checked 
+            // if the VIP option exists
+            if ($form->has('vip')) {
             $vipChecked = $form->get('vip')->getData();
+            } else {
+                $vipChecked = null;
+            }
+            
 
         if ($vipChecked) {
             $reservation->setVip(1);
@@ -73,9 +79,9 @@ class ReservationController extends AbstractController
                 'UPDATE reservation SET vip = ? WHERE id = ?',
                 array(1, $user['id'])
             );}
-        } else {
-            $reservation->setVip(0);
-        };
+            } else {
+                $reservation->setVip(0);
+            };
 
             // Rediriger l'utilisateur vers une page de confirmation
             return $this->redirectToRoute('app_reservation_confirm', ['id' => $reservation->getId()]);
