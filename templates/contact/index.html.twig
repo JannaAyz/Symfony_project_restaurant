@@ -20,24 +20,7 @@
         height: 250px;
         width: 25vw;
     } 
-    #modalParent {
-    position:relative;
-    }
-    .modal{
-    position:absolute;
-    margin-top:0px;
-    }
-    .button{
-        margin:10px;
-    }
-    .toDisplay {
-    display: block;
-    }
-    .dontDisplay {
-    display: none;
-    } 
-    
-</style>
+    </style>
 {% endblock %}
 {% include "partials/_nav.html.twig"%}
 
@@ -66,29 +49,7 @@
         {{ form_end(formulaire) }}
     </div>
 </div>
+{% include "partials/modal.html.twig"%}
 
-         {# Afficher le contenu de modal.html.twig et utiliser la fonction |raw pour éviter l'échappement HTML #}
-
-
-{# {% if formulaire.vars.valid %} #}
-        {# {{ modal|raw }} Afficher le contenu de modal.html.twig et utiliser la fonction |raw pour éviter l'échappement HTML #}
-{# {% endif %} #}
-
-<script>
-            function launchModal(){
-              document.querySelector("#modalParent").classList.remove("dontDisplay");
-              document.querySelector("#modalParent").classList.add("toDisplay");
-            };
-            function closeModal(){
-              document.querySelector("#modalParent").classList.remove("toDisplay");
-              document.querySelector("#modalParent").classList.add("dontDisplay");
-            };
-</script>
-{% if modal is defined %}
-        {% include "partials/modal.html.twig"%}
-    {% endif %}
-{# {% if formulaire.vars.valid %}
-        {% include 'partials/modal.html.twig' %}
-    {% endif %} #}
 {% endblock %}
 

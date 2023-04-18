@@ -35,17 +35,15 @@ class ContactController extends AbstractController
             echo '<script>setTimeout(() => {launchModal();}, "300");</script>';
             //so that the modal has time to appear
             sleep(6);
-            $truc = $this->renderView('partials/modal.html.twig');
+            echo '<script>closeModal();</script>';
             $response = $this->redirectToRoute('app_home');
             return $response;
-        }else{
-            $truc = null;
+       
         }
 
         return $this->renderForm('contact/index.html.twig', [
             'controller_name' => 'ContactController',
             'formulaire' => $form,
-            'modal' => $truc // Inclure le fichier modal.html.twig dans la réponse Twig
         ]);
     }
 

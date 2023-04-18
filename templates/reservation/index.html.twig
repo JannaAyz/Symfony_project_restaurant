@@ -13,59 +13,130 @@
 .container {
     transform: translateY(120px);
 }
+
+/* Form Styles */
+#form {
+	padding: 5rem 0;
+}
+.form__title {
+	font-size: 1.8rem;
+	color: var(--black-1);
+	font-weight: 600;
+}
+.form__wrapper {
+	padding: 3rem 0;
+}
+.form__wrapper form {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+}
+.form__group .form__label {
+	font-size: 1.6rem;
+	font-family: Poppins;
+	color: var(--black-2);
+	font-weight: 500;
+}
+.form__group input,
+.form__group textarea,
+.form__group select {
+	width: 100%;
+	border: none;
+	background-color: var(--yellowGreen);
+	font-size: 20px;
+	
+	font-weight: 600;
+	padding: 1.5rem;
+	border-radius: 8px;
+	margin-top: 0.5rem;
+	color: var(--raisinBlack);
+}
+.form__group textarea {
+	resize: vertical;
+}
+.form__wrapper button[type='submit'] {
+	width: max-content;
+	border: none;
+	padding: 1rem 4rem;
+	font-weight: 500;
+	letter-spacing: 0.1rem;
+}
+@media only screen and (min-width: 768px) {
+	.form__title {
+		font-size: 3.6rem;
+	}
+	.form__wrapper {
+		padding: 5rem 0;
+	}
+	.form__wrapper form {
+		grid-template-columns: 1fr 1fr;
+	}
+	.form__group__full {
+		grid-column: 1/3;
+	}
+	.form__group label {
+		font-size: 1.8rem;
+	}
+	.form__group input,
+	.form__group textarea,
+	.form__group select {
+		font-size: 1rem;
+		padding: 2rem;
+		margin-top: 1.5rem;
+	}
+}
 </style>
 {% endblock %}
 {% block title %}Formulaire de réservation{% endblock %}
 {% block body %}
     {% include "partials/_nav.html.twig" %}
-    {# {{ dump(form.date) }} #}
 <div class="container">
-<div class="row justify-content-center">
-<div class="col-md-6">
-<h1 style="text-align:center;"> Formulaire de réservation</h1>
+<div class="form__title">
+<h1> Formulaire de réservation</h1>
+</div>
+<div class="form__wrapper">
 {{ form_start(form) }}
-    <div class="outline mb-4">
+    <div class="form__group">
         {{ form_label(form.date, 'Date') }}
         {{ form_widget(form.date, {'attr': {'class': 'form-control js-datepicker'}}) }}
         {{ form_errors(form.date) }}
     </div>
-    <div class="outline mb-4">
+    <div class="form__group">
     {{ form_label(form.heure, 'Heure') }}
     {{ form_widget(form.heure, {'attr': {'class': 'form-control'}}) }}
     {{ form_errors(form.heure) }}
     </div>
-    <div class="outline mb-4">
+    <div class="form__group">
     {{ form_label(form.reservation_name, 'Nom de la réservation') }}
     {{ form_widget(form.reservation_name, {'attr': {'placeholder': 'Nom de la réservation', 'class': 'form-control'}}) }}
     {{ form_errors(form.reservation_name) }}
     </div>
-    <div class="outline mb-4">
+    <div class="form__group">
     {{ form_label(form.restaurant_name, 'Restaurant') }}
     {{ form_widget(form.restaurant_name, {'attr': {'placeholder': 'Restaurant à choisir', 'class': 'form-select'}}) }}
     {{ form_errors(form.restaurant_name) }}
     </div>
-    <div class="outline mb-4">
+    <div class="form__group">
     {{ form_label(form.number, 'Nombre de personnes') }}
     {{ form_widget(form.number, {'attr': {'placeholder': 'Nombre de personnes', 'class': 'form-control'}}) }}
     {{ form_errors(form.number) }}
     </div>
-    <div class="outline mb-4">
+    <div class="form__group">
     {{ form_label(form.email) }}
     {{ form_widget(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'}}) }}
     {{ form_errors(form.email) }}
     </div>
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="outline mb-4">
+    <div class="form__group">
     {{ form_label(form.vip) }}
     {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
     {{ form_errors(form.vip) }}
     </div>
     {% endif %} 
-    <div class="outline mb-4">
+    
     {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
-    </div>
+    
 {{ form_end(form) }}
-</div>
 </div>
 </div>
 
@@ -81,7 +152,6 @@
               startDate: new Date(),
               
          });
-     });
-    
+     });  
 </script>
 {% endblock %}

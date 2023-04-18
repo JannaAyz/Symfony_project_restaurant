@@ -1,8 +1,26 @@
-{% block body %} 
+<style>
+    {# Supprimez les balises inutiles ci-dessous #}
+    {# #modalParent {
+        position: relative;
+    } #}
+    .modal {
+        position: absolute;
+        margin-top: 0px;
+    }
+    .button {
+        margin: 10px;
+    }
+    .toDisplay {
+        display: block;
+    }
+    .dontDisplay {
+        display: none;
+    }
+</style>
 
-        <!-- Modal -->
-        <div id='modalParent' class='toDisplay' style='display:block'>
-    <div class="modal" style="display:block" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<!-- Modal -->
+<div id='modalParent' class='dontDisplay'>
+    <div class="modal" style="display: block" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -17,4 +35,14 @@
     </div>
 </div>
 
-{% endblock %}
+<script>
+    function launchModal() {
+        document.querySelector("#modalParent").classList.remove("dontDisplay");
+        document.querySelector("#modalParent").classList.add("toDisplay");
+    }
+
+    function closeModal() {
+        document.querySelector("#modalParent").classList.remove("toDisplay");
+        document.querySelector("#modalParent").classList.add("dontDisplay");
+    }
+</script>
