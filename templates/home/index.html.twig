@@ -36,14 +36,47 @@
 .text-bckg {
     height: 370px;
     width: 530px;
-    background-color: #f08632;
     opacity: .98;
     position relative;
     box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.21);
     background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
     background-size: cover;
     z-index:1;
+    position:relative;
 }
+.add-img {
+    position:absolute;
+    height: 280px;
+    width:280px;
+    z-index:2;
+    background-image: url('{{ asset('IMG/leaf.png') }}');
+    background-color:rgba(0, 0, 0, 0);
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: 25%;
+    bottom:15%;
+    animation: float 23s ease-in-out 1s infinite alternate;
+}
+
+@keyframes float {
+    from {
+        transform: translate(6%, 0%) rotate(-6deg);
+    } 
+    to {
+        transform: translate(-6%, 10%);
+    }
+}
+{# .add-img::after {
+    content:'';
+    position: absolute;
+    background: url('{{ asset('IMG/leaf.png') }}');
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    right:0;
+    bottom:0;
+    box-sizing: content-box;
+} #}
 .text-bckg-color {
     height: 370px;
     width: 530px;
@@ -60,10 +93,10 @@
     height: 370px;
     width: 530px;
     font-family: 'Montserrat', sans-serif;
-    color: rgba(51, 112, 9, 1);
+    color: var(--yellowGreen);
     position: absolute;
     z-index: 2;
-    font-size: 56px;    
+    font-size: 50px;    
     font-weight: 500;
     font-style: italic;
     padding: 20px;
@@ -189,7 +222,7 @@
 }
 
 .gallery figure {   
-    filter: saturate(1.3) sepia(0.23) url('#grain');
+    filter: saturate(1.3) sepia(0.1) url('#grain');
 }
 
 .gallery figure img {
@@ -226,8 +259,28 @@ height: 100%;
 .gallery > figure:nth-child(2) img, .gallery > figure:nth-child(5) img {
     transform: translateY(7%);
 }
+.gallery > figure:nth-child(2) > p, .gallery > figure:nth-child(4) > p,
+.gallery > figure:nth-child(6) > p {
+    color: var(--ghostWhite);
+}
 
-
+.gallery > figure > p {
+    position: absolute;
+    color: var(--orange);
+    top: 40%;
+    left: 20%;
+    z-index:3;
+    font-weight: 500;
+    font-size: 25px;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0;
+    
+}
+.gallery > figure:hover >p {
+    transition: opacity 350ms;
+    opacity: 1;
+}
 .makeVisible {
     opacity: 1;
     animation: visible 1s ease forwards;
@@ -292,6 +345,7 @@ body {
     <div id="background">
         <h2>Cuisine vitaminée</h2>
         <div class="text-bckg"></div>
+        <div class="add-img"></div>
     </div>
     <section class="presentation">
         <h2></h2>
@@ -315,21 +369,45 @@ body {
     <section class="gallery">
         <figure>
             <img style="--order:1" src="{{ asset('IMG/mango-dish.jpg')}}">
+            <p>PATATE DOUCE<br>
+            Bonne évaluation<br>
+            ingredients: ceci, cela...<br>
+            </p>
         </figure>
         <figure>
             <img style="--order:2" src="{{ asset('IMG/blue-dish.jpg')}}">
+            <p>COCO ANANAS<br>
+            Bonne évaluation<br>
+            ingredients: ceci, cela...<br>
+            </p>
         </figure>
         <figure>
             <img style="--order:3" src="{{ asset('IMG/mango-dish.jpg')}}">
+            <p>PATATE DOUCE<br>
+            Bonne évaluation<br>
+            ingredients: ceci, cela...<br>
+            </p>
         </figure>
         <figure>
             <img style="--order:4" src="{{ asset('IMG/blue-dish.jpg')}}">
+            <p>COCO ANANAS<br>
+            Bonne évaluation<br>
+            ingredients: ceci, cela...<br>
+            </p>
         </figure>
         <figure>
             <img style="--order:5" src="{{ asset('IMG/mango-dish.jpg')}}">
+            <p>PATATE DOUCE<br>
+            Bonne évaluation<br>
+            ingredients: ceci, cela...<br>
+            </p>
         </figure>
         <figure>
             <img style="--order:6" src="{{ asset('IMG/blue-dish.jpg')}}">
+            <p>COCO ANANAS<br>
+            Bonne évaluation<br>
+            ingredients: ceci, cela...<br>
+            </p>
         </figure>
             {# <img style="--order:7" src="{{ asset('IMG/mango-dish.jpg')}}"> #}
             {# <img style="--order:8" src="{{ asset('IMG/blue-dish.jpg')}}">
@@ -375,6 +453,17 @@ body {
         img.classList.remove("makeVisible");
       });
     }
+
+    /*const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollFromBottom = documentHeight - (windowHeight + scrollTop);
+
+    if (scrollFromBottom <= 250 && scrollFromBottom >= 1150) {
+        CARD1.classList.add("left-card");
+        CARD2.classList.add("right-card");
+    } */
+
   });
 </script>
 </body> 
