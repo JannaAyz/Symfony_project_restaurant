@@ -17,10 +17,6 @@ header {
   padding: 8px;
 }
 
-.logo {
-  background-color: white;
-}
-
 .nav-toggle {
   position: absolute !important;
   top: -9999px !important;
@@ -125,14 +121,13 @@ nav a:hover {
     display: grid;
     grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
   }
-  
-  .logo {
-    grid-column: 2 / 3;
+
+  #logo {
+  display:none;
   }
   
   nav {
     // all: unset; /* this causes issues with Edge, since it's unsupported */
-    
     /* the following lines are not from my video, but add Edge support */
     position: relative;
     text-align: left;
@@ -142,10 +137,10 @@ nav a:hover {
     top: initial;
     left: initial;
     /* end Edge support stuff */
-    
-    grid-column: 3 / 4;
+    height: 75px; 
+    grid-column: 1/5;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
   }
   
@@ -174,6 +169,7 @@ nav a:hover {
     right: 0;
     transform: scale(0, 1);
     transition: transform ease-in-out 250ms;
+    opacity: .8;
   }
   
   nav a:hover::before {
