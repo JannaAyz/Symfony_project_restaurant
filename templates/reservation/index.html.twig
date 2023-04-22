@@ -10,82 +10,136 @@
 #reservation_date_time{
     display:none;
 } #}
+body {
+    background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
+}
 .container {
     transform: translateY(120px);
-    background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
-    {# background-size: cover; #}
+    /*background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
+    background-size: cover;*/
+}
+footer {
+    transform: translateY(120px);
 }
 
 /* Form Styles */
 #form {
 	padding: 5rem 0;
 }
-.form__title {
+.form-title {
 	font-size: 1.8rem;
-	color: var(--black-1);
+	/*color: var(--black-1);*/
 	font-weight: 600;
 }
-.form__wrapper {
+.form-wrapper {
 	padding: 3rem 0;
 }
-.form__wrapper form {
+.form-wrapper form {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 2rem;
 }
-.form__group .form__label {
+.form-group .form__label {
 	font-size: 1.6rem;
-	font-family: Poppins;
-	color: var(--black-2);
+	/*font-family: Poppins;
+	color: var(--black-2);*/
 	font-weight: 500;
 }
-.form__group input,
-.form__group textarea,
-.form__group select {
+.form-group input,
+.form-group textarea,
+.form-group select {
 	width: 100%;
-	border: none;
-	background-color: var(--yellowGreen);
 	font-size: 20px;
-	
+	background-color: none;
+    background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
 	font-weight: 600;
 	padding: 1.5rem;
-	border-radius: 8px;
+	/*border-radius: 8px;*/
 	margin-top: 0.5rem;
 	color: var(--raisinBlack);
+    border: 3px solid black;
 }
-.form__group textarea {
+
+.form-group input:focus {
+    background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
+    border: 13px solid var(--yellowGreen)!important;
+}
+
+.form-group textarea {
 	resize: vertical;
 }
-.form__wrapper button[type='submit'] {
+.form-wrapper button[type='submit'] {
 	width: max-content;
 	border: none;
 	padding: 1rem 4rem;
 	font-weight: 500;
 	letter-spacing: 0.1rem;
 }
+
+
+
+
+.form-select:focus , .form-select:focus, .dropdown-item:hover{
+        border: 3px solid green;
+        background-color: green;
+        box-shadow: 4px 4px 12px black;
+    }
+    .form-group > *:focus , .form-group > *:hover , .form-group > *:checked:hover{
+        border: 3px solid green;
+        background-color: var(--yellowGreen);
+        box-shadow: 4px 4px 12px black;
+    }
+    #reservation_heure > option:hover,  #reservation_heure > option:focus,  
+    #reservation_heure > option:active, #reservation_heure > option::selection {
+        background-color: red;
+    }
+
+   .form-control > option:hover, .form-control > option:focus, .form-control > option:active,
+   .form-control > option::selection {
+        background-color: red;
+        {# display: none; #}
+    }
+    .form-control > option:hover,
+.form-control > option:focus,
+.form-control > option:active {
+  /*background-color: red;  Couleur de fond bleu */
+  /* Autres styles personnalisés pour les options */
+  font-size: 40px;
+}
+
+
+.form-control > option:hover {
+    background-color: red;
+    display:none;
+}
+
 @media only screen and (min-width: 768px) {
-	.form__title {
+    .form_widget {
 		font-size: 3.6rem;
 	}
-	.form__wrapper {
+	.form-wrapper {
 		padding: 5rem 0;
 	}
-	.form__wrapper form {
+	.form-wrapper form {
 		grid-template-columns: 1fr 1fr;
 	}
-	.form__group__full {
+	.form-group-full {
 		grid-column: 1/3;
 	}
-	.form__group label {
+	.form-group label {
 		font-size: 1.8rem;
 	}
-	.form__group input,
-	.form__group textarea,
-	.form__group select {
+	.form-group input,
+	.form-group textarea,
+	.form-group select {
 		font-size: 1rem;
-		padding: 2rem;
-		margin-top: 1.5rem;
+		{# padding: 2rem; 
+		margin-top: 1.5rem;#}
 	}
+
+    
+
+
 }
 </style>
 {% endblock %}
@@ -93,43 +147,43 @@
 {% block body %}
     {% include "partials/_nav.html.twig" %}
 <div class="container">
-<div class="form__title">
+<div class="form-title">
 <h1> Formulaire de réservation</h1>
 </div>
-<div class="form__wrapper">
+<div class="form-wrapper">
 {{ form_start(form) }}
-    <div class="form__group">
+    <div class="form-group">
         {{ form_label(form.date, 'Date') }}
         {{ form_widget(form.date, {'attr': {'class': 'form-control js-datepicker'}}) }}
         {{ form_errors(form.date) }}
     </div>
-    <div class="form__group">
+    <div class="form-group">
     {{ form_label(form.heure, 'Heure') }}
     {{ form_widget(form.heure, {'attr': {'class': 'form-control'}}) }}
     {{ form_errors(form.heure) }}
     </div>
-    <div class="form__group">
+    <div class="form-group">
     {{ form_label(form.reservation_name, 'Nom de la réservation') }}
     {{ form_widget(form.reservation_name, {'attr': {'placeholder': 'Nom de la réservation', 'class': 'form-control'}}) }}
     {{ form_errors(form.reservation_name) }}
     </div>
-    <div class="form__group">
+    <div class="form-group">
     {{ form_label(form.restaurant_name, 'Restaurant') }}
     {{ form_widget(form.restaurant_name, {'attr': {'placeholder': 'Restaurant à choisir', 'class': 'form-select'}}) }}
     {{ form_errors(form.restaurant_name) }}
     </div>
-    <div class="form__group">
+    <div class="form-group">
     {{ form_label(form.number, 'Nombre de personnes') }}
     {{ form_widget(form.number, {'attr': {'placeholder': 'Nombre de personnes', 'class': 'form-control'}}) }}
     {{ form_errors(form.number) }}
     </div>
-    <div class="form__group">
+    <div class="form-group">
     {{ form_label(form.email) }}
     {{ form_widget(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'}}) }}
     {{ form_errors(form.email) }}
     </div>
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="form__group">
+    <div class="form-group">
     {{ form_label(form.vip) }}
     {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
     {{ form_errors(form.vip) }}
@@ -155,5 +209,19 @@
               
          });
      });  
+
+
+    // Écouteur d'événement pour le survol des options d'un élément select
+    const OPTIONS =document.querySelector('.form-control > option');
+OPTIONS.addEventListener('focus', function() {
+  // Appliquer les styles souhaités aux options
+  OPTIONS.forEach(function(options) {
+      
+    options.style.backgroundColor = 'red';
+    options.style.color = '#FFFFFF';
+    options.style.display = 'none';
+    });
+  
+}); 
 </script>
 {% endblock %}

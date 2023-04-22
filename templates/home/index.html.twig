@@ -44,6 +44,7 @@
     z-index:1;
     position:relative;
 } #}
+
 .add-img {
     position:absolute;
     height: 280px;
@@ -77,6 +78,7 @@
     bottom:0;
     box-sizing: content-box;
 } #}
+
 .text-bckg-color {
     height: 370px;
     width: 530px;
@@ -88,8 +90,6 @@
     background-size: cover; */
     z-index:1;
 }
-
-
 
 /*#background h2::before {
     content: '';
@@ -124,11 +124,12 @@
     font-size: 35px;
     font-weight: 500;
     backdrop-filter: brightness(300%);
-    background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
+    background: url('{{ asset('IMG/paper-bckg.jpg') }}');
     background-size: cover;
     padding: 10px;
     box-shadow: 2px 0px 4px rgba(39, 38, 53, .15);
     /*backdrop-filter: brightness(500%);*/
+    background-blend-mode: screen;
 }
 
 #background h2 {
@@ -245,26 +246,17 @@
     justify-content: center;
     gap:20px;
     position: relative;
-    transform: translateY(8%);
-    padding: 0px 100px 500px;
+    {# transform: translateY(8%); #}
+    padding: 0px 100px 0px;
+    margin-bottom:0px;
+    {# background-color: green; #}
+
+   
+
+
 }
 
-.gallery::before {
-    content: '';
-    position: absolute;
-    z-index: -2;
-    width: 100%;
-    height: 120%;
-    background: linear-gradient( #F08632 10%, #DD2D4A 90%);
-    /*background: linear-gradient( #DD2D4A, #F08632);*/
-    -webkit-mask-image: url('{{ asset('IMG/zig-zags.png') }}');
-    mask-image: url('{{ asset('IMG/zig-zags.png') }}');
-    -webkit-mask-size: 100%;
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    top: 25%;  
-}
+
 
 .gallery figure {   
     filter: saturate(1.3) sepia(0.1) url('#grain');
@@ -378,14 +370,9 @@ height: 100%;
     font-weight: 500;
 }
 
-body {
-    overflow-x: hidden;
-}
-
 </style>
 {% endblock %}
 {% block body %}
-<body>
 {% include "partials/_nav.html.twig"%}
     <div id="background">
         <h2>La CoCosine</h2>
@@ -512,6 +499,6 @@ body {
 
   });
 </script>
-</body> 
+
 {% endblock %}
 
