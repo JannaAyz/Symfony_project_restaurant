@@ -90,11 +90,14 @@ footer {
         background-color: rgba(232, 233, 243, .1); 
         box-shadow: 0px 0px 0px black;
     }
+    
+    .form-group > option:focus, .form-control > option:focus {
+        background: rgba(232, 233, 243, .5);
+    }
 
     .form-control > option, .form-select > option{
         font-size: 20px;
         background-color: #f7ecddcc;
-        
         font-weight: 500;
     }
 
@@ -102,6 +105,20 @@ footer {
  {
     background-color: red;
 }
+
+
+
+select {
+    text-transform: none;
+    word-wrap: normal;
+}
+select -internal-list-box {
+    overflow: visible !important;
+    display:none;
+}
+
+
+
 
 @media only screen and (min-width: 768px) {
     .form_widget {
@@ -129,9 +146,35 @@ footer {
 
 }
 
+form button {
+    margin: 30px 0 50px;
+    font-size: 1.3rem!important;
+    color: black;
+    text-transform: uppercase;
+    border: 3px solid black!important;
+    font-weight: 500!important;
+    background: rgba(149, 198, 35, .8);
+
+    backdrop-filter: blur(10px);
+    
+    {# background-color: transparent; #}
+    {# background-color: red; #}
+    {# border: 3px solid white!important;
+    color: white; #}
+}
+form button:hover {
+    background: rgba(232, 233, 243, .5);
+    color: var(--yellowGreen);
+    border: 3px solid var(--yellowGreen)!important;
+    
+}
+
 #anchor{
     height: 75vh;
     transform: translateY(-20vw);
+}
+footer {
+    margin-top:50px;
 }
 </style>
 {% endblock %}
@@ -182,7 +225,7 @@ footer {
     </div>
     {% endif %} 
     
-    {{ form_widget(form.submit, {'attr': {'class': ''}}) }}
+    {{ form_widget(form.submit, {'attr': {'class': 'sbmit-btn'}}) }}
     
 {{ form_end(form) }}
 </div>
