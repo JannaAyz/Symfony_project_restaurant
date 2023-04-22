@@ -15,8 +15,7 @@ body {
 }
 .container {
     transform: translateY(120px);
-    /*background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
-    background-size: cover;*/
+    height: 110%;
 }
 footer {
     transform: translateY(120px);
@@ -45,25 +44,10 @@ footer {
 	color: var(--black-2);*/
 	font-weight: 500;
 }
-.form-group input,
-.form-group textarea,
-.form-group select {
-	width: 100%;
-	font-size: 20px;
-	background-color: none;
-    background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
-	font-weight: 600;
-	padding: 1.5rem;
-	/*border-radius: 8px;*/
-	margin-top: 0.5rem;
-	color: var(--raisinBlack);
-    border: 3px solid black;
-}
 
-.form-group input:focus {
-    background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
-    border: 13px solid var(--yellowGreen)!important;
-}
+
+
+
 
 .form-group textarea {
 	resize: vertical;
@@ -76,41 +60,47 @@ footer {
 	letter-spacing: 0.1rem;
 }
 
-
-
-
-.form-select:focus , .form-select:focus, .dropdown-item:hover{
-        border: 3px solid green;
-        background-color: green;
-        box-shadow: 4px 4px 12px black;
-    }
-    .form-group > *:focus , .form-group > *:hover , .form-group > *:checked:hover{
-        border: 3px solid green;
-        background-color: var(--yellowGreen);
-        box-shadow: 4px 4px 12px black;
-    }
-    #reservation_heure > option:hover,  #reservation_heure > option:focus,  
-    #reservation_heure > option:active, #reservation_heure > option::selection {
-        background-color: red;
-    }
-
-   .form-control > option:hover, .form-control > option:focus, .form-control > option:active,
-   .form-control > option::selection {
-        background-color: red;
-        {# display: none; #}
-    }
-    .form-control > option:hover,
-.form-control > option:focus,
-.form-control > option:active {
-  /*background-color: red;  Couleur de fond bleu */
-  /* Autres styles personnalisés pour les options */
-  font-size: 40px;
+.form-group input,
+.form-group textarea,
+.form-group select {
+	width: 100%;
+	font-size: 20px;
+	background-color: none;
+    background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
+	font-weight: 600;
+	padding: 1.5rem;
+	border-radius: 2px;
+	margin-top: 0.5rem;
+	color: var(--raisinBlack);
+    border: 3px solid black;
 }
+.form-group input,
+.form-group textarea,
+.form-group select {
+    background: transparent;
+    background: rgba(232, 233, 243, .2);
+    background: rgba(221, 45, 74, .04);
+    background: rgba(240, 134, 50, .1);
+    backdrop-filter: blur(20px);
+}
+    .form-group > input:focus , .form-group > *:focus , 
+    .form-group > input:hover, select:hover, select:active, .form-group > option,
+    .form-control > option {
+        border: 3px solid var(--yellowGreen);
+        background-color: rgba(232, 233, 243, .1); 
+        box-shadow: 0px 0px 0px black;
+    }
+
+    .form-control > option, .form-select > option{
+        font-size: 20px;
+        background-color: #f7ecddcc;
+        
+        font-weight: 500;
+    }
 
 
-.form-control > option:hover {
+ {
     background-color: red;
-    display:none;
 }
 
 @media only screen and (min-width: 768px) {
@@ -137,9 +127,11 @@ footer {
 		margin-top: 1.5rem;#}
 	}
 
-    
+}
 
-
+#anchor{
+    height: 75vh;
+    transform: translateY(-20vw);
 }
 </style>
 {% endblock %}
@@ -190,7 +182,7 @@ footer {
     </div>
     {% endif %} 
     
-    {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_widget(form.submit, {'attr': {'class': ''}}) }}
     
 {{ form_end(form) }}
 </div>
