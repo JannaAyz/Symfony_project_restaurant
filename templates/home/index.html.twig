@@ -3,6 +3,37 @@
 {% block title %}Hello HomeController!{% endblock %}
 {% block stylesheets %}
 <style>
+/*to modify depending on each page'a wanted percentage of zig-zags*/
+    #bottom {
+        transform: translateY(-90vh);
+        height: 530vh;
+        padding-bottom: -200vh;
+
+    }
+    #zig-zags::after {
+        top:3%;
+        {# bottom: -20%; #}
+    }
+    #zig-zags {
+        position: relative;
+        z-index: -10;
+        height: 180vh!important;
+        flex-grow: 0;
+        /*responsive adaptation*/
+        {# width: 200%!important; #}
+    }
+    #footer::before {
+        display: none;
+    }
+    #footer {
+        position: absolute;
+        {# top: -50%; #}
+        bottom: 45vh;
+        margin-bottom: -200vh;
+        {# transform: translateY(-50vh); #}
+        
+    }
+/* zig-zags' modification ends here*/
 
 #background {
 /*width : 100vw;*/
@@ -250,13 +281,7 @@
     padding: 0px 100px 0px;
     margin-bottom:0px;
     {# background-color: green; #}
-
-   
-
-
 }
-
-
 
 .gallery figure {   
     filter: saturate(1.3) sepia(0.1) url('#grain');
@@ -319,8 +344,6 @@ height: 100%;
     opacity: 1;
 }
 .makeVisible {
-    opacity: 1;
-    animation: visible 1s ease forwards;
     animation-delay: calc(var(--order)*100ms)
 }
 
@@ -369,9 +392,6 @@ height: 100%;
     margin-top: 50px;
     font-weight: 500;
 }
-
-
-
 
 </style>
 {% endblock %}

@@ -1,26 +1,49 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 <style>
-{# .table-condensed {
-  display: none;
-}
-#reservation_date_date{
-    display:none;
-}
-#reservation_date_time{
-    display:none;
-} #}
+/*to modify depending on each page'a wanted percentage of zig-zags*/
+    #bottom {
+        transform: translateY(-140vh);
+        display: block;
+    }
+    #zig-zags::after {
+        top:57%;
+    }
+    #footer {
+        margin: 0;
+        background-image: url('{{ asset('IMG/grenade-orange-blurry.jpg') }}');
+        background-size: cover;
+        -webkit-backdrop-filter: blur(55px);
+        backdrop-filter: blur(55px);
+    }
+    #footer::before {
+        background-color: black;
+    }
+
+/* zig-zags' modification ends here*/
+
 body {
     background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
 }
 .container {
     transform: translateY(120px);
     height: 110%;
+    position: relative;
+    z-index:1;
 }
-footer {
-    transform: translateY(120px);
+{# footer {
+    
+    height: 50%;
+    margin-bottom:0;
 }
-
+footer #zig-zags::after {
+    /*height:50vh;*/
+    top:-20vh;
+} #}
+#bottom {
+   height: 30vh!important;   
+   width: 100%;
+}
 /* Form Styles */
 #form {
 	padding: 5rem 0;
@@ -175,7 +198,9 @@ form button:hover {
 }
 footer {
     margin-top:50px;
+    top:0;
 }
+
 </style>
 {% endblock %}
 {% block title %}Formulaire de réservation{% endblock %}

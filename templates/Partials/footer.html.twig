@@ -1,29 +1,19 @@
 {% block stylesheets %}
 <style>
 footer {
-    position:absolute;
+    {# position:absolute; #}
     width: 100vw;
-    top:360%;
+    display: flex;
+    flex-direction: column;
 }
 #footer {
     color: white;
-    color: var(--ghostWhite);
-    background-color: black;
     padding: 50px;
-    /*position: absolute;
-    width: 100%;
-    bottom:0;*/
-    margin: 0;
-    background-image: url('{{ asset('IMG/grenade-orange-blurry.jpg') }}');
-    background-size: cover;
-    -webkit-backdrop-filter: blur(55px);
-    backdrop-filter: blur(55px);
+    position: relative;
     /*box-shadow: 0px -5px 24px rgba(39, 38, 53, .5);*/
 }
-
 #footer > * {
-    z-index: 3;
-    
+    z-index: 3;    
 }
 
 #footer::before {
@@ -36,8 +26,6 @@ footer {
     top:0;
     width: 100%;
     height: 100%;
-    background-color: #272635;
-    background-color: black;
     opacity: .7;  
 }
 #zig-zags {
@@ -45,6 +33,8 @@ footer {
     z-index: -10;
     height: 150vh;
     width: 120%;
+    overflow-y: hidden;
+    flex-grow: 1;
 }
 #zig-zags::after {
     content: '';
@@ -60,26 +50,23 @@ footer {
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     height: 100%;
-    {# top: 0; #}
-    bottom:0;
+   
     /*homePage*/
 }
-
-
 
 .social-network-icons > img {
     height: 30px;
     margin: 5px;
 }
 
-{# .centered-txt {
-    text-align: center;
-} #}
-
-footer #straw {
+#footer-logo {
     height: 55px;
     margin: 10px;
-    margin-left: 120px;
+}
+
+#logo-wrapper {
+    display: flex;
+    justify-content: center;
 }
 
 #footer {
@@ -88,7 +75,7 @@ footer #straw {
 }
 
 #footer > div {
-    width: 20vw;
+    width: max(20vw, 250px);
 }
 
 #footer > div:nth-child(1) > *, footer > div:nth-child(2) > * , .footer-adresses-part > *{
@@ -108,6 +95,12 @@ footer #straw {
     margin-bottom: 20px;
 }
 
+@media screen and (max-width: 768px) {
+
+
+
+}
+
 </style>
 {% endblock %}
 {% block body %}
@@ -116,7 +109,9 @@ footer #straw {
     <div id='zig-zags'></div>
     <div id='footer'>
         <div class='footer-logo-part'>
-            <img id="straw" src="{{ asset('IMG/laCocosine-logo.svg')}}" alt="">
+            <div id='logo-wrapper'>
+                <img id="footer-logo" src="{{ asset('IMG/laCocosine-logo.svg')}}" alt="">
+            </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
         </div>
         <div class='footer-contact-part'>
@@ -137,5 +132,28 @@ footer #straw {
         </div>
     </div>
 </footer>
+<script>
+ window.addEventListener("scroll", function () {
+    const FOOTER = document.querySelectorAll("body #footer *");
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollFromBottom = documentHeight - (windowHeight + scrollTop);
+    /*const scrollFromBottom = (windowHeight + window.scrollY) - document.body.offsetHeight;*/
+    console.log(scrollFromBottom);
+    /*if (scrollFromBottom <= 250 && scrollFromBottom >= 1150) {*/
+    if (scrollFromBottom <= 180) {
+        FOOTER.forEach(function(elmnt) {
+            elmnt.classList.add("makeVisible");
+            elmnt.style.opacity = "1";
+        })
+    } else {
+        FOOTER.forEach(function(elmnt) {
+            elmnt.classList.remove("makeVisible");
+            elmnt.style.opacity = "0";
+        })
+    }
+  });
 
+</script>
 {% endblock %}
