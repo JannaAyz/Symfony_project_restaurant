@@ -1,7 +1,7 @@
 {% block stylesheets %}
 <style>
 footer {
-    {# position:absolute; #}
+    position:absolute;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -156,6 +156,10 @@ h5 {
     #footer {
         flex-direction: column;
     }
+    /*RESEVATION*/
+    /*#footer >* {
+        transform: translateX(-20px);
+    } */
     #footer::before {
         left:0;
     }
@@ -170,16 +174,18 @@ h5 {
     }
     #footer > div, #footer > div:nth-child(2) {
     width: 80vw;
-}
-.footer-contact-part {
-    text-align: center;
-}
-.footer-adresses-part p::before {
-    width: 20%;
-    left: 40%;
-}
+    }
+    .footer-contact-part {
+        text-align: center;
+    }
+    .footer-adresses-part p::before {
+        width: 20%;
+        left: 40%;
+    }
 
-
+    #footer > * {
+        transform: translateX(-10%);
+    }
 
 }
 

@@ -3,7 +3,7 @@
 <style>
 /*to modify depending on each page'a wanted percentage of zig-zags*/
     #bottom {
-        transform: translateY(-140vh);
+        transform: translateY(-160vh);
         display: block;
     }
     #zig-zags::after {
@@ -27,30 +27,47 @@ body {
     background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
 }
 .container {
-    transform: translateY(120px);
-    height: 110%;
+    margin-top: 170px;
     position: relative;
     z-index:1;
+    animation: popUp 550ms ;
+    transform-origin: top;
 }
-{# footer {
-    
-    height: 50%;
-    margin-bottom:0;
+
+@keyframes popUp {
+    from {
+    margin-top: 170px;
+
+        /* transform: scale(1, 0);*/
+        transform: translateY(20%);
+        opacity: 0;
+    }
+    to {
+    margin-top: 170px;
+
+        /*transform: scale(1, 1);*/
+        opacity: .5 ;
+        transform: translateY(0);
+    }
 }
-footer #zig-zags::after {
-    /*height:50vh;*/
-    top:-20vh;
-} #}
+
 #bottom {
    height: 30vh!important;   
    width: 100%;
 }
+
 /* Form Styles */
 #form {
 	padding: 5rem 0;
 }
+#principal > div > div.form-title > h1 {
+font-size: 2.1rem;
+margin-top:-55px;
+margin-bottom: -20px;
+}
+
 .form-title {
-	font-size: 1.8rem;
+	
 	/*color: var(--black-1);*/
 	font-weight: 600;
 }
@@ -63,7 +80,7 @@ footer #zig-zags::after {
 	gap: 2rem;
 }
 .form-group .form__label {
-	font-size: 1.6rem;
+	{# font-size: 1.6rem; #}
 	/*font-family: Poppins;
 	color: var(--black-2);*/
 	font-weight: 500;
@@ -125,13 +142,6 @@ footer #zig-zags::after {
         font-weight: 500;
     }
 
-
- {
-    background-color: red;
-}
-
-
-
 select {
     text-transform: none;
     word-wrap: normal;
@@ -141,10 +151,15 @@ select -internal-list-box {
     display:none;
 }
 
-
+.form-group label {
+		font-size: 1.6rem;
+}
 
 
 @media only screen and (min-width: 768px) {
+    .form-title {
+        margin-bottom: -30px;
+    }
     .form_widget {
 		font-size: 3.6rem;
 	}
@@ -157,16 +172,17 @@ select -internal-list-box {
 	.form-group-full {
 		grid-column: 1/3;
 	}
-	.form-group label {
-		font-size: 1.8rem;
-	}
+	
 	.form-group input,
 	.form-group textarea,
 	.form-group select {
-		font-size: 1rem;
 		{# padding: 2rem; 
 		margin-top: 1.5rem;#}
 	}
+    
+    .form-group label {
+		font-size: 1.8rem;
+    }
 
 }
 
@@ -178,19 +194,13 @@ form button {
     border: 3px solid black!important;
     font-weight: 500!important;
     background: rgba(149, 198, 35, .8);
-
     backdrop-filter: blur(10px);
-    
-    {# background-color: transparent; #}
-    {# background-color: red; #}
-    {# border: 3px solid white!important;
-    color: white; #}
 }
 form button:hover {
+    color: ;
     background: rgba(232, 233, 243, .5);
-    color: var(--yellowGreen);
     border: 3px solid var(--yellowGreen)!important;
-    
+    text-shadow: 2px 3px 1px var(--yellowGreen);
 }
 
 #anchor{

@@ -65,7 +65,6 @@
         position: relative;
         height: 630px;
         align-items: flex-end;
-        {# padding-bottom: -60px; #}
     }
 
     #footer > div {
@@ -77,9 +76,9 @@
     }
 
 /* zig-zags' modification ends here*/
-.gallery {
+{# .gallery {
     opacity:0;
-}
+} #}
 #background {
 /*width : 100vw;*/
     height: 90vh;
@@ -131,29 +130,6 @@
     to {
         transform: translate(-6%, 10%);
     }
-}
-{# .add-img::after {
-    content:'';
-    position: absolute;
-    background: url('{{ asset('IMG/leaf.png') }}');
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    right:0;
-    bottom:0;
-    box-sizing: content-box;
-} #}
-
-.text-bckg-color {
-    height: 370px;
-    width: 530px;
-    background-color: rgba(46, 43, 44, 0.02);
-   
-    position relative;
-    /*box-shadow: 3px 0px 13px rgba(0, 0, 0, 0.1);
-    background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
-    background-size: cover; */
-    z-index:1;
 }
 
 /*#background h2::before {
@@ -208,7 +184,6 @@
     font-weight: 600;
     padding: 30px;
     text-align: center;
-    text-shadow: 0px 3px 4px rgba(39, 38, 53, .32);
     text-shadow: 0px 3px 4px var(--orange);
     transform: translate3d(0, 200px, -135px);
 }
@@ -220,19 +195,36 @@
     margin-top: 200px; 
 }
 
-.presentation img {
-    box-shadow: 3px 0px 13px rgba(0, 0, 0, 0.15);
-    padding: 0;
-}
-
-#straw {
-    object-fit:cover;
-    padding:40px;
+/*all the cards from PRESENTATION*/
+.text-bckg-color {
     height: 370px;
     width: 530px;
+    position: relative;
+    z-index:1;
+}
+
+.card2::before, .card3::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 106%;
+    height: 108%;
+    left: -6%;
+    top: -8%;
+    background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
+    background-size: cover; 
+    opacity: .6;
+}
+
+/*photoes from PRESENTATION*/
+#presentation-img {
+    object-fit:cover;
+    height: 330px;
+    width: 500px;
     opacity:1;
     position:absolute;
     z-index: 2; 
+    box-shadow: 3px 0px 13px rgba(0, 0, 0, 0.1);
 }
 
 .card1 {
@@ -242,28 +234,46 @@
     background:rgba(232, 233, 243, 0.3);
     padding:20px;
 }
+
+.highlighted-green {
+    font-weight: 500;
+    color: var(--yellowGreen);
+}
+
 .card1 > h2, .card1 > p {
     transform: rotate(4deg);
     text-align: center;
     animation: visible 3s ease-out forwards;
 }
 
-.card1 > h2 {
+.card1 > h2, .card4 > h2 {
     color: #DD2D4A;
     font-size:45px;
     margin:20px;
 }
-.card1 > p {
+
+.card4 > * {
+    transform: rotate(-5deg);
+    text-align: center;
+}
+
+.card4 > h2 {
+    color: var(--orange);
+    font-size:55px;
+    margin:30px;
+}
+
+.card1 > p, .card4 > p {
     font-size:20px;
     margin:20px;
 }
 
 .card2 {
     transition: transform 1100ms, opacity 1500ms ease-in-out;
-    scale: .8;
+    scale: .85;
     transform: translate(50%, 40%) rotate(5deg);
     opacity: 0;
-    background:rgba(232, 233, 243, 0.5);
+    {# background:rgba(232, 233, 243, 0.5); #}
 }
 .left-card {
     transition: transform 1100ms, opacity 1500ms ease-in-out;
@@ -272,7 +282,7 @@
 }
 .right-card {
     transition: transform 1100ms, opacity 1500ms ease-in-out;
-    transform: translate(-10%, 0%) rotate(0deg);
+    transform: translate(-3%, 0%) rotate(0deg);
     opacity: 1; 
 }
 .card3 {
@@ -285,9 +295,11 @@
 .card4 {
     transition: transform 1100ms, opacity 1500ms ease-in-out;
     transform: translate(50%, 40%) rotate(5deg);
-    opacity: 0;
-    background-color: rgba(232, 233, 243, 0.5);
+    opacity: .16;
+    background-color: rgba(232, 233, 243, 0.4);
+    padding: 30px;
 }
+
 .third-card {
     transition: transform 1100ms, opacity 1500ms ease-in-out;
     transform: translate(0%, 0%);
@@ -295,7 +307,7 @@
 }
 .fourth-card {
     transition: transform 1100ms, opacity 1500ms ease-in-out;
-    transform: translate(10%, 0%) rotate(5deg);
+    transform: translate(5%, -10%) rotate(5deg);
     opacity: 1; 
 }
 
@@ -380,53 +392,43 @@ height: 100%;
 .makeVisible {
     animation-delay: calc(var(--order)*100ms)
 }
-
-.button-89 {
-  --b: 3px;   /* border thickness */
-  --s: .45em; /* size of the corner */
-  --color: #272635;
- 
-  
-  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-  color: var(--color);
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .6em;
-  font-size: 16px;
-
-  border: 0;
-
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-
-  font-size: 1.2rem;
-  text-transform: uppercase;
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: -70px;
+}
+.button a {
+    color: var(--orange);
+    font-weight: 600;
+    letter-spacing:6px; 
+}
+.button:hover a {
+    color:rgba(0, 0, 0, .7);
+}
+.button {
+    margin: 30px 0 50px;
+    font-size: 1.3rem!important;
+    text-transform: uppercase;
+    border: 3px solid var(--orange)!important;
+    text-shadow: 0.5px 0.5px 2px white;
+    font-weight: 500!important;
+    background: rgba(149, 198, 35, .8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 4rem;
+}
+.button:hover {
+    color: ;
+    background: rgba(232, 233, 243, .5);
+    border: 3px solid var(--yellowGreen)!important;
+    text-shadow: 2px 3px 1px var(--yellowGreen);
 }
 
-.button-89:hover,
-.button-89:focus-visible{
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: .05em;
+@media screen and (max-width: 800px) {
+#footer > * {
+        transform: translateX(3%)!important;
+    }
 }
-
-.button-89:active {
-  background: var(--color);
-  /*color: white;*/
-}
-.button-89 {
-    color: #272635;/*raisin black*/
-    position: relative;
-    z-index: 3;
-    margin-top: 50px;
-    font-weight: 500;
-}
-
 </style>
 {% endblock %}
 {% block body %}
@@ -441,20 +443,23 @@ height: 100%;
         <h2></h2>
         <div class="card1 text-bckg-color">
             <h2>Légèreté des fruits</h2>
-            <p>Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.</p>
+            <p>Praesent egestas leo in pede. Praesent blandit odio eu enim. <span class="highlighted-green">Pellentesque</span> sed dui ut augue blandit sodales. Vestibulum ante ipsum <span class="highlighted-green">primis</span> in faucibus orci luctus et ultrices.</p>
         </div>
         <div class="card2 text-bckg-color">
-            <img id="straw" src="{{ asset('IMG/coconut-mango.jpg')}}" alt="">
+            <img id="presentation-img" src="{{ asset('IMG/coconut-mango.jpg')}}" alt="">
         </div>
     </section>
     <section class="presentation">
         <div class="card3 text-bckg-color">
-            <img id="straw" src="{{ asset('IMG/dinner.jpg')}}" alt="">
+            <img id="presentation-img" src="{{ asset('IMG/dinner.jpg')}}" alt="">
         </div>
-        <div class="card4 text-bckg-color"></div>
+        <div class="card4 text-bckg-color">
+            <h2>Happy Hours</h2>
+            <p>Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in <span class="highlighted-green">faucibus</span> orci luctus et ultrices.</p>
+        </div>
     </section>
-        <div class="btn-parent">
-            <button class="button-89" role="button"><a>Reserver</a></button>
+        <div class="button-wrapper">
+            <button class="button" role="button"><a href="{{ path('app_reservation') }}">Reserver</a></button>
         </div>
     <section class="gallery">
         <figure>
@@ -499,11 +504,7 @@ height: 100%;
             ingredients: ceci, cela...<br>
             </p>
         </figure>
-            {# <img style="--order:7" src="{{ asset('IMG/mango-dish.jpg')}}"> #}
-            {# <img style="--order:8" src="{{ asset('IMG/blue-dish.jpg')}}">
-            <img style="--order:9" src="{{ asset('IMG/mango-dish.jpg')}}"> #}
     </section>
-{# {% include "partials/footer.html.twig"%} #}
 <script>
   window.addEventListener("scroll", function () {
     const CARD1 = document.querySelector(".card1");
@@ -532,27 +533,17 @@ height: 100%;
       CARD4.classList.remove("fourth-card");
     }
 
-    if (scrollTop >= 1560) {
+    if (scrollTop >= 600) {
       IMG.forEach(function(img) {
         img.classList.add("makeVisible");
       });
     }
 
-    if (scrollTop <= 1160) {
+    if (scrollTop <= 1000) {
         IMG.forEach(function(img) {
         img.classList.remove("makeVisible");
       });
     }
-
-    /*const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollFromBottom = documentHeight - (windowHeight + scrollTop);
-
-    if (scrollFromBottom <= 250 && scrollFromBottom >= 1150) {
-        CARD1.classList.add("left-card");
-        CARD2.classList.add("right-card");
-    } */
 
   });
 </script>
