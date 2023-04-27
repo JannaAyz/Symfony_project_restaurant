@@ -25,8 +25,6 @@
     opacity: 1!important;
     width: 1600px!important;
     /*width: 1300px!important; SMALL*/
-    {# width: 600px!important; #}
-
     }
     #footer {
         position: relative;
@@ -149,6 +147,7 @@
     text-align: center;
     text-shadow: 0px 3px 4px var(--orange);
     transform: translate3d(0, 200px, -135px);
+    position: relative;
 }
 
 .presentation {
@@ -225,7 +224,7 @@
 .card4 > h2 {
     color: var(--orange);
     font-size:55px;
-    margin:30px;
+    margin:0px 0 50px;
 }
 
 .card1 > p, .card4 > p {
@@ -389,16 +388,22 @@ height: 100%;
     border: 3px solid var(--yellowGreen)!important;
     text-shadow: 2px 3px 1px var(--yellowGreen);
 }
+
+.small {
+    display: none;
+}
+
 @media screen and (max-width: 1290px) {
     .gallery {
         padding: 0 2vw 0;
     }    
-}@media screen and (max-width: 1135px) {
+}
+@media screen and (max-width: 1135px) {
     .gallery {
         transform: translateY(12%);
     }
     .gallery > figure:nth-child(2) img, .gallery > figure:nth-child(5) img {
-    transform: translateY(0);
+        transform: translateY(0);
     }
     .gallery > figure:nth-child(2)::after, .gallery > figure:nth-child(5)::after {
         bottom: 0;
@@ -414,7 +419,7 @@ height: 100%;
         display: block;
     }
 }
-@media screen and (max-width: 1100px) AND (min-width: 768px){
+@media screen and (max-width: 1100px) AND (min-width: 769px){
     .presentation h2 {
         color:red;
     }
@@ -494,12 +499,99 @@ height: 100%;
         transform: rotate(5deg);
     }
     .gallery {
-        transform: translateY(20%);
+        transform: translateY(30%);
+    }
+    footer {
+        transform: translateY(15%);
+    }
+    #footer > * {
+        transform: translateX(0%)!important;   
+    }
+    #footer::before {
+        width: 1300px!important; 
+        transform: translateX(-150px);
     }
 }
-@media screen and (max-width: 800px) {
-#footer > * {
-        transform: translateX(3%)!important;
+@media screen and (max-width: 800px){
+    footer {
+        transform: translateY(30%);
+    }
+}
+@media screen and (max-width: 768px) {
+    .button-wrapper {
+        margin-top:-13%;
+    }
+    .presentation {
+        padding: 100px 0 80px;
+    }
+    .card1, .card4 {
+        display:none;
+    }
+    .small {
+        display:block;
+        position: absolute;
+        {# text-align: center; #}
+    }
+    #header1, #header2 {
+        color: #DD2D4A;
+        font-size:50px;
+        width: 95vw;
+        left:0;
+        top:-38%;
+        {# margin:20px; #}
+    }
+    #text1, #text2 {
+        font-size:20px;
+        background:rgba(232, 233, 243, 0.8);
+        width: 400px;
+        z-index:5;
+        text-align: center;
+    }
+    #text1 {
+        top: 70%;
+        right: -8%;
+        padding:30px;
+    }
+    #text2 {
+        left:-4%;
+        width: 280px;
+        font-size:16px;
+        padding:20px;
+    }
+    #text2, #header2 {
+        top: -30%;
+    }
+    #header2 {
+        top:-63%;
+        left:14%;
+        color: var(--orange);
+    }
+    .gallery > figure:nth-child(3), .gallery > figure:nth-child(6),
+    .gallery > figure:nth-child(3) > p, .gallery > figure:nth-child(6) > p{
+        height: 0px;
+        display: none;
+    }
+    #footer > * {
+        transform: translateX(3%)!important;   
+    }
+    #footer::before {
+        width: 1300px!important; 
+        transform: translateX(-70px);
+    }
+    .gallery > figure:nth-child(7) img, .gallery > figure:nth-child(7) > p,
+    .gallery > figure:nth-child(8) img, .gallery > figure:nth-child(8) > p {
+        height: 0%;
+        display: none;
+    }
+}
+@media screen and (max-width: 745px) {
+    .gallery > figure:nth-child(3), .gallery > figure:nth-child(6),
+    .gallery > figure:nth-child(3) > p, .gallery > figure:nth-child(6) > p,
+    .gallery > figure:nth-child(2), .gallery > figure:nth-child(2) > p,
+    .gallery > figure:nth-child(7) img, .gallery > figure:nth-child(7) > p,
+    .gallery > figure:nth-child(8) img, .gallery > figure:nth-child(8) > p  {
+        height: 0px;
+        display: none;
     }
 }
 </style>
@@ -513,18 +605,23 @@ height: 100%;
         <div class="add-img"></div>
     </div>
     <section class="presentation">
-        <h2></h2>
         <div class="card1 text-bckg-color">
             <h2>Légèreté des fruits</h2>
             <p>Praesent egestas leo in pede. Praesent blandit odio eu enim. <span class="highlighted-green">Pellentesque</span> sed dui ut augue blandit sodales. Vestibulum ante ipsum <span class="highlighted-green">primis</span> in faucibus orci luctus et ultrices.</p>
         </div>
         <div class="card2 text-bckg-color">
+            <h2 class="small" id="header1">Légèreté des fruits</h2>
             <img id="presentation-img" src="{{ asset('IMG/coconut-mango.jpg')}}" alt="">
+            <p class="small" id="text1">Praesent egestas leo in pede. Praesent blandit odio eu enim. <span class="highlighted-green">Pellentesque</span> sed dui ut augue blandit sodales. Vestibulum ante ipsum <span class="highlighted-green">primis</span> in faucibus orci luctus et ultrices.</p>
         </div>
     </section>
     <section class="presentation">
         <div class="card3 text-bckg-color">
+            <h2 class="small" id="header2">Happy Hours</h2>
+            
             <img id="presentation-img" src="{{ asset('IMG/dinner.jpg')}}" alt="">
+            
+            <p class="small" id="text2">Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in <span class="highlighted-green">faucibus</span> orci luctus et ultrices.</p>
         </div>
         <div class="card4 text-bckg-color">
             <h2>Happy Hours</h2>
@@ -553,42 +650,42 @@ height: 100%;
             <img style="--order:3" src="{{ asset('IMG/mango-dish.jpg')}}">
             <p>PATATE DOUCE<br>
             Bonne évaluation<br>
-            ingredients: ceci, cela...<br>
+            ingredients: ceci, cela... <br>
             </p>
         </figure>
         <figure>
             <img style="--order:4" src="{{ asset('IMG/blue-dish.jpg')}}">
             <p>COCO ANANAS<br>
             Bonne évaluation<br>
-            ingredients: ceci, cela...<br>
+            ingredients: ceci, cela... <br>
             </p>
         </figure>
         <figure>
             <img style="--order:5" src="{{ asset('IMG/mango-dish.jpg')}}">
             <p>PATATE DOUCE<br>
             Bonne évaluation<br>
-            ingredients: ceci, cela...<br>
+            ingredients: ceci, cela... <br>
             </p>
         </figure>
         <figure>
             <img style="--order:6" src="{{ asset('IMG/blue-dish.jpg')}}">
             <p>COCO ANANAS<br>
             Bonne évaluation<br>
-            ingredients: ceci, cela...<br>
+            ingredients: ceci, cela... <br>
             </p>
         </figure>
         <figure>
             <img style="--order:7" src="{{ asset('IMG/mango-dish.jpg')}}">
             <p>PATATE DOUCE<br>
             Bonne évaluation<br>
-            ingredients: ceci, cela...<br>
+            ingredients: ceci, cela... <br>
             </p>
         </figure>
         <figure>
             <img style="--order:8" src="{{ asset('IMG/blue-dish.jpg')}}">
             <p>COCO ANANAS<br>
             Bonne évaluation<br>
-            ingredients: ceci, cela...<br>
+            ingredients: ceci, cela... <br>
             </p>
         </figure>
     </section>
