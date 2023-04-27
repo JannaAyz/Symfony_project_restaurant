@@ -106,7 +106,12 @@ bs-primary-border-subtle {
 }
 .makeVisible {
   opacity: 1;
-  animation: visible 1s ease forwards;
+  animation: visible 1s ease-out forwards;
+  /*animation-delay: calc(var(--order)*100ms)*/
+}
+.makeInvisible {
+  opacity: 0;
+  animation: visible 3s ease reverse;
   /*animation-delay: calc(var(--order)*100ms)*/
 }
           

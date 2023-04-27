@@ -4,39 +4,6 @@
 {% block stylesheets %}
 <style>
 /*to modify depending on each page'a wanted percentage of zig-zags*/
-    {# #bottom {
-        transform: translateY(-90vh);
-        height: 530vh;
-        padding-bottom: -200vh;
-    } #}
-    {# #zig-zags::after {
-        top:3%;
-    }
-    #zig-zags {
-        position: relative;
-        z-index: -10;
-        height: 1330px!important;
-        flex-grow: 0;
-        /*height: 180vh!important; */
-        /*responsive adaptation*/
-        /*scale: 1.7;
-        bottom: 80%;*/ 
-       /* width: 200%!important; not*/
-
-    } #}
-    {# #footer::before {
-        display: none;
-    }
-    #footer {
-        position: absolute;
-        /*add more pixels for smaller screens*/
-        bottom: min(400px, 40vw);
-        margin-bottom: -200vh;
-    } #}
-
-    {# #bottom {
-        z-index: 0;
-    } #}
     #zig-zags {
         display:none;
     }
@@ -74,11 +41,8 @@
     #footer::after {
         bottom: -12%!important;
     }
-
 /* zig-zags' modification ends here*/
-{# .gallery {
-    opacity:0;
-} #}
+
 #background {
 /*width : 100vw;*/
     height: 90vh;
@@ -173,12 +137,11 @@
     background-blend-mode: screen;
 }
 
-#background h2 {
+#background h1 {
     height: 370px;
     width: 930px;
     font-family: 'Montserrat', sans-serif;
     color: var(--yellowGreen);
-    position: sticky;
     z-index: 2;
     font-size: 140px;    
     font-weight: 600;
@@ -208,11 +171,13 @@
     position: absolute;
     z-index: -1;
     width: 106%;
+    min-width:563px;
     height: 108%;
     left: -6%;
     top: -8%;
     background-image: url('{{ asset('IMG/paper-bckg.jpg') }}');
     background-size: cover; 
+    overflow: visible;
     opacity: .6;
 }
 
@@ -222,7 +187,7 @@
     height: 330px;
     width: 500px;
     opacity:1;
-    position:absolute;
+    position:relative;
     z-index: 2; 
     box-shadow: 3px 0px 13px rgba(0, 0, 0, 0.1);
 }
@@ -273,7 +238,6 @@
     scale: .85;
     transform: translate(50%, 40%) rotate(5deg);
     opacity: 0;
-    {# background:rgba(232, 233, 243, 0.5); #}
 }
 .left-card {
     transition: transform 1100ms, opacity 1500ms ease-in-out;
@@ -305,16 +269,11 @@
     transform: translate(0%, 0%);
     opacity: 1;
 }
+
 .fourth-card {
     transition: transform 1100ms, opacity 1500ms ease-in-out;
     transform: translate(5%, -10%) rotate(5deg);
     opacity: 1; 
-}
-
-.btn-parent {
-    display:flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .gallery {
@@ -325,7 +284,7 @@
     position: relative;
     transform: translateY(18%);
     padding: 0px 100px 0px;
-    margin-bottom:0px;
+    margin-bottom: 0px;
     z-index:1;
 }
 
@@ -355,8 +314,18 @@ opacity: .7;
 cursor: pointer;
 }
 
+.gallery > figure:nth-child(7), .gallery > figure:nth-child(8),
+.gallery > figure:nth-child(7) > p, .gallery > figure:nth-child(8) > p {
+height: 0px;
+display: none;
+}
+
+.gallery > figure:nth-child(2) img, .gallery > figure:nth-child(5) img {
+    transform: translateY(7%);
+}
+
 .gallery > figure:nth-child(2)::after, .gallery > figure:nth-child(5)::after {
-    bottom: -7%;
+    bottom: -7.05%;
 }
 
 .gallery figure:hover::after {
@@ -364,9 +333,6 @@ animation: grow 350ms ease-in-out;
 height: 100%;
 }
 
-.gallery > figure:nth-child(2) img, .gallery > figure:nth-child(5) img {
-    transform: translateY(7%);
-}
 .gallery > figure:nth-child(2) > p, .gallery > figure:nth-child(4) > p,
 .gallery > figure:nth-child(6) > p {
     color: var(--ghostWhite);
@@ -399,7 +365,7 @@ height: 100%;
     margin-bottom: -70px;
 }
 .button a {
-    color: var(--orange);
+    color: white;
     font-weight: 600;
     letter-spacing:6px; 
 }
@@ -411,9 +377,9 @@ height: 100%;
     font-size: 1.3rem!important;
     text-transform: uppercase;
     border: 3px solid var(--orange)!important;
-    text-shadow: 0.5px 0.5px 2px white;
-    font-weight: 500!important;
-    background: rgba(149, 198, 35, .8);
+    text-shadow: 2.5px 2.5px 2px var(--orange);
+    font-weight: 300!important;
+    background: rgba(149, 198, 35, 1);
     backdrop-filter: blur(10px);
     padding: 1rem 4rem;
 }
@@ -423,7 +389,114 @@ height: 100%;
     border: 3px solid var(--yellowGreen)!important;
     text-shadow: 2px 3px 1px var(--yellowGreen);
 }
-
+@media screen and (max-width: 1290px) {
+    .gallery {
+        padding: 0 2vw 0;
+    }    
+}@media screen and (max-width: 1135px) {
+    .gallery {
+        transform: translateY(12%);
+    }
+    .gallery > figure:nth-child(2) img, .gallery > figure:nth-child(5) img {
+    transform: translateY(0);
+    }
+    .gallery > figure:nth-child(2)::after, .gallery > figure:nth-child(5)::after {
+        bottom: 0;
+    }
+    .gallery > figure:nth-child(3), .gallery > figure:nth-child(6),
+    .gallery > figure:nth-child(3) > p, .gallery > figure:nth-child(6) > p {
+        height: 0px;
+        display: none;
+    }
+    .gallery > figure:nth-child(7) img, .gallery > figure:nth-child(7) > p,
+    .gallery > figure:nth-child(8) img, .gallery > figure:nth-child(8) > p {
+        height: 100%;
+        display: block;
+    }
+}
+@media screen and (max-width: 1100px) AND (min-width: 768px){
+    .presentation h2 {
+        color:red;
+    }
+    .presentation  {
+        transform: translateY(200px);
+        gap: 40px;
+    }
+    .button-wrapper {
+        transform: translateY(80px);
+    }
+    .card1 {
+        background: none;
+        transform: translateY(-260px);  
+    }
+    .card1 h2 {
+        transform: rotate(0deg) translateX(2%);
+    }
+    .card1 h2, .card4 h2 {
+        font-size:55px;
+        width: 90vw;
+    }
+    .card1 p {
+        transform: rotate(0deg) translate(0,20%);
+        /*top left and right bottom*/
+        margin: 0 90px 0;
+        position: fixed;
+        padding: 35px;
+        width: max(350px,35vw);
+    }
+    .card1 p::before {
+        content: '';
+        position: absolute;
+        background:rgba(232, 233, 243, 0.6);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        left: 0;
+        top: 0;
+        transform: rotate(5deg);
+    }
+    .card2 img{
+        transform: translate(-22%,-40%);
+        {# scale: 1.1; #}
+    }
+    .card2::before {
+       transform: translate(-20%,-30%); 
+    }
+    .card4 h2 {
+        transform: translate(-70%, -230px) rotate(-5deg);  
+    }
+    .card3 {
+        background: none;
+    }
+    .card3 img, .card3::before {
+        transform: translate(13% ,-90px) scale(0.9);
+    }
+    .card4 {
+        background: none;
+    }
+    .card4 p {
+        transform: rotate(-5deg) translate(-20% ,-70%);
+        /*top left and right bottom*/
+        margin: 0 90px 0;
+        position: fixed;
+        padding: 45px;
+        width: max(350px,35vw);
+    }
+    .card4 p::before {
+        content: '';
+        position: absolute;
+        background:rgba(232, 233, 243, 0.4);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        left: 0;
+        top: 0;
+        transform: rotate(5deg);
+    }
+    .gallery {
+        transform: translateY(20%);
+    }
+}
 @media screen and (max-width: 800px) {
 #footer > * {
         transform: translateX(3%)!important;
@@ -434,7 +507,7 @@ height: 100%;
 {% block body %}
 {% include "partials/_nav.html.twig"%}
     <div id="background">
-        <h2>La CoCosine</h2>
+        <h1>La CoCosine</h1>
         <p>Cuisine Ensoleillée</p>
         <div class="text-bckg"></div>
         <div class="add-img"></div>
@@ -499,6 +572,20 @@ height: 100%;
         </figure>
         <figure>
             <img style="--order:6" src="{{ asset('IMG/blue-dish.jpg')}}">
+            <p>COCO ANANAS<br>
+            Bonne évaluation<br>
+            ingredients: ceci, cela...<br>
+            </p>
+        </figure>
+        <figure>
+            <img style="--order:7" src="{{ asset('IMG/mango-dish.jpg')}}">
+            <p>PATATE DOUCE<br>
+            Bonne évaluation<br>
+            ingredients: ceci, cela...<br>
+            </p>
+        </figure>
+        <figure>
+            <img style="--order:8" src="{{ asset('IMG/blue-dish.jpg')}}">
             <p>COCO ANANAS<br>
             Bonne évaluation<br>
             ingredients: ceci, cela...<br>

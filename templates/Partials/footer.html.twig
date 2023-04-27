@@ -245,7 +245,7 @@ if (window.matchMedia("(max-width: 800px)").matches) {
             elmnt.classList.add("makeVisible");
             elmnt.style.opacity = "1";
         })
-    } else {
+    } if (scrollFromBottom >= 680) {
         FOOTER.forEach(function(elmnt) {
             elmnt.classList.remove("makeVisible");
             elmnt.style.opacity = "0";
