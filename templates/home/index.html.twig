@@ -71,28 +71,7 @@
     background: linear-gradient(rgba(0, 0, 0, 0), white 99%);
     }
 
-.add-img {
-    position:absolute;
-    height: 280px;
-    width:280px;
-    z-index:2;
-    background-image: url('{{ asset('IMG/leaf.png') }}');
-    background-color:rgba(0, 0, 0, 0);
-    background-size: contain;
-    background-repeat: no-repeat;
-    right: 9%;
-    bottom:5%;
-    animation: float 23s ease-in-out 1s infinite alternate;
-}
 
-@keyframes float {
-    from {
-        transform: translate(6%, 0%) rotate(-6deg);
-    } 
-    to {
-        transform: translate(-6%, 10%);
-    }
-}
 
 /*#background h2::before {
     content: '';
@@ -146,8 +125,31 @@
     padding: 30px;
     text-align: center;
     text-shadow: 0px 3px 4px var(--orange);
-    transform: translate3d(0, 200px, -135px);
+    transform: translateY(200px);
     position: relative;
+}
+#background h1::before {
+    content: '';
+    position:absolute;
+    height: 220px;
+    width:220px;
+    z-index:2;
+    background-image: url('{{ asset('IMG/leaf.png') }}');
+    background-color:rgba(0, 0, 0, 0);
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: -13%;
+    bottom:35%;
+    animation: float 23s ease-in-out 1s infinite alternate;
+}
+
+@keyframes float {
+    from {
+        transform: translate(6%, 0%) rotate(-6deg);
+    } 
+    to {
+        transform: translate(-6%, 10%);
+    }
 }
 
 .presentation {
@@ -392,7 +394,28 @@ height: 100%;
 .small {
     display: none;
 }
-
+@media screen and (min-width: 1600px) {
+    #background h1 {
+        font-size: 180px;   
+        width: auto;
+        transform: translateY(250px);
+    }
+    #background h1::before {
+        height: 280px;
+        width:280px;
+        bottom:25%;
+        right: -18%;
+    }
+    .gallery {
+        transform: translateY(35%);
+    }
+    #footer::before {
+        background: linear-gradient(rgba(240, 134, 50, .06), rgba(240, 134, 50, .15), #F08632, #DD2D4A);
+        height: 265%!important;
+        top: -155%!important;
+        width: 100vw!important;
+    }
+}
 @media screen and (max-width: 1290px) {
     .gallery {
         padding: 0 2vw 0;
@@ -512,7 +535,22 @@ height: 100%;
         transform: translateX(-150px);
     }
 }
+@media screen and (max-width: 900px) {
+    #background h1 {
+        width: 95vw;
+        transform: translateY(20px);
+        text-align: left;
+        font-size: 16vw;    
+    }
+    #background h1::before {
+        bottom:-5%;
+        right: -5%;
+    }
+}
 @media screen and (max-width: 800px){
+    #background h1 {
+        transform: translateY(50px);
+    }
     footer {
         transform: translateY(30%);
     }
@@ -585,6 +623,13 @@ height: 100%;
     }
 }
 @media screen and (max-width: 745px) {
+    #background h1 {
+        transform: translateY(90px);
+    }
+    #background h1::before {
+        bottom:15%;
+        right: -18%;
+    }
     .gallery > figure:nth-child(3), .gallery > figure:nth-child(6),
     .gallery > figure:nth-child(3) > p, .gallery > figure:nth-child(6) > p,
     .gallery > figure:nth-child(2), .gallery > figure:nth-child(2) > p,
@@ -599,10 +644,11 @@ height: 100%;
 {% block body %}
 {% include "partials/_nav.html.twig"%}
     <div id="background">
-        <h1>La CoCosine</h1>
+        <div class="add-img">
+            <h1>La CoCosine</h1>
+        </div>
         <p>Cuisine Ensoleillée</p>
         <div class="text-bckg"></div>
-        <div class="add-img"></div>
     </div>
     <section class="presentation">
         <div class="card1 text-bckg-color">
