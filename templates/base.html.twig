@@ -132,6 +132,24 @@ bs-primary-border-subtle {
         height:100%;
     }
 }
+
+@keyframes popUp {
+    from {
+    margin-top: 170px;
+
+        /* transform: scale(1, 0);*/
+        transform: translateY(20%);
+        opacity: 0;
+    }
+    to {
+    margin-top: 170px;
+
+        /*transform: scale(1, 1);*/
+        opacity: .5 ;
+        transform: translateY(0);
+    }
+}
+
 @media screen and (max-width: 800px) {
 
 

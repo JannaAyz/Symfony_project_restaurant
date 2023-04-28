@@ -420,6 +420,9 @@ height: 100%;
     .gallery {
         padding: 0 2vw 0;
     }    
+    #footer > div:nth-child(3) * {
+        transform: translateY(-95%);
+    }
 }
 @media screen and (max-width: 1135px) {
     .gallery {
@@ -443,9 +446,9 @@ height: 100%;
     }
 }
 @media screen and (max-width: 1100px) AND (min-width: 769px){
-    .presentation h2 {
+    /*.presentation h2 {
         color:red;
-    }
+    } */
     .presentation  {
         transform: translateY(200px);
         gap: 40px;
@@ -459,6 +462,8 @@ height: 100%;
     }
     .card1 h2 {
         transform: rotate(0deg) translateX(2%);
+        margin: 0 20vw 0;
+        text-align: left;
     }
     .card1 h2, .card4 h2 {
         font-size:55px;
@@ -491,7 +496,9 @@ height: 100%;
        transform: translate(-20%,-30%); 
     }
     .card4 h2 {
-        transform: translate(-70%, -230px) rotate(-5deg);  
+        margin: 0 25vw 60px;
+        text-align: left;
+        transform: translate(-62%, -230px) rotate(-5deg);  
     }
     .card3 {
         background: none;
@@ -552,7 +559,10 @@ height: 100%;
         transform: translateY(50px);
     }
     footer {
-        transform: translateY(30%);
+        transform: translateY(35%);
+    }
+    #footer > div:nth-child(3) * , #footer > div:nth-child(2){
+        transform: translateY(-45%);
     }
 }
 @media screen and (max-width: 768px) {
