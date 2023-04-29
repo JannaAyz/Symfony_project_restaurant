@@ -19,15 +19,12 @@
         flex-direction: column;
         height: 100vh;
         color: white;
-        {# background-image: url('{{ asset('IMG/grenade-orange-blurry.jpg') }}');
-        background-size: cover; #}
         -webkit-backdrop-filter: blur(55px);
         backdrop-filter: blur(55px);
         position: relative;
         width: 880px;
-    box-shadow: 3px 0px 13px rgba(0, 0, 0, 0.8);
-    opacity: .9;
-
+        box-shadow: 3px 0px 13px rgba(0, 0, 0, 0.8);
+        opacity: .9;
     }
     .container::before {
         position:absolute;
@@ -45,14 +42,63 @@
         opacity: 1;
     }
     .coordinates {
-        margin: 30px;
+        padding: 15px;
+        margin: 15px;
+        border: 3px solid var(--yellowGreen);
+    }
+    .coordinates p {
+        font-size: 18px;
+        font-weight: 400;
+
+    }
+    .container h3, .container h4 {
+        font-size: clamp(16px, 10vw,24px);
+    }
+    .coordinates h2 {
+        font-size: 22px;
+        margin: 20px;
+        font-weight: 500;
+    }
+    #link {
+        text-shadow: 1.5px 1.5px 2px var(--orange);
+        color: ;
+    }
+    .container h4 {
+        margin-top: 30px;
+        color: var(--yellowGreen);
+
+    }
+    @media screen and (min-width: 1580px) {
+        h1 {
+            color: var(--yellowGreen);
+    font-size: 50px;    
+    font-weight: 400;
+
+    text-shadow: 0px 3px 1px var(--orange);
+        }
+        .coordinates {
+            margin: 100px auto;
+        }
+        .coordinates h2 {
+            font-size: 26px;
+            margin: 30px;
+        }
+        .coordinates p {
+            font-size: 22px;
+        }
+    }
+    @media screen and (max-width: 580px) {
+        .container {
+            width: 90vw;
+            padding: 70% 3%;
+        }
     }
 </style>
 {% endblock %}
 {% block body %}
 {% include "partials/_nav.html.twig" %}
     <div class="container">
-        <h1 style='text-align:center;'>Merci pour votre réservation !</h1>
+        <h1>Merci pour votre réservation !</h1>
         <div class="coordinates">
         <h2>Voici le récapitulatif de votre réservation</h2>
         <p>Nom : {{ reservation.reservationName }}</p>
@@ -61,9 +107,8 @@
         <p>Date : {{ reservation.date|date('d/m/Y') }}</p>
         <p>Heure : {{ reservation.heure|date('H:i') }}</p>
         </div>
-        <h3>Pour modifier votre réservation du {{ reservation.date|date('d') }}/{{ reservation.date|date('m') }}  rendez vous sur votre <a href="{{ path('app_account') }}">profil.</a></h3>
-        <h4>Si vous avez la moindre question n'hésitez pas à nous <a href="#">contacter.</a></h4>
-        <p> Nous avons hâte de vous retrouver</p>
+        <h3>Pour modifier votre réservation du {{ reservation.date|date('d') }}/{{ reservation.date|date('m') }} <a href="{{ path('app_contact') }}"><span id="link">contactez-nous</span>.</a></h3>
+        <h4> Nous avons hâte de vous retrouver</h4>
     </div>
     
 {% endblock %}
