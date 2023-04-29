@@ -4,7 +4,7 @@
 {% block stylesheets %}
 <style>
 /*to modify depending on each page'a wanted percentage of zig-zags*/
-    #zig-zags {
+    {# #zig-zags {
         display:none;
     }
     #footer::before {
@@ -38,7 +38,7 @@
     }
     #footer::after {
         bottom: -12%!important;
-    }
+    } #}
 /* zig-zags' modification ends here*/
 
 #background {
@@ -56,7 +56,7 @@
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-image: url('{{ asset('IMG/photomania.jpg') }}');
+    background-image: url('{{ asset('IMG/coconut-bckg.jpg') }}');
     background-size: cover;
     z-index:-1;
 }
@@ -70,20 +70,6 @@
     width: 100%; height: 10%;
     background: linear-gradient(rgba(0, 0, 0, 0), white 99%);
     }
-
-
-
-/*#background h2::before {
-    content: '';
-    z-index: 1;
-    top: 30%;
-    left:30%;
-    height: 3px;
-    width: 40%;
-    background: var(--yellowGreen);
-    position: absolute;
-    opacity: .5;
-}*/
 
 #background > * {
     position:absolute
@@ -204,6 +190,7 @@
 .highlighted-green {
     font-weight: 500;
     color: var(--yellowGreen);
+    text-shadow: 2px 1px 0px var(--orange);
 }
 
 .card1 > h2, .card1 > p {
@@ -409,20 +396,20 @@ height: 100%;
     .gallery {
         transform: translateY(35%);
     }
-    #footer::before {
+    /*#footer::before {
         background: linear-gradient(rgba(240, 134, 50, .06), rgba(240, 134, 50, .15), #F08632, #DD2D4A);
         height: 265%!important;
         top: -155%!important;
         width: 100vw!important;
-    }
+    }*/
 }
 @media screen and (max-width: 1290px) {
     .gallery {
         padding: 0 2vw 0;
     }    
-    #footer > div:nth-child(3) * {
+    /*#footer > div:nth-child(3) * {
         transform: translateY(-95%);
-    }
+    }*/
 }
 @media screen and (max-width: 1135px) {
     .gallery {
@@ -531,7 +518,7 @@ height: 100%;
     .gallery {
         transform: translateY(30%);
     }
-    footer {
+    /*footer {
         transform: translateY(15%);
     }
     #footer > * {
@@ -540,30 +527,31 @@ height: 100%;
     #footer::before {
         width: 1300px!important; 
         transform: translateX(-150px);
-    }
+    }*/
 }
 @media screen and (max-width: 900px) {
     #background h1 {
         width: 95vw;
         transform: translateY(20px);
         text-align: left;
-        font-size: 16vw;    
+        font-size: 17vw;    
     }
     #background h1::before {
         bottom:-5%;
         right: -5%;
+        scale: .8;
     }
 }
 @media screen and (max-width: 800px){
     #background h1 {
         transform: translateY(50px);
     }
-    footer {
+    /*footer {
         transform: translateY(35%);
     }
     #footer > div:nth-child(3) * , #footer > div:nth-child(2){
         transform: translateY(-45%);
-    }
+    }*/
 }
 @media screen and (max-width: 768px) {
     .button-wrapper {
@@ -619,13 +607,13 @@ height: 100%;
         height: 0px;
         display: none;
     }
-    #footer > * {
+    /*#footer > * {
         transform: translateX(3%)!important;   
     }
     #footer::before {
         width: 1300px!important; 
         transform: translateX(-70px);
-    }
+    }*/
     .gallery > figure:nth-child(7) img, .gallery > figure:nth-child(7) > p,
     .gallery > figure:nth-child(8) img, .gallery > figure:nth-child(8) > p {
         height: 0%;
@@ -650,6 +638,7 @@ height: 100%;
     }
 }
 </style>
+{% include "partials/footer_version_homePage.style.twig"%}
 {% endblock %}
 {% block body %}
 {% include "partials/_nav.html.twig"%}

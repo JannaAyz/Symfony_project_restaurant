@@ -2,7 +2,7 @@
 {% block stylesheets %}
 <style>
 /*to modify depending on each page'a wanted percentage of zig-zags*/
-    #bottom {
+    {# #bottom {
         transform: translateY(-160vh);
         display: block;
     }
@@ -26,20 +26,19 @@
 body {
     background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
 }
-.container {
-    margin-top: 170px;
-    position: relative;
-    z-index:1;
-    animation: popUp 550ms ;
-    transform-origin: top;
-}
+
 
 #bottom {
    height: 30vh!important;   
    width: 100%;
-}
+} #}
 
 /* Form Styles */
+
+.container {
+    margin-top: 170px;
+}
+
 #form {
 	padding: 5rem 0;
 }
@@ -186,11 +185,11 @@ form button:hover {
     {# height: 75vh; #}
     {# transform: translateY(-20vw); #}
 }
-footer {
+{# footer {
     margin-top:50px;
     top:0;
-}
-
+} #}
+{% include "partials/footer_version_classic.style.twig" %}
 </style>
 {% endblock %}
 {% block title %}Formulaire de réservation{% endblock %}
@@ -233,7 +232,7 @@ footer {
     {{ form_errors(form.email) }}
     </div>
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="form-group">
+    <div class="">
     {{ form_label(form.vip) }}
     {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
     {{ form_errors(form.vip) }}

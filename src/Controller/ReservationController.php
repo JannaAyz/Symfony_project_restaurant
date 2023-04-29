@@ -145,7 +145,7 @@ class ReservationController extends AbstractController
     #[Route('/reservation/confirm/{id}', name: 'app_reservation_confirm')]
     public function confirmUpdate(Reservation $reservation): Response
     {
-        return $this->render('reservation/confirm_update_reservation.html.twig', [
+        return $this->render('reservation/confirm.html.twig', [
             'reservation' => $reservation,
         ]);
     }
