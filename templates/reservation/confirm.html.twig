@@ -4,10 +4,9 @@
 {% block stylesheets %}
 {% include "partials/footer_version_homePage.style.twig"%}
 <style>
-    {# #footer::before {
-        height: 170%!important;
-        top: -58%!important;
-    } #}
+    #footer::before {
+        background: linear-gradient( transparent, transparent, #F08632, #DD2D4A);
+    }
     body {
         background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
     }
@@ -68,13 +67,16 @@
         color: var(--yellowGreen);
 
     }
+    h1 {
+        color: var(--yellowGreen);
+        font-size: 50px;    
+        font-weight: 400;
+        color: white;   
+        text-shadow: 0px 1px 1px var(--orange);
+    }
     @media screen and (min-width: 1580px) {
         h1 {
-            color: var(--yellowGreen);
-    font-size: 50px;    
-    font-weight: 400;
-
-    text-shadow: 0px 3px 1px var(--orange);
+            font-size: 50px;    
         }
         .coordinates {
             margin: 100px auto;

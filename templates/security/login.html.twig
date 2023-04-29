@@ -2,44 +2,136 @@
 
 {% block title %}Connexion{% endblock %}
 
+{% block stylesheets %}
+{% include "partials/footer_version_classic.style.twig"%}
+<style>
+
+body {
+    background: transparent!important;
+    width: 100vw;
+}
+#zig-zags::after {
+    display:none;
+}
+.container {
+    margin-top: 180px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+	width: 100%;
+	font-size: 20px;
+	background-color: none;
+	font-weight: 600;
+	padding: 1.5rem;
+	border-radius: 2px;
+	margin-top: 0.5rem;
+	color: var(--raisinBlack);
+    border: 3px solid black;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+    background: rgba(240, 134, 50, .1);
+    backdrop-filter: blur(20px);
+}
+    .form-group > input:focus , .form-group > *:focus , 
+    .form-group > input:hover, select:hover, select:active, .form-group > option,
+    .form-control > option {
+        border: 3px solid var(--yellowGreen);
+        background-color: rgba(232, 233, 243, .1); 
+        box-shadow: 0px 0px 0px black;
+    }
+    
+
+h1 {
+    font-size: 2.1rem;
+    margin-top: -55px;
+    margin-bottom: 40px;
+}
+button {
+    margin: 30px 0 50px;
+    color: black;
+    text-transform: uppercase;
+    border: 3px solid black!important;
+    font-weight: 500;
+    background: rgba(149, 198, 35, .8);
+    backdrop-filter: blur(10px);
+	padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+button:hover {
+    background: rgba(232, 233, 243, .5);
+    border: 3px solid var(--yellowGreen)!important;
+    text-shadow: 2px 3px 1px var(--yellowGreen);
+}
+.form-group label {
+	font-size: 1.3rem;
+}
+
+.form-group input {
+    padding: 1.1rem;
+    width: 600px;
+}
+.wrong {
+    color: var(--rustyRed);
+    padding: 16px 0 ;
+    margin-top: -26px ;
+    font-size: 1.3rem;
+    position: relative;
+    z-index:5;
+}
+@media screen and (max-width: 651px) {
+    .container form{
+        width: 90vw;
+    }
+    .container input, button {
+        width: 87vw;
+    }
+    input{
+        width: 70vw;
+    }
+    button {
+        margin: 50px auto;
+    }
+}
+</style>
+{% endblock %}
 {% block body %}
 {% include "partials/_nav.html.twig" %}
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
+
 <form method="post">
-
-
     {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Connectez vous</h1>
-
-    <div class="outline mb-4">
+    <h1>Connectez-vous</h1>
+    {% if error %}
+        <div class="wrong">Ces indentifiants ne sont pas valides</div>
+    {% endif %}
+    <div class="outline mb-4 form-group">
         <label for="inputEmail" class="form-label">Email</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" aria-describedby="emailHelp" autocomplete="email" required autofocus>
         <div id="emailHelp" class="form-text">Nous ne partagerons votre email avec personne.</div>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 form-group">
         <label for="inputPassword" class="form-label">Mot de passe</label>
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-        <input type="hidden" name="_csrf_token"
-            value="{{ csrf_token('authenticate') }}"
-        >
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     </div>
 
-    <button class="btn btn-primary" type="submit">
-        Se connecter
-    </button>
-        {% if error %}
-        <div class="alert alert-danger" style="margin-top:15px;">Vos indentifiants ne sont pas valides</div>
-    {% endif %}
+    <button class="sbmit-btn" type="submit">Se connecter</button>
+        
 </form>
-</div>
-</div>
+
 </div>
 {% endblock %}
