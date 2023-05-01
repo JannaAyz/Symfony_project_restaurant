@@ -24,6 +24,7 @@ class ContactController extends AbstractController
             $data = $form->getData();
             $address = $data['mail'];
             $message = $data['message'];
+            $name = $data['nom'];
             $email = (new Email())
             ->from($address)
             ->to('you@example.com')
