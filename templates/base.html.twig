@@ -22,7 +22,8 @@
           --ghostWhite: #E8E9F3;
           --yellowGreen: #95C623;
           --rustyRed: #DD2D4A;
-          --primary: pink;
+          --gradient: linear-gradient(var(--yellowGreen), var(--orange));;
+
         }
         .btn-primary, .form-control:focus,  {
           background-color: #95C623; /* Définit la nouvelle couleur primaire pour les boutons */
@@ -118,6 +119,21 @@
     to {
     margin-top: 170px;
 
+        opacity: .5 ;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popDown {
+    0%{
+        transform: translateY(-40%);
+        opacity: 0;
+    }
+    70%{
+        transform: translateY(-40%);
+        opacity: 0;
+    }
+    100%{
         opacity: .5 ;
         transform: translateY(0);
     }

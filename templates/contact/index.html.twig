@@ -6,10 +6,6 @@
 {% block stylesheets %}
 {% include "partials/footer_version_classic.style.twig"%}
 <style>
- {
-    height: 250px;
-    width: 25vw;
-} 
 body {
     background: transparent!important;
     width: 100vw;
@@ -46,10 +42,28 @@ footer {
 #time-wrapper h2 {
     margin: 10px;
 }
+#time-wrapper h2:nth-child(1){
+    text-shadow: 1px 3px 1px var(--orange);
+}
 h1 {
     font-size: clamp(18px, 7vw, 2.5rem);
-    {# margin-left: 0; #}
     width: 900px;
+    position: absolute;
+}
+.notStressed {
+    margin-left: 95px;
+    position: absolute;
+    animation: visible 1500ms ease-out;
+}
+.stressed {
+    color: var(--yellowGreen);
+    text-shadow: 0px 2px 3px var(--orange);
+    font-weight: 600;
+    font-size: 150px;
+    position: absolute;
+    margin-top: -25px;
+    margin-left: 15px;
+    animation: popDown 1.5s ease-in-out;
 }
 h1, h2 {
     margin-top: -105px;
@@ -134,6 +148,8 @@ iframe {
     gap: 15px;
     text-align: center;
     margin-bottom: 50px;
+    position:relative;
+    z-index: 10;
 }
 .aCube h6 {
     font-size: 20px;
@@ -153,6 +169,63 @@ iframe {
     {# text-shadow: 1px 1px 1px var(--yellowGreen); #}
 }
 
+.aCube:nth-child(3) {
+    position: relative;
+    z-index: 10;
+    display: block;
+    background: none;
+}
+.aCube:nth-child(3)::after {
+    content:'';
+    position: absolute;
+    z-index: -1;
+    width: 180px;
+    height: 120px;
+    background: rgba(232, 233, 243, .5);
+    backdrop-filter: blur(10px);
+    display:block;
+    left:0;
+    top:0;
+}
+.aCube:nth-child(3):hover::after {
+    background: rgba(149, 198, 35, .6);
+
+}
+.aCube:nth-child(3)::before {
+    content: url('{{ asset('IMG/leaf.png') }}');
+    z-index: -10;
+    height:100%;
+    width: 100%;
+    scale: .75;
+    right: -40%;
+    bottom:230%;
+    position: absolute;
+    animation: visible 3500ms ease-out;
+}
+
+#principal > div.container > h2 {
+    font-size: clamp(14px, 7vw, 2.1rem);
+}
+{# #principal > div.container > h2::before {
+    ::before {
+    content: '';
+    display: block;
+    height: 3px;/*5*/
+    width: 80%; 
+    background: var(--raisinBlack);
+    position: absolute;
+    bottom: -.75em;
+    left: 10%;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+    opacity: .8;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+} #}
 
 @media screen and (max-width: 651px) {
     .container form{
@@ -169,34 +242,33 @@ iframe {
     }
 }
 
+
 </style>
 {% endblock %}
 {% include "partials/_nav.html.twig"%}
 <div id="title-wrapper">
-    <h1 class="noMove">Trois restaurants à Paris</h1>
+    <h1 class="noMove"><span class="stressed">3</span><span class="notStressed"> Restaurants à Paris</span></h1>
 </div>
 <div id="time-wrapper">
     <h2>Mardi - Samedi</h2>
     <h2>10h - 22h</h2>
 </div>
 <div class="container">
-    
-
     <div id="cubes">
-        <div class="aCube">
+        <div class="aCube" onclick="selectedMonge()">
             <h6>Monge</h6>
             <h5>PARIS 5</h5>
         </div>
-        <div class="aCube">
+        <div class="aCube" onclick="selectedEmile()">
             <h6>Emile Level</h6>
             <h5>PARIS 17</h5>
         </div>
-        <div class="aCube">
+        <div class="aCube" onclick="selectedAlesia()">
             <h6>Alésia</h6>
             <h5>PARIS 14</h5>
         </div>
     </div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5508.769557160819!2d2.3184090915541558!3d48.82918659678285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671b165dc8e19%3A0x325bbe2c5c3f5c71!2sRue%20d&#39;Al%C3%A9sia%2C%2075014%20Paris!5e0!3m2!1sfr!2sfr!4v1682939104790!5m2!1sfr!2sfr" width="900" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe id="theMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.580555079651!2d2.3235003762861224!3d48.82806397132809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671b165dc8e19%3A0x325bbe2c5c3f5c71!2sRue%20d&#39;Al%C3%A9sia%2C%2075014%20Paris%2C%20France!5e0!3m2!1sfr!2snl!4v1682959251823!5m2!1sfr!2snl" width="900" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <h2>Ecrivez-nous</h2>
     <div>
         {{ form_start(formulaire, {'attr': {'onsubmit':'launchModal()'}}) }}
@@ -226,6 +298,35 @@ iframe {
     </div>
 </div>
 {% include "partials/modal.html.twig"%}
+{% block javascript %}
+<script>
+const MONGE = document.querySelector("#cubes > div:nth-child(1)");
+const EMILE = document.querySelector("#cubes > div:nth-child(2)");
+const ALESIA = document.querySelector("#cubes > div:nth-child(3)");
+const MAP =  document.getElementById("theMap");
+const initialSrc = MAP.src;
+function selectedMonge() {
+    MONGE.style.background = "rgba(149, 198, 35, .6)";
+    EMILE.style.background = "rgba(232, 233, 243, .5)";
+    ALESIA.style.background = "none"
 
+    MAP.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.7554246120526!2d2.3497294762870493!3d48.84380367133018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671ef16f950ab%3A0x2aa0b4f9c146252d!2sRue%20Monge%2C%2075005%20Paris%2C%20France!5e0!3m2!1sfr!2snl!4v1682957725389!5m2!1sfr!2snl";
+};
+function selectedEmile() {
+    MONGE.style.background = "rgba(232, 233, 243, .5)";
+    EMILE.style.background = "rgba(149, 198, 35, .6)";
+    ALESIA.style.background = "none";
+    MAP.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.142494377222!2d2.316040176290117!3d48.8936214713369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fa96995ebc9%3A0xe2adbee8f2616310!2sRue%20%C3%89mile%20Level%2C%2075017%20Paris%2C%20France!5e0!3m2!1sfr!2snl!4v1682957850023!5m2!1sfr!2snl";
+};
+function selectedAlesia() {
+    MONGE.style.background = "rgba(232, 233, 243, .5)";
+    EMILE.style.background = "rgba(232, 233, 243, .5)";
+    ALESIA.style.background = "rgba(149, 198, 35, .9)";
+    MAP.src = initialSrc;
+};
+selectedAlesia();
+
+</script>
+{% endblock %}
 {% endblock %}
 
