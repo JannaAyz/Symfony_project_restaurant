@@ -48,7 +48,7 @@ footer {
 h1 {
     font-size: clamp(18px, 7vw, 2.5rem);
     width: 900px;
-    position: absolute;
+    {# position: absolute; #}
 }
 .notStressed {
     margin-left: 95px;
@@ -152,23 +152,11 @@ iframe {
     z-index: 10;
 }
 .aCube h6 {
-    font-size: 20px;
+    font-size: clamp(18px, 3vw, 20px);
 }
-.aCube {
-    background: rgba(232, 233, 243, .5);
-    backdrop-filter: blur(10px);
-    width: 180px;
-    height: 120px;
-    padding: 2rem;
-    cursor: pointer;
+.aCube h5 {
+    font-size: clamp(18px, 4vw, 26px);
 }
-.aCube:hover {
-    padding: 2rem;
-    background: rgba(149, 198, 35, .6);
-    {# border: 3px solid var(--yellowGreen); #}
-    {# text-shadow: 1px 1px 1px var(--yellowGreen); #}
-}
-
 .aCube:nth-child(3) {
     position: relative;
     z-index: 10;
@@ -187,10 +175,10 @@ iframe {
     left:0;
     top:0;
 }
-.aCube:nth-child(3):hover::after {
+{# .aCube:nth-child(3):hover::after {
     background: rgba(149, 198, 35, .6);
 
-}
+} #}
 .aCube:nth-child(3)::before {
     content: url('{{ asset('IMG/leaf.png') }}');
     z-index: -10;
@@ -201,6 +189,20 @@ iframe {
     bottom:230%;
     position: absolute;
     animation: visible 3500ms ease-out;
+}
+.aCube {
+    background: rgba(232, 233, 243, .5);
+    backdrop-filter: blur(10px);
+    width: 180px;
+    height: 120px;
+    padding: 2rem;
+    cursor: pointer;
+}
+.aCube:hover {
+    padding: 2rem;
+    background: rgba(149, 198, 35, .6);
+    {# border: 3px solid var(--yellowGreen); #}
+    {# text-shadow: 1px 1px 1px var(--yellowGreen); #}
 }
 
 #principal > div.container > h2 {
@@ -226,17 +228,65 @@ iframe {
     transform: scale(1,1);
   }
 } #}
+@media screen and (max-width: 1000px) {
+    #theMap {
+        margin-left:-15px;
+        width: 100vw;
+        height: 400px;
+    }
+    .container {
+        margin-left: 0;
+        width: 100vw;
+    }
+    #cubes {
+    width: 100vw;
+        margin-left:-15px;
 
+   } 
+   form {
+    width:95vw;
+   }
+}
+@media screen and (max-width: 815px) {
+    .aCube:nth-child(3)::before {
+    scale: .6;
+    right: 40%;
+    bottom:180%;
+    position: absolute;
+    animation: visible 3500ms ease-out;
+}
+}
+@media screen and (max-width: 790px) {
+   
+   .aCube {
+    padding: 1.5rem;
+   }
+   .aCube:hover {
+    padding: 1.5rem;
+    background: rgba(149, 198, 35, .6);
+   }
+   .aCube h5 {
+    font-weight: 600;
+
+   }
+}
+@media screen and (max-width: 700px) {
+    .aligned-inputs {
+    display:flex;
+    {# justify-content: space-between; #}
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 1.2rem;
+}
+.aligned-inputs > div, .message-input, button{
+    width: 90vw;
+}
+}
 @media screen and (max-width: 651px) {
     .container form{
-        width: 90vw;
+        width: 80vw;
     }
-    .container input, button {
-        width: 87vw;
-    }
-    input, .message-input{
-        width: 70vw;
-    }
+
     button {
         margin: 50px auto;
     }
