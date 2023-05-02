@@ -273,14 +273,13 @@ iframe {
 @media screen and (max-width: 700px) {
     .aligned-inputs {
     display:flex;
-    {# justify-content: space-between; #}
     flex-direction: column;
     gap: 18px;
     margin-bottom: 1.2rem;
-}
-.aligned-inputs > div, .message-input, button{
-    width: 90vw;
-}
+    }
+    .aligned-inputs > div, .message-input, button{
+        width: 90vw;
+    }
 }
 @media screen and (max-width: 651px) {
     .container form{
@@ -296,6 +295,7 @@ iframe {
 </style>
 {% endblock %}
 {% include "partials/_nav.html.twig"%}
+{% include "partials/modal.html.twig"%}
 <div id="title-wrapper">
     <h1 class="noMove"><span class="stressed">3</span><span class="notStressed"> Restaurants à Paris</span></h1>
 </div>
@@ -347,7 +347,6 @@ iframe {
         {{ form_end(formulaire) }}
     </div>
 </div>
-{% include "partials/modal.html.twig"%}
 {% block javascript %}
 <script>
 const MONGE = document.querySelector("#cubes > div:nth-child(1)");

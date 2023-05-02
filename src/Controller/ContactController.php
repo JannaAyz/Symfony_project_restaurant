@@ -35,7 +35,7 @@ class ContactController extends AbstractController
             // $mailer->send($email); 
             echo '<script>setTimeout(() => {launchModal();}, "300");</script>';
             //so that the modal has time to appear
-            sleep(3);
+            sleep(5);
             echo '<script>closeModal();</script>';
             $response = $this->redirectToRoute('app_home');
             return $response;
