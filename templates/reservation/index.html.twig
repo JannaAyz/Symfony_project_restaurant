@@ -47,10 +47,7 @@ font-size: 2.1rem;
 margin-top:-55px;
 margin-bottom: -20px;
 }
-
 .form-title {
-	
-	/*color: var(--black-1);*/
 	font-weight: 600;
 }
 .form-wrapper {
@@ -62,12 +59,8 @@ margin-bottom: -20px;
 	gap: 2rem;
 }
 .form-group .form__label {
-	{# font-size: 1.6rem; #}
-	/*font-family: Poppins;
-	color: var(--black-2);*/
 	font-weight: 500;
 }
-
 .form-group textarea {
 	resize: vertical;
 }
@@ -77,6 +70,28 @@ margin-bottom: -20px;
 	padding: 1rem 4rem;
 	font-weight: 500;
 	letter-spacing: 0.1rem;
+}
+#reservation_vip:checked {
+	background-color: var(--yellowGreen);
+    color: white;
+}
+#reservation_vip, .form-check-input {
+    width: 20px;
+	font-size: 20px;
+	font-weight: 600;
+	padding: 1.5rem;
+	border-radius: 2px;
+	margin-top: 0.5rem;
+	color: var(--raisinBlack);
+    border: 3px solid black;
+    background-color: rgba(240, 134, 50, .1);
+    backdrop-filter: blur(20px);
+}
+.form-check-input:focus {
+    border: 3px solid var(--yellowGreen);
+        background-color: rgba(232, 233, 243, .1); 
+        box-shadow: 0px 0px 0px black;
+    
 }
 
 .form-group input,
@@ -96,9 +111,6 @@ margin-bottom: -20px;
 .form-group input,
 .form-group textarea,
 .form-group select {
-    background: transparent;
-    background: rgba(232, 233, 243, .2);
-    background: rgba(221, 45, 74, .04);
     background: rgba(240, 134, 50, .1);
     backdrop-filter: blur(20px);
 }
@@ -110,9 +122,9 @@ margin-bottom: -20px;
         box-shadow: 0px 0px 0px black;
     }
     
-    .form-group > option:focus, .form-control > option:focus {
+    {# .form-group > option:focus, .form-control > option:focus {
         background: rgba(232, 233, 243, .5);
-    }
+    } #}
 
     .form-control > option, .form-select > option{
         font-size: 20px;
@@ -129,10 +141,12 @@ select -internal-list-box {
     display:none;
 }
 
-.form-group label {
-		font-size: 1.6rem;
+.form-group label, .form-group-vip > label {
+	font-size: 1.6rem;
 }
-
+.form-group-vip > label {
+    margin-right: 10px;
+}
 
 @media only screen and (min-width: 768px) {
     .form-title {
@@ -158,12 +172,20 @@ select -internal-list-box {
 		margin-top: 1.5rem;#}
 	}
     
-    .form-group label {
+    .form-group label, .form-group-vip > label {
 		font-size: 1.8rem;
     }
 
 }
-
+@media screen and (max-width: 580px) {
+    .form-group input,
+	.form-group textarea,
+	.form-group select, 
+    .message-input,
+    .form-wrapper button[type='submit'] {
+        width: 90vw;
+    }
+}
 form button {
     margin: 30px 0 50px;
     font-size: 1.3rem!important;
@@ -181,14 +203,11 @@ form button:hover {
     text-shadow: 2px 3px 1px var(--yellowGreen);
 }
 
-#anchor{
-    {# height: 75vh; #}
-    {# transform: translateY(-20vw); #}
+.js-datepicker:active {
+    position:relative;
+    z-index: 35;
+    background-color: red;
 }
-{# footer {
-    margin-top:50px;
-    top:0;
-} #}
 {% include "partials/footer_version_classic.style.twig" %}
 </style>
 {% endblock %}
@@ -207,35 +226,35 @@ form button:hover {
         {{ form_errors(form.date) }}
     </div>
     <div class="form-group">
-    {{ form_label(form.heure, 'Heure') }}
-    {{ form_widget(form.heure, {'attr': {'class': 'form-control'}}) }}
-    {{ form_errors(form.heure) }}
+        {{ form_label(form.heure, 'Heure') }}
+        {{ form_widget(form.heure, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.heure) }}
     </div>
     <div class="form-group">
-    {{ form_label(form.reservation_name, 'Nom de la réservation') }}
-    {{ form_widget(form.reservation_name, {'attr': {'placeholder': 'Nom de la réservation', 'class': 'form-control'}}) }}
-    {{ form_errors(form.reservation_name) }}
+        {{ form_label(form.reservation_name, 'Nom de la réservation') }}
+        {{ form_widget(form.reservation_name, {'attr': {'placeholder': 'Nom de la réservation', 'class': 'form-control'}}) }}
+        {{ form_errors(form.reservation_name) }}
     </div>
     <div class="form-group">
-    {{ form_label(form.restaurant_name, 'Restaurant') }}
-    {{ form_widget(form.restaurant_name, {'attr': {'placeholder': 'Restaurant à choisir', 'class': 'form-select'}}) }}
-    {{ form_errors(form.restaurant_name) }}
+        {{ form_label(form.restaurant_name, 'Restaurant') }}
+        {{ form_widget(form.restaurant_name, {'attr': {'placeholder': 'Restaurant à choisir', 'class': 'form-select'}}) }}
+        {{ form_errors(form.restaurant_name) }}
     </div>
     <div class="form-group">
-    {{ form_label(form.number, 'Nombre de personnes') }}
-    {{ form_widget(form.number, {'attr': {'placeholder': 'Nombre de personnes', 'class': 'form-control'}}) }}
-    {{ form_errors(form.number) }}
+        {{ form_label(form.number, 'Nombre de personnes') }}
+        {{ form_widget(form.number, {'attr': {'placeholder': 'Nombre de personnes', 'class': 'form-control'}}) }}
+        {{ form_errors(form.number) }}
     </div>
     <div class="form-group">
-    {{ form_label(form.email) }}
-    {{ form_widget(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'}}) }}
-    {{ form_errors(form.email) }}
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'}}) }}
+        {{ form_errors(form.email) }}
     </div>
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="">
-    {{ form_label(form.vip) }}
-    {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
-    {{ form_errors(form.vip) }}
+    <div class="form-group-vip">
+        {{ form_label(form.vip) }}
+        {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
+        {{ form_errors(form.vip) }}
     </div>
     {% endif %} 
     
@@ -253,23 +272,23 @@ form button:hover {
    $(document).on('ready', function() {
          $('.js-datepicker').datepicker({
               format: 'yyyy-MM-dd HH:mm:ss',
-              startDate: new Date(),
-              
+              startDate: new Date(),  
+
          });
      });  
-
-
-    // Écouteur d'événement pour le survol des options d'un élément select
-    const OPTIONS =document.querySelector('.form-control > option');
-OPTIONS.addEventListener('focus', function() {
-  // Appliquer les styles souhaités aux options
-  OPTIONS.forEach(function(options) {
-      
-    options.style.backgroundColor = 'red';
-    options.style.color = '#FFFFFF';
-    options.style.display = 'none';
+    const DATEINPUT = document.querySelector("#reservation_date");
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'dd-mm-yyyy'
+            }).on('change', function(){
+            setTimeout(function() {
+            $('.datepicker').hide();
+            DATEINPUT.disabled = true;
+            DATEINPUT.disabled = false;
+            }, 400);
+        });
     });
-  
-}); 
+
 </script>
 {% endblock %}

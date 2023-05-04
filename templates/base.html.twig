@@ -78,7 +78,7 @@
 } #}
 
 .appear {
-  animation: visible 3s ease-out forwards;
+  animation: visible 200ms ease-out forwards;
 }
 .makeVisible {
   opacity: 1;
@@ -160,16 +160,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script>
-            $(document).ready(function() {
-                // you may need to change this code if you are not using Bootstrap Datepicker
-                $('.js-datepicker').datepicker({
-                    format: 'dd-mm-yyyy'
-                  }).on('change', function(){
-                  setTimeout(function() {
-                  $('.datepicker').hide();
-                  }, 400);
-                });
-            });
+            
             {# const datepickerDays = document.querySelector('.datepicker-days');
             const datepicker = document.querySelector("body > div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-bottom");
 
