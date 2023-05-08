@@ -39,6 +39,8 @@ class ResetProfilePicture
         $stmt = $connection->prepare($sql);
         $stmt->execute();
 
+
+
     
         // $stmt->execute(['expiration_time' => $expirationTime->format('Y-m-d H:i:s')]);
 
