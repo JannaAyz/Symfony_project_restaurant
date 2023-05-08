@@ -13,12 +13,13 @@ body {
 }
 
 .container {
-    margin-top: 90px!important;
+    margin-top: 120px!important;
     height: 100vh;
     text-align: center;
     animation: popUp 0ms!important;
     display: flex;
     flex-direction: column; 
+    margin-bottom: 50px;
 }
 #admins{
     position: fixed;
@@ -40,6 +41,14 @@ td:not(tbody tr td:nth-child(4)), th{
 }
 table > thead, table > tbody, #admins {
     width: 900px;
+}
+#principal > div > table > tbody > tr{
+    opacity: 0;
+}
+.makeVisible {
+    animation: visible 80ms  forwards calc(var(--order)*40ms)!important;
+    {# animation-delay: calc(var(--order)*100ms); #}
+
 }
 </style>
 {% endblock %}
@@ -100,14 +109,18 @@ table > thead, table > tbody, #admins {
 
 {% block javascripts %}
     <script>
-    const TABLE = document.querySelectorAll("#principal > div > table > tbody tr");
+    const TABLE = document.querySelectorAll("#principal > div > table > tbody > tr");
     let rows = TABLE.length;
     for(i = 0; i < rows; i++) {
         TABLE[i].setAttribute("style", `--order:${i}`);
         if(i % 2 === 0) {
-        TABLE[i].style.background = "yellow";
+        TABLE[i].style.background = "rgba(149, 198, 35, .45)";
         }
     };
+
+    TABLE.forEach(function(tbl) {
+    tbl.classList.add("makeVisible");
+    });
     
     
     
