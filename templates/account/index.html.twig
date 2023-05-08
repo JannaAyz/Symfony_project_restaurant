@@ -10,7 +10,6 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
 </style>
 {% endblock %}
 {% set currentDate = date("now") %}
-<a class="btn btn-outline-success button" href= "{{ path('app_logout') }}">Logout</a>
         <section class="vh-100" style="background-color: #f4f5f7;">
             <h1 style="text-align:center; padding-top:30px;">Mon profil</h1>
   <div class="container py-5 h-100">
@@ -28,6 +27,7 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
                 alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
               {% endif %}
               <h5> {{ user.firstname }} {{ user.lastname }}</h5>
+<a class="btn btn-outline-success button" href= "{{ path('app_logout') }}">Logout</a>
               
              <a href="{{ path('app_register_edit', {'id': user.id}) }}" class="btn btn-primary">Modifier</a>
             </div>

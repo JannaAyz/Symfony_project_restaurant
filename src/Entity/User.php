@@ -110,7 +110,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $image_url = null;
     
     #[ORM\Column(type: "binary", nullable: true)]
- 
     private $imageData;
 
 
