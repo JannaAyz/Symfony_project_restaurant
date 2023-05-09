@@ -27,6 +27,41 @@ body {
 .buttons {
     display:flex;
     justify-content: space-between;
+    padding-bottom: 30px;
+    position: relative;
+    margin-bottom: 20px;
+}
+.rsrvButton, .btn, .btn-secondary, .dropdown-toggle {
+    font-size: 1.3rem!important;
+    color: black;
+    border: 3px solid rgba(17, 17, 17, .6)!important;
+    font-weight: 500!important;
+    background: rgba(149, 198, 35, .8);
+    backdrop-filter: blur(10px);
+    padding: .7rem;
+    border-radius: 0;
+}
+.rsrvButton a, .btn-secondary a, .btn-secondary:hover a{
+    color: black;
+}
+.rsrvButton:hover, .btn-secondary:hover, .btn-secondary:active {
+    color: black;
+    background: rgba(232, 233, 243, .5);
+    border: 3px solid var(--yellowGreen)!important;
+    text-shadow: 2px 2px 1px var(--yellowGreen);
+}
+.buttons::after {
+    {# box-shadow: 0px 7px 3px grey;  #}
+    background: var(--orange);
+    position: absolute;
+    width: 80%;
+    height: 1px;
+    content: '';
+    bottom: 0;
+    left: 10%;
+}
+.dropdown-menu, .show {
+    border-radius:0;
 }
 td:not(tbody tr td:nth-child(4)), th{
     text-align: left;
@@ -45,10 +80,66 @@ table > thead, table > tbody, #admins {
 #principal > div > table > tbody > tr{
     opacity: 0;
 }
+#principal > div > table > tbody {
+    overflow-x: scroll;
+}
 .makeVisible {
     animation: visible 80ms  forwards calc(var(--order)*40ms)!important;
     {# animation-delay: calc(var(--order)*100ms); #}
 
+}
+#admins > table > tbody > tr > td:nth-child(6) {
+    text-align: center;
+}
+#edit, #star {
+    height: 30px;
+}
+#star {
+    margin-right: -35px;
+}
+@media screen and (max-width: 750px){
+    .container {
+        display:block;
+    } 
+    table {
+        display:flex;
+        flex-direction: column;
+        justify-content:center;
+        margin-left: 0;
+    }
+    #admins {
+        width: 100vw;
+        height: 100%;
+    }
+    .buttons {
+        margin-top:30px;
+    }
+    #admins > table {
+        width: 100vw;
+        {# margin-left:max(-40px, -18vw); #}
+    }
+    #admins > table > tbody > tr > td,
+    #admins > table > thead > tr > th {
+        font-size: 14px;
+    }
+    #admins > table > thead > tr > th:nth-child(3) {
+        padding-left: 65px;
+    }
+    #admins > table > thead > tr > th:nth-child(4) {
+        padding-left: 50px;
+    }
+    #star {
+        margin-right: 0px;
+        height: 20px;
+    }
+}
+@media screen and (max-width: 530px) {
+    table {
+        margin-left: -10px;
+    }
+    table > thead, table > tbody {
+        width:100vw;
+    }
 }
 </style>
 {% endblock %}
@@ -58,7 +149,7 @@ table > thead, table > tbody, #admins {
 <div class="container" id="admins">
     <h1>Réservations</h1>
     <div class="buttons">
-        <div class="dropdown" style="margin:20px;display:flex;justify-content:center;">
+        <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{selectedDate|date('d.m.Y')}}
         </button>
@@ -71,10 +162,10 @@ table > thead, table > tbody, #admins {
             </form>
         </div>
         </div>
-        <button class="btn btn-secondary" type="button" aria-expanded="false"><a href="{{ path('app_reservation') }}">Nouvelle réservation</a></button>
+        <button class="rsrvButton" type="button" aria-expanded="false"><a href="{{ path('app_reservation') }}">Nouvelle réservation</a></button>
     </div>
     {# <h2>Réservations pour la date {{selectedDate|date('Y-m-d')}}</h2> #}
-
+    
 {% if selectedReservations is defined and selectedReservations|length > 0 %}
     {% set sortedReservations = selectedReservations|sort((a, b) => a.heure <=> b.heure) %}
     <table>
@@ -94,15 +185,23 @@ table > thead, table > tbody, #admins {
                     <td>{{ selected.heure|date('H:i') }}</td>
                     <td>{{ selected.reservation_name }}</td>
                     <td>{{ selected.restaurant_name }}</td>
-                    <td>{{ selected.number }}</td>
+                    <td>{{ selected.number }}
+                        {% if selected.vip == 1 %}
+                        <img id="star" src="{{ asset('IMG/star.svg') }}">
+                        {% endif %}
+                    </td>
                     <td>{{ selected.email }}</td> 
                     <td>
-                        <a href="{{ path('app_admin_reservation_edit', {'id': selected.id}) }}">edit</a>
+                        <a href="{{ path('app_admin_reservation_edit', {'id': selected.id}) }}">
+                        <img id="edit" src="{{ asset('IMG/edit.svg')}}">
+                        </a>
                     </td>
                 </tr> 
             {% endfor %}
         </tbody>
     </table>
+{% else %}
+<h3>Pas de réservations pour cette date</h3>
 {% endif %}
 </div>
 {% endblock %}
