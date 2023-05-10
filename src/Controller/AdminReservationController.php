@@ -50,7 +50,7 @@ class AdminReservationController extends AbstractController
 
     #[Route('/new', name: 'app_admin_reservation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ReservationRepository $reservationRepository): Response
-{}
+    {}
  
     #[Route('/{id}', name: 'app_admin_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
