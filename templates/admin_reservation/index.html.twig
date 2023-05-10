@@ -146,6 +146,28 @@ table > thead, table > tbody, #admins {
 
 {% block body %}
 {% include "partials/_nav.html.twig"%}
+
+    <div class="modal fade"  tabindex="-1" aria-labelledby="editModal Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <h1>Edit Reservation</h1>
+{# {{ form_start(form) }}
+{{ form_widget(form) }}
+<button type="submit">Save changes</button>
+{{ form_end(form) }} #}
+
+    {# {{ include('admin_reservation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_admin_reservation_index') }}">back to list</a>
+
+    {{ include('admin_reservation/_delete_form.html.twig') }} #}
+            </div>
+        </div>
+    </div>
+
+
+
+
 <div class="container" id="admins">
     <h1>Réservations</h1>
     <div class="buttons">
@@ -193,6 +215,7 @@ table > thead, table > tbody, #admins {
                     <td>{{ selected.email }}</td> 
                     <td>
                         <a href="{{ path('app_admin_reservation_edit', {'id': selected.id}) }}">
+                        {# <a href=""> #}
                         <img id="edit" src="{{ asset('IMG/edit.svg')}}">
                         </a>
                     </td>

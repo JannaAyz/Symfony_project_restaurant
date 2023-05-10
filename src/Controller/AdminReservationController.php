@@ -51,65 +51,7 @@ class AdminReservationController extends AbstractController
     #[Route('/new', name: 'app_admin_reservation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ReservationRepository $reservationRepository): Response
 {}
-    
-        // $reservation = new Reservation();
-        // if ($this->getUser()) {
-        //     $user = $this->getUser();
-        //     $reservation->setReservationName($user->getFirstname() . ' ' . $user->getLastname());
-        //     $reservation->setEmail($user->getEmail());
-        // }
-        // Définition de l'heure actuelle pour que les champs date et heure soient pré-remplis au moment de la réservation
-        // $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
-        // $reservationTime = DateTime::createFromFormat('H:i', $now->format('H:i'));
-        // $reservation->setHeure($reservationTime);
-        // $reservation->setDate($now);
-        // $heureOptions = $reservation->generateHourOptions();
-        // $form = $this->createForm(ReservationType::class, $reservation, [
-        //     'available_hours' => $heureOptions,
-        // ]);
-        // $form->handleRequest($request);
-        
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $reservationDate = $form->get('date')->getData();
-            // Récupérer les données de réservation à partir du formulaire
-            // $reservation-> setDate($reservationDate);
-            // $reservation = $form->getData();
-
-            // Enregistrer la réservation en base de données
-            // $entityManager = $doctrine->getManager();
-            // $entityManager->persist($reservation);
-            // $entityManager->flush();
-
-            // Rediriger l'utilisateur vers une page de confirmation
-        //     return $this->redirectToRoute('app_admin_reservation_index');
-        // }
-        // return $this->render('reservation/index.html.twig', [
-        //     'form' => $form->createView(),
-        // ]);
-    
-/////////////////////////////////////////////////////////////////////
-        // $reservation = new Reservation();
-        // $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
-        // $reservationTime = DateTime::createFromFormat('H:i', $now->format('H:i'));
-        // $reservation->setHeure($reservationTime);
-        // $reservation->setDate($now);
-        // $heureOptions = $reservation->generateHourOptions();
-        // $form = $this->createForm(Reservation1Type::class, $reservation);
-        // $form->handleRequest($request);
-
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $reservationRepository->save($reservation, true);
-
-        //     return $this->redirectToRoute('app_admin_reservation_index', [], Response::HTTP_SEE_OTHER);
-        // }
-
-        // return $this->renderForm('admin_reservation/new.html.twig', [
-        //     'reservation' => $reservation,
-        //     'form' => $form->createView(),
-
-        // ]);
-    
-
+ 
     #[Route('/{id}', name: 'app_admin_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
     {

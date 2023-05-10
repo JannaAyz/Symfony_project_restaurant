@@ -2,3 +2,7 @@
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservation.id) }}">
     <button class="btn">Delete</button>
 </form>
+{# <form method="post" action="{{ path('app_admin_reservation_delete', {'id': selected.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ selected.id) }}">
+    <button class="btn">Delete</button>
+</form> #}
