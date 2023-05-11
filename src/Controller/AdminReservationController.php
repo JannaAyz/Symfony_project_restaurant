@@ -69,8 +69,10 @@ class AdminReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reservationRepository->save($reservation, true);
+            /////////////////////////////
+            //return $this->redirectToRoute('app_admin_reservation_edit', [], Response::HTTP_SEE_OTHER);
+            return new Response(null, Response::HTTP_SEE_OTHER);
 
-            return $this->redirectToRoute('app_admin_reservation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin_reservation/edit.html.twig', [
@@ -85,7 +87,8 @@ class AdminReservationController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
             $reservationRepository->remove($reservation, true);
         }
-
-        return $this->redirectToRoute('app_admin_reservation_index', [], Response::HTTP_SEE_OTHER);
+        //////////////////////
+        // return $this->redirectToRoute('app_admin_reservation_index', [], Response::HTTP_SEE_OTHER);
+        return new Response(null, Response::HTTP_SEE_OTHER);
     }
 }

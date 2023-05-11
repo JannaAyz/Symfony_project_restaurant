@@ -96,12 +96,12 @@ table > thead, table > tbody, #admins {
 #star {
     margin-right: -35px;
 }
-.reservation-iframe {
+{# .reservation-iframe {
     display:none;
 }
 .visible {
     display:block;
-}
+} #}
 
 @media screen and (max-width: 750px){
     .container {
@@ -147,6 +147,37 @@ table > thead, table > tbody, #admins {
         width:100vw;
     }
 }
+#admins > table{
+    position: relative!important;
+    z-index: 0!important;
+}
+#reservation-iframe, #admins > table > tbody > tr > td > iframe{ 
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    display: none;
+    scale: 1.5;
+    z-index: 10!important;
+    background-color: pink;
+}
+#cross {
+    position: absolute;
+    top:0;
+    right: 0;
+    {# display: none; #}
+    scale: .1;
+    z-index: 11!important;
+
+}
+.reservation-link:focus-within + #reservation-iframe,
+#admins > table > tbody > tr > td > a:focus-within + #reservation-iframe{
+    display: block;
+    background: red;
+}
+.unvisible {
+    display:none;
+}
+
 </style>
 {% endblock %}
 
@@ -215,17 +246,15 @@ table > thead, table > tbody, #admins {
                         {% endif %}
                     </td>
                     <td>{{ selected.email }}</td> 
-                    <td>
-                        
-                        {# <a href="#" class="reservation-link" onclick="showIframe" {{'id': selected.id}}> #}
-                        <a href="#" class="reservation-link" onclick="showIframe('{{ selected.id }}')">
+                    <td>  
+                        <a href="#" class="reservation-link" {{selected.id}} onclick="showIframe()">
                             <img id="edit" src="{{ asset('IMG/edit.svg')}}">
                         </a>
-                        
+                        <iframe height="300" id="reservation-iframe" src="{{ url('app_admin_reservation_edit', {'id': selected.id}) }}">
+                        </iframe>
+                        <img  onclick="closeIframe()" id="cross" src="{{ asset('IMG/close.svg')}}" alt=""/>
                     </td>
                 </tr> 
-                        <iframe class="reservation-iframe" src="{{ url('app_admin_reservation_edit', {'id': selected.id}) }}"></iframe>
-                        {# <iframe class="reservation-iframe{% if clickedReservationId == selected.id %} visible{% endif %}" src="{{ url('app_admin_reservation_edit', {'id': selected.id}) }}"></iframe> #}
             {% endfor %}
         </tbody>
     </table>
@@ -258,17 +287,32 @@ table > thead, table > tbody, #admins {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
+        const CLOSER = document.querySelector("#edit-wrapper > a");
+        let toHide = document.querySelectorAll('table > tbody > tr > td:not(td:nth-child(6))');
+        let iframe = document.querySelector('#reservation-iframe');
+        let cross = document.querySelector("#admins > table > tbody > tr > td > img");
         function showIframe(reservationId) {
-        var iframes = document.getElementsByClassName('reservation-iframe');
-        for (var i = 0; i < iframes.length; i++) {
-            //iframes[i].classList.remove('visible'); // Masque toutes les balises <iframe>
-            if (iframes[i].getAttribute('data-id') === reservationId) {
-            iframes[i].classList.add('visible'); // Affiche la balise <iframe> correspondante
-            // Mettez à jour d'autres actions souhaitées pour la balise <iframe> ici
-            console.log(iframes[i].getAttribute('data-id'));
-            }
+            toHide.forEach(function(hide){
+                hide.classList.toggle("unvisible");
+            }); 
+            iframe.style.display= "block";
+            cross.style.display="block"
+            CLOSER.addEventListener("click", restoreTable);
         }
+        function restoreTable() {
+            toHide.forEach(function(hide){
+                hide.classList.remove("unvisible");
+            }); 
         }
+        function closeIframe() {
+            location.reload(true);
+            {# iframe.style.display="none";
+            toHide.forEach(function(hide){
+                hide.classList.toggle("unvisible");
+            });  #}
+        }
+
+        
     </script>
 
 
