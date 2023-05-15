@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class Reservation1Type extends AbstractType
 {
@@ -130,6 +131,12 @@ class Reservation1Type extends AbstractType
             ->add('number')
             ->add('email')
             ->add('heure')
+            ->add('vip', CheckboxType::class, [
+                'label' => 'VIP?',
+                'required' => false,
+                // 'value' => false,
+                'empty_data' => null, // La valeur par défaut est null
+            ]);
         ;
     }
 

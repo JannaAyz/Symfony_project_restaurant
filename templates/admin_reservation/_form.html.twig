@@ -1,7 +1,13 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+       
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+{# <div class="form-group-vip">
+        {{ form_label(form.vip) }}
+        {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
+        {{ form_errors(form.vip) }}
+    </div> #}
 <style>
 #reservation1{
     display: flex;
