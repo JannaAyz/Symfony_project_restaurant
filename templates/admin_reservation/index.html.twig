@@ -159,6 +159,7 @@ table > thead, table > tbody, #admins {
     scale: 1.5;
     z-index: 10!important;
     background-color: pink;
+    height:350px;
 }
 #cross {
     position: absolute;
@@ -250,7 +251,7 @@ table > thead, table > tbody, #admins {
                         <a href="#" class="reservation-link" {{selected.id}} onclick="showIframe()">
                             <img id="edit" src="{{ asset('IMG/edit.svg')}}">
                         </a>
-                        <iframe height="300" id="reservation-iframe" src="{{ url('app_admin_reservation_edit', {'id': selected.id}) }}">
+                        <iframe  id="reservation-iframe" src="{{ url('app_admin_reservation_edit', {'id': selected.id}) }}">
                         </iframe>
                         <img  onclick="closeIframe()" id="cross" src="{{ asset('IMG/close.svg')}}" alt=""/>
                     </td>

@@ -33,4 +33,6 @@ return [
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'app_admin_reservation_index_select' => [[], ['_controller' => 'App\\Controller\\AdminReservationController::select'], [], [['text', '/admin/reservation/select']], [], [], []],
+    'admin_reservation_delete_confirmation' => [[], ['template' => 'admin_reservation/delete_confirmation.html.twig', '_controller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController'], [], [['text', '/admin_reservation/delete_confirmation']], [], [], []],
+    'admin_reservation_update_confirmation' => [[], ['template' => 'admin_reservation/update_confirmation.html.twig', '_controller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController'], [], [['text', '/admin_reservation/update_confirmation']], [], [], []],
 ];

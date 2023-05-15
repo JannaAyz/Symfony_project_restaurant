@@ -70,8 +70,9 @@ class AdminReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $reservationRepository->save($reservation, true);
             /////////////////////////////
-            //return $this->redirectToRoute('app_admin_reservation_edit', [], Response::HTTP_SEE_OTHER);
-            return new Response(null, Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_reservation_update_confirmation', [], Response::HTTP_SEE_OTHER);
+            // return new Response(null, Response::HTTP_SEE_OTHER);
+            // return new Response(null, Response::HTTP_NO_CONTENT);
 
         }
 
@@ -88,7 +89,8 @@ class AdminReservationController extends AbstractController
             $reservationRepository->remove($reservation, true);
         }
         //////////////////////
-        // return $this->redirectToRoute('app_admin_reservation_index', [], Response::HTTP_SEE_OTHER);
-        return new Response(null, Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_reservation_delete_confirmation', [], Response::HTTP_SEE_OTHER);
+        // return new Response(null, Response::HTTP_SEE_OTHER);
     }
+    
 }

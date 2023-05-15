@@ -22,6 +22,8 @@ return [
         '/reservation' => [[['_route' => 'app_reservation', '_controller' => 'App\\Controller\\ReservationController::index'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/admin_reservation/delete_confirmation' => [[['_route' => 'admin_reservation_delete_confirmation', 'template' => 'admin_reservation/delete_confirmation.html.twig', '_controller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController'], null, null, null, false, false, null]],
+        '/admin_reservation/update_confirmation' => [[['_route' => 'admin_reservation_update_confirmation', 'template' => 'admin_reservation/update_confirmation.html.twig', '_controller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
