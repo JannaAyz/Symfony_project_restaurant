@@ -125,17 +125,73 @@ class Reservation1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date')
-            ->add('reservation_name')
-            ->add('restaurant_name')
-            ->add('number')
-            ->add('email')
+            ->add('date', DateType::class,[
+                'widget' => 'choice',
+                'html5' => false,
+                'format' => 'dd MM yyyy',
+                'data'=> new DateTime('now'),
+           ])
+           ->add('reservation_name',TextType::class,[         
+                    'attr' => [
+                        'placeholder' => 'Nom de la réservation ',
+                        'class' => 'form-control'
+                    ]
+                ])
+            ->add('restaurant_name',ChoiceType::class,[
+                    'choices'  => [
+                        'Paris 17 - Emile Level' => 'Paris 17 - Emile Level',
+                        'Paris 14 - Alesia' => 'Paris 14 - Alesia',
+                        'Paris 5 - Monge' => 'Paris 5 - Monge',
+                    ],
+                    'attr' => [
+                        'placeholder' => 'Restaurant à choisir',
+                        'class' => 'form-select'
+                    ]
+                ])
+            ->add('number', ChoiceType::class, [
+                'choices' => [
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5,
+                    '6' => 6,
+                    '7' => 7,
+                    '8' => 8,
+                    '9' => 9,
+                    '10' => 10,
+                    '11' => 11,
+                    '12' => 12,
+                    '13' => 13,
+                    '14' => 14,
+                    '15' => 15,
+                ],
+                'attr' => [
+                    'label' => 'Nombre de personnes',
+                    'placeholder' => 'Nombre de personnes',
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('email', EmailType::class,[
+                    'attr' => [
+                        // 'value' => user.email
+                        'placeholder' => 'Email',
+                        'class' => 'form-control'
+                    ]
+                ])
             ->add('heure')
             ->add('vip', CheckboxType::class, [
                 'label' => 'VIP?',
                 'required' => false,
                 // 'value' => false,
                 'empty_data' => null, // La valeur par défaut est null
+            ])
+            ->add('submit', SubmitType::class,[
+            'label' => 'Confirmer',
+            'attr' => [
+
+                'class' => 'btn btn-primary'
+                ]
             ]);
         ;
     }

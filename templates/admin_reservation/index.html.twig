@@ -61,9 +61,10 @@ body {
 }
 .dropdown-menu, .show {
     border-radius:0;
+    text-align:center;
 }
-td:not(tbody tr td:nth-child(4)), th{
-    text-align: left;
+#dropdownMenuButton {
+    padding: 0.7rem 14px;
 }
 #admins > table > tbody > tr > td {
     padding: 5px;
@@ -160,21 +161,17 @@ table > thead, table > tbody, #admins {
     z-index: 10!important;
     background-color: yellow;
     height:350px;
+    transform: translateY(10%);
 }
 #cross {
     position: absolute;
-    top:0;
-    right: 0;
-    {# display: none; #}
+    inset: 0;
+    margin: auto;
+    display: none;
     scale: .1;
     z-index: 11!important;
-
+    transform: translateY(270%);
 }
-{# .reservation-link:focus-within + #reservation-iframe,
-#admins > table > tbody > tr > td > a:focus-within + #reservation-iframe{
-    display: block;
-    background: red;
-} #}
 .unvisible {
     display:none;
 }
@@ -209,7 +206,7 @@ table > thead, table > tbody, #admins {
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{selectedDate|date('d.m.Y')}}
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="text-align:center;width:11.5%;">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <form action={{path('app_admin_reservation_index_select')}}  method="get" id="choosenDatesForm">
                 {% for r in reservations %}
                     <a class="dropdown-item" href="{{r.date}}">{{r.date|date('d.m.Y')}}</a>
@@ -291,13 +288,23 @@ table > thead, table > tbody, #admins {
         const CLOSER = document.querySelector("#edit-wrapper > a");
         let toHide = document.querySelectorAll('table > tbody > tr > td:not(td:nth-child(6))');
         let iframe = document.querySelector('#reservation-iframe');
-        let cross = document.querySelector("#admins > table > tbody > tr > td > img");
+        let cross = document.querySelector("#cross");
+        let editImg = document.querySelectorAll("table > tbody > tr > td > a");
+        let backGround = document.querySelectorAll("#admins > table > tbody > tr")
+
+
         function showIframe(reservationId) {
             toHide.forEach(function(hide){
                 hide.classList.toggle("unvisible");
             }); 
+            backGround.forEach(function(bckGrnd){
+                bckGrnd.style.background = "none";
+            });
+            editImg.forEach(function(edtImg){
+                edtImg.classList.toggle("unvisible");
+            });
             iframe.style.display= "block";
-            cross.style.display="block"
+            cross.style.display="block";
             CLOSER.addEventListener("click", restoreTable);
         }
         function restoreTable() {
@@ -318,3 +325,5 @@ table > thead, table > tbody, #admins {
 
 
 {% endblock %}
+
+

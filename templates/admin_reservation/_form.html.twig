@@ -1,16 +1,249 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-       
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
-{# <div class="form-group-vip">
-        {{ form_label(form.vip) }}
-        {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
-        {{ form_errors(form.vip) }}
-    </div> #}
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
 <style>
+body {
+    background: none;
+}
+#bottom {
+    display: none!important;
+}
 #reservation1{
     display: flex;
     flex-wrap: wrap;
 }
+#form {
+	padding: 5rem 1rem;
+}
+#principal > div > div.form-title > h1 {
+font-size: 2.1rem;
+margin-top:-55px;
+margin-bottom: -20px;
+}
+{# .form-title {
+	font-weight: 600;
+} #}
+.form-wrapper {
+	padding: 0.6rem 0.1rem;
+}
+.form-group {
+    display: flex;
+    margin-top: 5px;
+}
+.form-group .form__label {
+	{# font-weight: 500;
+    font-size: 12px; #}
+
+}
+.form-group textarea {
+	resize: vertical;
+}
+.form-wrapper button[type='submit'] {
+	width: max-content;
+	border: none;
+	padding: 0.8rem 0.45rem;
+	font-weight: 500;
+}
+.supprBtn {
+	padding: 0.8rem 0.45rem;
+}
+#reservation_vip:checked {
+	background-color: var(--yellowGreen);
+    color: white;
+}
+{# #reservation_vip, .form-check-input {
+    width: 20px;
+	font-size: 20px;
+	font-weight: 600;
+	padding: 1.5rem;
+	border-radius: 2px;
+	margin-top: 0.5rem;
+	color: var(--raisinBlack);
+    border: 3px solid black;
+    background-color: rgba(240, 134, 50, .1);
+    backdrop-filter: blur(20px);
+} #}
+.form-check-input:focus {
+    border: 3px solid var(--yellowGreen);
+    background-color: rgba(232, 233, 243, .1); 
+    box-shadow: 0px 0px 0px black;
+    
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+	{# width: 100%; #}
+	font-size: 14px;
+	padding: 5px;
+	border-radius: 0.5px;
+	margin-top: 0.5rem;
+    border: 1px solid black;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+    background: rgba(240, 134, 50, .1);
+    backdrop-filter: blur(20px);
+    cursor: pointer;
+}
+#reservation_vip {
+    cursor: pointer;
+}
+.form-group > input:focus , .form-group > *:focus , 
+.form-group > input:hover, select:hover, select:active, .form-group > option,
+.form-control > option {
+    border: 0.5px solid #95C623;
+    background-color: rgba(232, 233, 243, .1); 
+    box-shadow: 0px 0px 0px black;ù
+    color: black;
+}
+.form-control > option, .form-select > option{
+    font-size: 14px;
+    background-color: #f7ecddcc;
+    font-weight: 500;
+}
+
+select {
+    text-transform: none;
+    word-wrap: normal;
+}
+select -internal-list-box {
+    overflow: visible !important;
+    display:none;
+}
+
+{# .form-group label, .form-group-vip > label {
+	font-size: 1.6rem;
+} #}
+.form-group-vip > label {
+    margin-right: 10px;
+}
+
+{# @media only screen and (min-width: 768px) {
+    .form-title {
+        margin-bottom: -30px;
+    }
+    .form_widget {
+		font-size: 3.6rem;
+	}
+	.form-wrapper {
+		padding: 5rem 0;
+	}
+	.form-wrapper form {
+		grid-template-columns: 1fr 1fr;
+	}
+	.form-group-full {
+		grid-column: 1/3;
+	}
+	
+	.form-group input,
+	.form-group textarea,
+	.form-group select {
+		{# padding: 2rem; 
+		margin-top: 1.5rem;#}
+	
+    
+    .form-group label, .form-group-vip > label {
+        margin-top: 10px;
+        margin-right: 20px;
+    }
+
+form button {
+    margin: 30px 0 50px;
+    font-size: 1.2rem!important;
+    color: black;
+    text-transform: uppercase;
+    border: 3px solid black!important;
+    font-weight: 500!important;
+    background: rgba(149, 198, 35, .8);
+    backdrop-filter: blur(10px);
+}
+form button:hover {
+    background: rgba(232, 233, 243, .5);
+    border: 3px solid var(--yellowGreen)!important;
+    text-shadow: 2px 3px 1px var(--yellowGreen);
+}
+.form-group {
+    display: flex;
+    width: 90vw;
+}
+form .supprBtn {
+    background: var(--orange);
+}
+form .supprBtn:hover{
+    border: 3px solid var(--orange)!important;
+    text-shadow: 2px 3px 1px var(--orange);
+}
+.form-group input {
+    margin: 0;
+}
+#reservation1_date, #reservation1_heure {
+    background: none;
+    border: none;
+}
+#principal > div > form > label {
+    font-size: 8px;
+}
+.form-control, .form-select {
+    padding: 1px;
+    color: black;
+}
+.buttons {
+    display:flex;
+    width: 90vw;
+    margin-bottom: 70px;
+}
+{% include "partials/footer_version_classic.style.twig" %}
 </style>
+{% endblock %}
+
+{% block body %}
+<div class="form-wrapper">
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.date, 'Date') }}
+            {{ form_widget(form.date, {'attr': {'class': 'form-control js-datepicker'}}) }}
+            {{ form_errors(form.date) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.heure, 'Heure') }}
+            {{ form_widget(form.heure, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.heure) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.reservation_name, 'Nom') }}
+            {{ form_widget(form.reservation_name, {'attr': {'placeholder': 'Nom de la réservation', 'class': 'form-control'}}) }}
+            {{ form_errors(form.reservation_name) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.restaurant_name, 'Restaurant') }}
+            {{ form_widget(form.restaurant_name, {'attr': {'placeholder': 'Restaurant à choisir', 'class': 'form-select'}}) }}
+            {{ form_errors(form.restaurant_name) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.number, 'Couverts') }}
+            {{ form_widget(form.number, {'attr': {'placeholder': 'Nombre de personnes', 'class': 'form-control'}}) }}
+            {{ form_errors(form.number) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr': {'placeholder': 'Email', 'class': 'form-control'}}) }}
+            {{ form_errors(form.email) }}
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="form-group-vip">
+            {{ form_label(form.vip) }}
+            {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
+            {{ form_errors(form.vip) }}
+        </div>
+        {% endif %} 
+        
+    {# <button class="btn">{{ button_label|default('Save') }}</button> #}
+        <div class="buttons">
+            {{ form_widget(form.submit, {'attr': {'class': 'sbmit-btn'}}) }}   
+            {{ include('admin_reservation/_delete_form.html.twig') }}
+        </div>
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}

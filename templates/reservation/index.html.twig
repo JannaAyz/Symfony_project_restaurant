@@ -113,6 +113,10 @@ margin-bottom: -20px;
 .form-group select {
     background: rgba(240, 134, 50, .1);
     backdrop-filter: blur(20px);
+    cursor: pointer;
+}
+#reservation_vip {
+    cursor: pointer;
 }
     .form-group > input:focus , .form-group > *:focus , 
     .form-group > input:hover, select:hover, select:active, .form-group > option,
@@ -201,6 +205,9 @@ form button:hover {
     background: rgba(232, 233, 243, .5);
     border: 3px solid var(--yellowGreen)!important;
     text-shadow: 2px 3px 1px var(--yellowGreen);
+}
+.form-group > * {
+    font-family: 'Montserrat', sans-serif;
 }
 
 {% include "partials/footer_version_classic.style.twig" %}
