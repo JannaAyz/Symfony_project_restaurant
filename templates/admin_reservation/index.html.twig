@@ -148,9 +148,15 @@ table > thead, table > tbody, #admins {
         width:100vw;
     }
 }
+#principal > div > table > tbody {
+    overflow: hidden;
+}
 #admins > table{
     position: relative!important;
     z-index: 0!important;
+}
+#admins > table > tbody > tr > td{
+    padding-left:3px;
 }
 #reservation-iframe, #admins > table > tbody > tr > td > iframe{ 
     position: absolute;
@@ -159,23 +165,28 @@ table > thead, table > tbody, #admins {
     display: none;
     scale: 1.5;
     z-index: 10!important;
-    background-color: yellow;
-    height:350px;
-    transform: translateY(10%);
+    {# background-color: yellow; #}
+    height:390px;
+    transform: translateY(20%);
+    overflow: hidden;
+    box-shadow: 2px 2px 14px rgba(221, 45, 74, .7);
 }
 #cross {
+    cursor: pointer;
     position: absolute;
     inset: 0;
     margin: auto;
     display: none;
-    scale: .1;
     z-index: 11!important;
-    transform: translateY(270%);
+    transform: translate(380%, -280%);
 }
 .unvisible {
     display:none;
 }
 
+{# body > *:not(iframe) {
+    filter: blur(1.5rem);
+} #}
 </style>
 {% endblock %}
 
@@ -244,13 +255,13 @@ table > thead, table > tbody, #admins {
                         {% endif %}
                     </td>
                     <td>{{ selected.email }}</td> 
-                    <td>  
-                        <a href="#" class="reservation-link" {{selected.id}} onclick="showIframe()">
+                    <td id="toShowIframe">  
+                        <a href="#" onclick="showIframe()">
                             <img id="edit" src="{{ asset('IMG/edit.svg')}}">
                         </a>
-                        <iframe  id="reservation-iframe" src="{{ url('app_admin_reservation_edit', {'id': selected.id}) }}">
+                        <iframe id="reservation-iframe" src="{{ path('app_admin_reservation_edit', {'id': selected.id}) }}">
                         </iframe>
-                        <img  onclick="closeIframe()" id="cross" src="{{ asset('IMG/close.svg')}}" alt=""/>
+                        <img  style ="width:50px;" onclick="closeIframe()" id="cross" src="{{ asset('IMG/close.svg')}}" alt=""/>
                     </td>
                 </tr> 
             {% endfor %}
@@ -285,15 +296,25 @@ table > thead, table > tbody, #admins {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
-        const CLOSER = document.querySelector("#edit-wrapper > a");
+        /*const CLOSER = document.querySelector("#edit-wrapper > a");*/
+        let editImg = document.querySelectorAll("#toShowIframe > a");
+        let toBlur = document.querySelectorAll('h1, button, .buttons, thead, #footer>div');
         let toHide = document.querySelectorAll('table > tbody > tr > td:not(td:nth-child(6))');
-        let iframe = document.querySelector('#reservation-iframe');
-        let cross = document.querySelector("#cross");
-        let editImg = document.querySelectorAll("table > tbody > tr > td > a");
-        let backGround = document.querySelectorAll("#admins > table > tbody > tr")
+        let backGround = document.querySelectorAll("#admins > table > tbody > tr");
 
+        const anchors = document.querySelectorAll("#toShowIframe > a");
+        anchors.forEach(function(anchor) {
+        anchor.addEventListener('click', function() {   
+            const iframe = this.nextElementSibling;
+            const cross = iframe.nextElementSibling;
+            iframe.style.display = 'block';
+            iframe.style.filter = 'none';
+            cross.style.display = "block";
+            cross.style.filter = "none";
+        });
+        });
 
-        function showIframe(reservationId) {
+        function showIframe(){
             toHide.forEach(function(hide){
                 hide.classList.toggle("unvisible");
             }); 
@@ -303,10 +324,20 @@ table > thead, table > tbody, #admins {
             editImg.forEach(function(edtImg){
                 edtImg.classList.toggle("unvisible");
             });
-            iframe.style.display= "block";
-            cross.style.display="block";
-            CLOSER.addEventListener("click", restoreTable);
-        }
+            toBlur.forEach(function(toBlr){
+                toBlr.style.filter = "blur(1rem)";
+            });
+        };
+
+
+        {# function showIframe() {
+            
+            let iframe = document.querySelector('#reservation-iframe');
+
+            iframe.style.display = "block";
+            iframe.style.filter = "none";
+            
+        } #}
         function restoreTable() {
             toHide.forEach(function(hide){
                 hide.classList.remove("unvisible");

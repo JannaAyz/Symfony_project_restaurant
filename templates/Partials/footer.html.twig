@@ -238,7 +238,7 @@ if (window.matchMedia("(max-width: 800px)").matches) {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollFromBottom = documentHeight - (windowHeight + scrollTop);
     /*const scrollFromBottom = (windowHeight + window.scrollY) - document.body.offsetHeight;*/
-    console.log(scrollFromBottom);
+    {# console.log(scrollFromBottom); #}
     /*if (scrollFromBottom <= 250 && scrollFromBottom >= 1150) {*/
     if (scrollFromBottom <= numberOfPixels) {
         FOOTER.forEach(function(elmnt) {

@@ -1,3 +1,25 @@
+<style>
+.supprBtn {
+    padding: 0.8rem 0.65rem;
+    position: absolute;
+    bottom: 2.03%;
+    right:0.7%;
+     margin: 20px 0 0px;
+    font-size: 1.2rem!important;
+    color: black;
+    border-radius: 0;
+    text-transform: uppercase;
+    border: 3px solid black!important;
+    font-weight: 500!important;
+    background: rgba(149, 198, 35, .8);
+    backdrop-filter: blur(10px);
+}
+.supprBtn:hover {
+    border: 3px solid var(--orange)!important;
+    text-shadow: 2px 3px 1px var(--orange);
+    background: rgba(232, 233, 243, .5);
+}
+</style>
 <form method="post" action="{{ path('app_admin_reservation_delete', {'id': reservation.id}) }}" onsubmit="return confirm('Voulez-vous supprimer cette réservation?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservation.id) }}">
     <button class="supprBtn">Supprimer</button>

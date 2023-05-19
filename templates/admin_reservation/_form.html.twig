@@ -2,7 +2,7 @@
 {% block stylesheets %}
 <style>
 body {
-    background: none;
+    overflow: hidden;
 }
 #bottom {
     display: none!important;
@@ -10,82 +10,74 @@ body {
 #reservation1{
     display: flex;
     flex-wrap: wrap;
+    height:390px;   
 }
 #form {
 	padding: 5rem 1rem;
+
 }
-#principal > div > div.form-title > h1 {
-font-size: 2.1rem;
-margin-top:-55px;
-margin-bottom: -20px;
-}
+
 {# .form-title {
 	font-weight: 600;
 } #}
 .form-wrapper {
 	padding: 0.6rem 0.1rem;
+    background: white;
 }
 .form-group {
     display: flex;
+    justify-content: center;
     margin-top: 5px;
+    width: 93vw;
 }
-.form-group .form__label {
-	{# font-weight: 500;
-    font-size: 12px; #}
-
+.form-group, .form-group-vip, .buttons {
+    transform: translateX(10px);
 }
 .form-group textarea {
 	resize: vertical;
 }
-.form-wrapper button[type='submit'] {
+.btn {
 	width: max-content;
 	border: none;
-	padding: 0.8rem 0.45rem;
+	padding: 0.8rem 0.75rem;
 	font-weight: 500;
 }
 .supprBtn {
 	padding: 0.8rem 0.45rem;
 }
-#reservation_vip:checked {
+.form-check-inpt:checked {
 	background-color: var(--yellowGreen);
     color: white;
 }
-{# #reservation_vip, .form-check-input {
-    width: 20px;
-	font-size: 20px;
-	font-weight: 600;
-	padding: 1.5rem;
-	border-radius: 2px;
-	margin-top: 0.5rem;
-	color: var(--raisinBlack);
-    border: 3px solid black;
-    background-color: rgba(240, 134, 50, .1);
-    backdrop-filter: blur(20px);
-} #}
-.form-check-input:focus {
+
+.form-check-inpt:focus {
     border: 3px solid var(--yellowGreen);
     background-color: rgba(232, 233, 243, .1); 
     box-shadow: 0px 0px 0px black;
-    
 }
-
+.form-check-inpt, #reservation1_vip{
+    width: 40px;
+    padding: 1.5rem;
+    border-radius: 0px;
+    margin-top: 0.5rem;
+    border: 3px solid black;
+    background-color: rgba(240, 134, 50, .1);
+    background: var(--yellowGreen);
+    backdrop-filter: blur(20px);
+}
 .form-group input,
 .form-group textarea,
 .form-group select {
-	{# width: 100%; #}
 	font-size: 14px;
 	padding: 5px;
 	border-radius: 0.5px;
 	margin-top: 0.5rem;
     border: 1px solid black;
-}
-.form-group input,
-.form-group textarea,
-.form-group select {
-    background: rgba(240, 134, 50, .1);
-    backdrop-filter: blur(20px);
+    {# background: rgba(240, 134, 50, .1); #}
+    {# backdrop-filter: blur(20px); #}
     cursor: pointer;
 }
+
 #reservation_vip {
     cursor: pointer;
 }
@@ -93,29 +85,28 @@ margin-bottom: -20px;
 .form-group > input:hover, select:hover, select:active, .form-group > option,
 .form-control > option {
     border: 0.5px solid #95C623;
-    background-color: rgba(232, 233, 243, .1); 
-    box-shadow: 0px 0px 0px black;ù
+    {# background-color: rgba(232, 233, 243, .1);  #}
+    box-shadow: 0px 0px 0px black;
     color: black;
 }
-.form-control > option, .form-select > option{
+{# .form-control > option, .form-select > option{
     font-size: 14px;
     background-color: #f7ecddcc;
     font-weight: 500;
-}
-
+} #}
 select {
     text-transform: none;
     word-wrap: normal;
 }
-select -internal-list-box {
+{# select -internal-list-box {
     overflow: visible !important;
     display:none;
-}
+} #}
 
 {# .form-group label, .form-group-vip > label {
 	font-size: 1.6rem;
 } #}
-.form-group-vip > label {
+.form-group > label {
     margin-right: 10px;
 }
 
@@ -143,37 +134,32 @@ select -internal-list-box {
 		margin-top: 1.5rem;#}
 	
     
-    .form-group label, .form-group-vip > label {
-        margin-top: 10px;
-        margin-right: 20px;
-    }
+.form-group label, .form-group-vip > label {
+    margin-top: 10px;
+}
 
-form button {
-    margin: 30px 0 50px;
+.buttons > * , #reservation1_submit{
+    margin: 20px 0 0px;
     font-size: 1.2rem!important;
     color: black;
+    border-radius: 0;
     text-transform: uppercase;
     border: 3px solid black!important;
     font-weight: 500!important;
     background: rgba(149, 198, 35, .8);
     backdrop-filter: blur(10px);
 }
-form button:hover {
+.buttons > *:hover , #reservation1_submit:hover{
     background: rgba(232, 233, 243, .5);
     border: 3px solid var(--yellowGreen)!important;
     text-shadow: 2px 3px 1px var(--yellowGreen);
 }
-.form-group {
-    display: flex;
-    width: 90vw;
-}
 form .supprBtn {
     background: var(--orange);
 }
-form .supprBtn:hover{
-    border: 3px solid var(--orange)!important;
-    text-shadow: 2px 3px 1px var(--orange);
-}
+{# form .supprBtn:hover{
+    
+} #}
 .form-group input {
     margin: 0;
 }
@@ -191,7 +177,17 @@ form .supprBtn:hover{
 .buttons {
     display:flex;
     width: 90vw;
-    margin-bottom: 70px;
+}
+#principal > div > form > div:nth-child(1) > ul > li {
+    font-size: 10px;
+    list-style-type: none;
+    position: absolute;
+    z-index: 20!important;
+    left: 0;
+    top:-23%;
+    color: #DD2D4A;
+    backdrop-filter: blur(10px);
+    padding: 70px auto;
 }
 {% include "partials/footer_version_classic.style.twig" %}
 </style>
@@ -202,7 +198,7 @@ form .supprBtn:hover{
     {{ form_start(form) }}
         <div class="form-group">
             {{ form_label(form.date, 'Date') }}
-            {{ form_widget(form.date, {'attr': {'class': 'form-control js-datepicker'}}) }}
+            {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.date) }}
         </div>
         <div class="form-group">
@@ -212,7 +208,7 @@ form .supprBtn:hover{
         </div>
         <div class="form-group">
             {{ form_label(form.reservation_name, 'Nom') }}
-            {{ form_widget(form.reservation_name, {'attr': {'placeholder': 'Nom de la réservation', 'class': 'form-control'}}) }}
+            {{ form_widget(form.reservation_name, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.reservation_name) }}
         </div>
         <div class="form-group">
@@ -222,7 +218,7 @@ form .supprBtn:hover{
         </div>
         <div class="form-group">
             {{ form_label(form.number, 'Couverts') }}
-            {{ form_widget(form.number, {'attr': {'placeholder': 'Nombre de personnes', 'class': 'form-control'}}) }}
+            {{ form_widget(form.number, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.number) }}
         </div>
         <div class="form-group">
@@ -233,17 +229,17 @@ form .supprBtn:hover{
         {% if is_granted('ROLE_ADMIN') %}
         <div class="form-group-vip">
             {{ form_label(form.vip) }}
-            {{ form_widget(form.vip, { 'attr': {'class': 'form-check-input'} }) }}
+            {{ form_widget(form.vip, { 'attr': {'class': 'form-check-inpt'} }) }}
             {{ form_errors(form.vip) }}
         </div>
         {% endif %} 
         
-    {# <button class="btn">{{ button_label|default('Save') }}</button> #}
-        <div class="buttons">
-            {{ form_widget(form.submit, {'attr': {'class': 'sbmit-btn'}}) }}   
-            {{ include('admin_reservation/_delete_form.html.twig') }}
-        </div>
     {{ form_end(form) }}
+    {# <div class="buttons">
+        <button class="btn">Confirmer</button>
+
+    </div> #}
+    
 
 </div>
 {% endblock %}

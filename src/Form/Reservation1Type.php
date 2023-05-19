@@ -129,14 +129,15 @@ class Reservation1Type extends AbstractType
                 'widget' => 'choice',
                 'html5' => false,
                 'format' => 'dd MM yyyy',
-                'data'=> new DateTime('now'),
+                // 'data'=> new DateTime('now'),
            ])
-           ->add('reservation_name',TextType::class,[         
-                    'attr' => [
-                        'placeholder' => 'Nom de la réservation ',
-                        'class' => 'form-control'
-                    ]
-                ])
+           ->add('reservation_name')
+        //    ->add('reservation_name',TextType::class,[         
+        //             'attr' => [
+        //                 'class' => 'form-control'
+        //                 'value' =>
+        //             ]
+        //         ])
             ->add('restaurant_name',ChoiceType::class,[
                     'choices'  => [
                         'Paris 17 - Emile Level' => 'Paris 17 - Emile Level',
@@ -144,7 +145,7 @@ class Reservation1Type extends AbstractType
                         'Paris 5 - Monge' => 'Paris 5 - Monge',
                     ],
                     'attr' => [
-                        'placeholder' => 'Restaurant à choisir',
+                        // 'placeholder' => 'Restaurant à choisir',
                         'class' => 'form-select'
                     ]
                 ])
@@ -167,14 +168,13 @@ class Reservation1Type extends AbstractType
                     '15' => 15,
                 ],
                 'attr' => [
-                    'label' => 'Nombre de personnes',
-                    'placeholder' => 'Nombre de personnes',
+                    'label' => 'Couverts',
                     'class' => 'form-control'
                 ]
             ])
             ->add('email', EmailType::class,[
                     'attr' => [
-                        // 'value' => user.email
+                        // 'value' => user.email,
                         'placeholder' => 'Email',
                         'class' => 'form-control'
                     ]
