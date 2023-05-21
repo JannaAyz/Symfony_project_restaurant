@@ -1,80 +1,113 @@
-{% block stylesheets %}
-  <style>
-    .outline ul li{
-      color:red;
-      list-style:none;
-      margin-left:-30px;
-      margin-top:10px;
-    }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>confirmation de suppression</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,500&display=swap" rel="stylesheet">
+    <style>
+      body{
+        font-family: 'Montserrat', sans-serif;
+        margin-top: 10%;
+        overflow: hidden;
+      }
+      .outline ul li{
+        color:red;
+        list-style:none;
+        margin-left:-30px;
+        margin-top:10px;
+      }
+      h3{
+        margin-top: 10%;
+      }
+      h5 {
+        font-weight: 400;
+        transform: translateY(-80%);
+        color: #95C623;
+        animation: visible 200ms ease-out forwards;
+      }
+      #note {
+        font-size: 10px;
+        width: 80%;
+        margin-bottom: 15px;
+      }
+      .form-group{
+        font-size:12px; 
+        margin-top: 10px;
+      }
+      label {
+        transform: translateY(-50px);
+      }
+      .input{
+        font-size: 10px;
+        padding: 5px;
+        border-radius: 0;
+        border: 2px solid #95C623;
+      }
+      #edit_registration_form_password_second {
+        transform:translateX(19px);
+      }
+      button{
+        margin: 30px 0 0;
+        color: black;
+        text-transform: uppercase;
+        border: 2px solid black;
+        background: rgba(149, 198, 35, .8);
+        backdrop-filter: blur(10px);
+        padding: .5rem 4rem;
+        font-size: 14px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 0%;
+        left:18%;
+      }
+      button:hover {
+        background: rgba(232, 233, 243, .5);
+        border: 2px solid #95C623;
+        text-shadow: 2px 1px 1px #95C623;
+      }
+      input[type="file" i], input[type="file" i] button {
+        color: grey;
+        font-size: 10px;
+        cursor: pointer;
+      }
+
+      .form-group, h3, #note {
+        
+      }
+      @keyframes visible {
+        from {
+            opacity:0;
+        } 
+        to {
+            opacity:1;
+        }
+      }
   </style>
-{% endblock %}
-{% block body %}
+</head>
 <body>
-        <h1>Formulaire d'inscription</h1>
+    <h3>Modifier les informations</h3>
+    <p id="note">Pour des raisons de sécurité, seule la photo de profil est modifiable.</p>
       {{form_start(registrationForm)}}
-        {# <div class="outline mb-4">
-          {{ form_label(registrationForm.firstname, null) }}
-          {{ form_widget(registrationForm.firstname) }}
-          {{ form_errors(registrationForm.firstname, {'attr': {'class' : 'text-danger'}}) }}
-        </div>
-        <div class="outline mb-4">
-          {{ form_label(registrationForm.lastname, null) }}
-          {{ form_widget(registrationForm.lastname) }}
-          {{ form_errors(registrationForm.lastname, {'attr': {'class' : 'text-danger'}}) }}
-        </div>
-        <div class="outline mb-4">
-          {{ form_label(registrationForm.gender, null) }}
-          {{ form_widget(registrationForm.gender) }}
-          {{ form_errors(registrationForm.gender, {'attr': {'class' : 'text-danger'}}) }}
-        </div>
-        <div class="outline mb-4">
-          {{ form_label(registrationForm.email, null) }}
-          {{ form_widget(registrationForm.email) }}
-          {{ form_errors(registrationForm.email, {'attr': {'class' : 'text-danger'}}) }}
-        </div> 
-        <div class="outline mb-4">
-          {{ form_label(registrationForm.phone, null) }}
-          {{ form_widget(registrationForm.phone) }}
-          {{ form_errors(registrationForm.phone, {'attr': {'class' : 'text-danger'}}) }}
-        </div>#}
-        <div class="outline mb-4">
+        <div class="form-group">
           {{ form_label(registrationForm.password.first, null) }}
-          {{ form_widget(registrationForm.password.first) }}
+          {{ form_widget(registrationForm.password.first, {'attr': {'class' : 'input'}}) }}
           {{ form_errors(registrationForm.password.first, {'attr': {'class' : 'text-danger'}}) }}
         </div>
-        <div class="outline mb-4">
+        <div class="form-group">
           {{ form_label(registrationForm.password.second, null) }}
-          {{ form_widget(registrationForm.password.second) }}
+          {{ form_widget(registrationForm.password.second, {'attr': {'class' : 'input'}}) }}
           {{ form_errors(registrationForm.password.second, {'attr': {'class' : 'text-danger'}}) }}
         </div>
-        {# <div class="outline mb-4">
-          {{ form_label(registrationForm.address, null) }}
-          {{ form_widget(registrationForm.address) }}
-          {{ form_errors(registrationForm.address, {'attr': {'class' : 'text-danger'}}) }}
+        <div class="form-group">
+          {{ form_label(registrationForm.imageUrl, null) }}
+          {{ form_widget(registrationForm.imageUrl) }}
+          {{ form_errors(registrationForm.imageUrl, {'attr': {'class' : 'text-danger'}}) }}
         </div>
-        <div class="outline mb-4">
-          {{ form_label(registrationForm.city, null) }}
-          {{ form_widget(registrationForm.city) }}
-          {{ form_errors(registrationForm.city, {'attr': {'class' : 'text-danger'}}) }}
-        </div>
-        <div class="outline mb-4">
-            {{ form_label(registrationForm.zipcode, null) }}
-            {{ form_widget(registrationForm.zipcode) }}
-            {{ form_errors(registrationForm.zipcode, {'attr': {'class' : 'text-danger'}}) }}
-         </div>
-        <div class="outline mb-4">
-            {{ form_label(registrationForm.country, null) }}
-            {{ form_widget(registrationForm.country) }}
-            {{ form_errors(registrationForm.country, {'attr': {'class' : 'text-danger'}}) }}
-         </div> #}
-         <div class="outline mb-4">
-            {{ form_label(registrationForm.imageUrl, null) }}
-            {{ form_widget(registrationForm.imageUrl) }}
-            {{ form_errors(registrationForm.imageUrl, {'attr': {'class' : 'text-danger'}}) }}
-         </div>
 
-            <div class="outline mb-4">
-            {{ form_end(registrationForm, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}
-            </div>
+      {{ form_end(registrationForm, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}
+      {% if formSubmittedAndValid %}
+          <h5>La photo de profil a été modifiée</h5>
+      {% endif %}
 </body>
-{% endblock %}
+</html>
+

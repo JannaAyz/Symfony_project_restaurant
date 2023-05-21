@@ -63,10 +63,13 @@ class RegistrationController extends AbstractController
             throw $this->createNotFoundException('Cet utilisateur n\'existe pas.');
         }
 
+        $formSubmittedAndValid = false;
+
         $form = $this->createForm(EditRegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $formSubmittedAndValid = true;
             $file = $form->get('imageUrl')->getData();
             if ($file) {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -96,11 +99,12 @@ class RegistrationController extends AbstractController
             // do anything else you need here, like send an email
             // reset profile picture if needed
 
-            return $this->redirectToRoute('app_account');
+            // return $this->redirectToRoute('app_account');
         }
 
         return $this->render('registration/edit.html.twig', [
             'registrationForm' => $form->createView(),
+            'formSubmittedAndValid' => $formSubmittedAndValid,
         ]);
     }
 

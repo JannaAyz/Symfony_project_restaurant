@@ -60,12 +60,12 @@ class EditRegistrationFormType extends AbstractType
             // 'mapped' => false,
             'attr' => ['autocomplete' => 'new-password',],
             'required' => true,
-            'first_options'  => ['label' => 'Password',
+            'first_options'  => ['label' => 'Mot de passe',
                                  'attr'=> [
                                     'class' => 'form-control'
                                  ]
                                  ],
-            'second_options' => ['label' => 'Repeat Password',
+            'second_options' => ['label' => 'Confirmer',
             'attr'=> [
                'class' => 'form-control'
             ]],

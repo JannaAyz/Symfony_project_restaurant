@@ -19,39 +19,45 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
 .container {
   transform: translateY(-10%);
   margin-bottom: 100px;
+  position: relative;
+  z-index: 1;
+}
+.card-body >* {
+  position: relative;
+  z-index: 1;
 }
 .col-md-4 {
-    transform: translateX(12px);
+  transform: translateX(12px);
 }
 .card {
   --bs-card-border-radius: border-radius: 0px;
   border: 3px solid black;
 }
 #modification-iframe{ 
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    display: none;
-    scale: 1.5;
-    z-index: 10!important;
-    background-color: white;
-    height:390px;
-    transform: translateY(20%);
-    overflow: hidden;
-    box-shadow: 2px 2px 10px rgba(221, 45, 74, .5);
-    animation: visible 200ms ease-out;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: none;
+  scale: 1.4;
+  z-index: 10!important;
+  background-color: white;
+  height:300px;
+  overflow: hidden;
+  box-shadow: 2px 2px 10px rgba(221, 45, 74, .5);
+  animation: visible 200ms ease-out;
+  padding: 15px;
 }
 #cross {
-    cursor: pointer;
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    display: none;
-    z-index: 11!important;
-    transform: translate(380%, -280%);
+  cursor: pointer;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: none;
+  z-index: 11!important;
+  transform: translate(480%, -440%);
 }
 .unvisible {
-    display:none;
+  display:none;
 }
 @media (min-width: 769px){
   .col-md-4 .buttons{
@@ -95,9 +101,7 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
             {% endif %}
             <h5> {{ user.firstname }} {{ user.lastname }}</h5>
             <div class="buttons">
-              <a href="{{ path('app_register_edit', {'id': user.id}) }}" id="mdfBtn">Modifier</a>
-              <iframe id="modification-iframe" src="{{ path('app_register_edit', {'id': user.id}) }}"></iframe>
-              <img  style ="width:50px;" onclick="closeIframe()" id="cross" src="{{ asset('IMG/close.svg')}}" alt="cross logo"/>
+              <a href="#" id="mdfBtn" onclick="showIframe()">Modifier</a>
               <a class="btn btn-outline-success button" href= "{{ path('app_logout') }}">Déconnexion</a>
             </div>
           </div>
@@ -142,4 +146,25 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
     </div>
   </div>
 </div>
+<iframe id="modification-iframe" src="{{ path('app_register_edit', {'id': user.id}) }}"></iframe>
+<img  style ="width:40px;" onclick="closeIframe()" id="cross" src="{{ asset('IMG/close.svg')}}" alt="cross logo"/>
+{% endblock %}
+{% block javascripts %}
+    <script>
+      let toDisappear = document.querySelector('.buttons');
+      let toBlur = document.querySelector('.card, #footer>div');
+      const IFRAME = document.querySelector("#modification-iframe");
+      const CROSS = document.querySelector("#cross");
+
+
+      function showIframe(){
+        IFRAME.style.display = "block";
+        CROSS.style.display = "block";
+        toBlur.style.filter = "blur(1rem)";
+        toDisappear.style.display = "none";  
+      };
+      function closeIframe() {
+          location.reload(true);
+      };
+    </script>
 {% endblock %}

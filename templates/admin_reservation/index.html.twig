@@ -97,13 +97,6 @@ table > thead, table > tbody, #admins {
 #star {
     margin-right: -35px;
 }
-{# .reservation-iframe {
-    display:none;
-}
-.visible {
-    display:block;
-} #}
-
 @media screen and (max-width: 750px){
     .container {
         display:block;
@@ -311,16 +304,6 @@ table > thead, table > tbody, #admins {
                 toBlr.style.filter = "blur(1rem)";
             });
         };
-
-
-        {# function showIframe() {
-            
-            let iframe = document.querySelector('#reservation-iframe');
-
-            iframe.style.display = "block";
-            iframe.style.filter = "none";
-            
-        } #}
         function restoreTable() {
             toHide.forEach(function(hide){
                 hide.classList.remove("unvisible");
@@ -328,16 +311,8 @@ table > thead, table > tbody, #admins {
         }
         function closeIframe() {
             location.reload(true);
-            {# iframe.style.display="none";
-            toHide.forEach(function(hide){
-                hide.classList.toggle("unvisible");
-            });  #}
-        }
-
-        
+        };     
     </script>
-
-
 {% endblock %}
 
 
