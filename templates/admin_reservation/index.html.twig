@@ -170,6 +170,7 @@ table > thead, table > tbody, #admins {
     transform: translateY(20%);
     overflow: hidden;
     box-shadow: 2px 2px 10px rgba(221, 45, 74, .5);
+    animation: visible 200ms ease-out;
 }
 #cross {
     cursor: pointer;
@@ -192,24 +193,6 @@ table > thead, table > tbody, #admins {
 
 {% block body %}
 {% include "partials/_nav.html.twig"%}
-
-    <div class="modal fade"  tabindex="-1" aria-labelledby="editModal Label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                {# <h1>Edit Reservation</h1> #}
-
-    {# {% include "reservation/edit.html.twig" %} #}
-    {# {{ include('reservation/edit.html.twig') }} #}
-
-    <a href="{{ path('app_admin_reservation_index') }}">back to list</a>
-
-            </div>
-        </div>
-    </div>
-
-
-
-
 <div class="container" id="admins">
     <h1>Réservations</h1>
     <div class="buttons">

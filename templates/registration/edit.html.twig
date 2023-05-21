@@ -1,6 +1,3 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Register{% endblock %}
 {% block stylesheets %}
   <style>
     .outline ul li{
@@ -12,15 +9,10 @@
   </style>
 {% endblock %}
 {% block body %}
-
-   {% include "partials/_nav.html.twig" %}
-
-    <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-        <h1 style="text-align:center;">Formulaire d'inscription</h1>
+<body>
+        <h1>Formulaire d'inscription</h1>
       {{form_start(registrationForm)}}
-        <div class="outline mb-4">
+        {# <div class="outline mb-4">
           {{ form_label(registrationForm.firstname, null) }}
           {{ form_widget(registrationForm.firstname) }}
           {{ form_errors(registrationForm.firstname, {'attr': {'class' : 'text-danger'}}) }}
@@ -39,12 +31,12 @@
           {{ form_label(registrationForm.email, null) }}
           {{ form_widget(registrationForm.email) }}
           {{ form_errors(registrationForm.email, {'attr': {'class' : 'text-danger'}}) }}
-        </div>
+        </div> 
         <div class="outline mb-4">
           {{ form_label(registrationForm.phone, null) }}
           {{ form_widget(registrationForm.phone) }}
           {{ form_errors(registrationForm.phone, {'attr': {'class' : 'text-danger'}}) }}
-        </div>
+        </div>#}
         <div class="outline mb-4">
           {{ form_label(registrationForm.password.first, null) }}
           {{ form_widget(registrationForm.password.first) }}
@@ -55,11 +47,11 @@
           {{ form_widget(registrationForm.password.second) }}
           {{ form_errors(registrationForm.password.second, {'attr': {'class' : 'text-danger'}}) }}
         </div>
-        <div class="outline mb-4">
+        {# <div class="outline mb-4">
           {{ form_label(registrationForm.address, null) }}
           {{ form_widget(registrationForm.address) }}
           {{ form_errors(registrationForm.address, {'attr': {'class' : 'text-danger'}}) }}
-      </div>
+        </div>
         <div class="outline mb-4">
           {{ form_label(registrationForm.city, null) }}
           {{ form_widget(registrationForm.city) }}
@@ -74,7 +66,7 @@
             {{ form_label(registrationForm.country, null) }}
             {{ form_widget(registrationForm.country) }}
             {{ form_errors(registrationForm.country, {'attr': {'class' : 'text-danger'}}) }}
-         </div>
+         </div> #}
          <div class="outline mb-4">
             {{ form_label(registrationForm.imageUrl, null) }}
             {{ form_widget(registrationForm.imageUrl) }}
@@ -84,8 +76,5 @@
             <div class="outline mb-4">
             {{ form_end(registrationForm, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}
             </div>
-            </div>
-            </div>
-            </div>
-    
+</body>
 {% endblock %}
