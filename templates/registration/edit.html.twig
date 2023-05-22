@@ -79,9 +79,13 @@
         font-size: 10px;
         cursor: pointer;
       }
-
-      .form-group, h3, #note {
-        
+      #notePswrd {
+        text-align: right;
+        font-size: 10px;
+        color: #DD2D4A;
+        margin-top: -15px;
+        margin-bottom: -5px;
+        margin-right: 67px;
       }
       @keyframes visible {
         from {
@@ -97,11 +101,12 @@
     <h3>Modifier les informations</h3>
     <p id="note">Pour des raisons de sécurité, seule la photo de profil est modifiable.</p>
       {{form_start(registrationForm)}}
+        <p id="notePswrd">jesuisadmin</p>
         <div class="form-group">
           {{ form_label(registrationForm.password, null) }}
-          {{ form_widget(registrationForm.password, {'attr': {'class' : 'input', 'autocomplete' :"jesuisadmin"}}) }}
-          {{ form_errors(registrationForm.password, {'attr': {'class' : 'text-danger'}}) }}
-        </div>
+          {{ form_widget(registrationForm.password, {'attr': {'class': 'input', 'autocomplete': 'jesuisadmin'}}) }}
+          {{ form_errors(registrationForm.password, {'attr': {'class': 'text-danger'}}) }}
+      </div>
         {# <div class="form-group">
           {{ form_label(registrationForm.password.second, null) }}
           {{ form_widget(registrationForm.password.second, {'attr': {'class' : 'input'}}) }}

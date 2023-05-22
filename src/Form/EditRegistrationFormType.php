@@ -41,11 +41,12 @@ class EditRegistrationFormType extends AbstractType
         //     ]],
             
         // ])
+        
         ->add('password', PasswordType::class, [
             'label' => 'Mot de passe',
             'attr' => [
                 'class' => 'form-control',
-                'autocomplete' => 'new-password',
+                'autocomplete' => 'jesuisadmin',
             ],
             'required' => true, // ou 'required' => false
             'data' => 'jesuisadmin', // pour que le champ soit vide lors de l'affichage
@@ -76,6 +77,7 @@ class EditRegistrationFormType extends AbstractType
                 'class' => 'btn btn-primary'
             ]
         ]);
+
 }
 
     public function configureOptions(OptionsResolver $resolver): void

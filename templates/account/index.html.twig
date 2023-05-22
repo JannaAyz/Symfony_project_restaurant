@@ -16,8 +16,7 @@ background: #f6d365;
 background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
 background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
 }
-.container {
-  transform: translateY(-10%);
+.cntnr {
   margin-bottom: 100px;
   position: relative;
   z-index: 1;
@@ -26,12 +25,26 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
   position: relative;
   z-index: 1;
 }
+.buttons a{
+  color: black;
+  font-size: 20px;   
+  border: 3px solid white;
+  padding: 10px;
+  width: 200px; 
+  font-weight: 600;
+}
+#lgoutBtn{
+  border: 3px solid var(--orange);
+}
 .col-md-4 {
   transform: translateX(12px);
 }
 .card {
   --bs-card-border-radius: border-radius: 0px;
   border: 3px solid black;
+}
+.p-4 h6:nth-child(4), div.col-md-8 > div > h6:nth-child(1){
+  font-size: 1.3rem;
 }
 #modification-iframe{ 
   position: absolute;
@@ -60,24 +73,63 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
   display:none;
 }
 @media (min-width: 769px){
-  .col-md-4 .buttons{
-    transform: translateY(70%);
+  .cntnr {
+    margin-top: 130px;
+    animation: popUp 550ms ;
+    transform-origin: top;
   }
+  .card {
+    width: 800px;
+  }
+  .buttons {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateY(30%);
+    padding: 20px;
+    gap: 13px;
+  }
+  @keyframes popUp {
+    from {
+      transform: translateY(20%);
+      opacity: 0;
+    }
+    to {
+      opacity: .5 ;
+      transform: translateY(0);
+    }
+}
 
 }
 @media (max-width: 768px){
+  .buttons a:nth-child(1){
+    padding: 10px 2rem;
+  }
   .col-md-4 {
-    width: 95.3%;
-    transform: translateX(12px);
+    transform: translateX(-12px);
+    height: 260px;
   }
   .col-md-4 h5{
     transform: translateY(-70%);
   }
-  .col-md-4 .buttons {
+  {# .col-md-4{
     transform: translateY(-40%);
+  } #}
+  .cntnr{
+    margin-top:74px;
+  }
+  .p-4 {
+    padding: 2.5rem!important;
+    width: 90vw;
   }
   .card {
-    transform: translateX(-5px);
+    border: 0px solid black;
+    width: 104vw;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .buttons {
+    transform: translateY(60%);
   }
 }
 
@@ -86,7 +138,7 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
 {% block body %}
 {% include "partials/_nav.html.twig" %}
 {% set currentDate = date("now") %}
-<div class="container">
+<div class="cntnr">
   <div class="row d-flex justify-content-center h-100">
     <div class="col col-lg-6 mb-lg-6">
       <div class="card mb-3">
@@ -102,7 +154,7 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
             <h5> {{ user.firstname }} {{ user.lastname }}</h5>
             <div class="buttons">
               <a href="#" id="mdfBtn" onclick="showIframe()">Modifier</a>
-              <a class="btn btn-outline-success button" href= "{{ path('app_logout') }}">Déconnexion</a>
+              <a id="lgoutBtn" href="{{ path('app_logout') }}">Déconnexion</a>
             </div>
           </div>
           <div class="col-md-8">
