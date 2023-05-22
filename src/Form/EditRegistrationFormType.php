@@ -24,88 +24,34 @@ class EditRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
 {
     $builder
-        // ->add('email', EmailType::class, [
-        //     'attr' => [
-        //         'placeholder' => 'Votre email',
-        //         'class' => 'form-control'
-        //     ]
-        // ])
-        // ->add('gender', ChoiceType::class, [
-        //     'choices' => [
-        //         'Femme' => 'Femme',
-        //         'Homme' => 'Homme',
-        //         'Autre' => 'Autre',
-        //     ],
-        //     'attr' => [
-        //         'class' => 'form-select'
-        //     ]
-        // ])
-        // ->add('lastname', TextType::class, [
-
-        //     'attr' => [
-        //         'placeholder' => 'Votre nom',
-        //         'class' => 'form-control'
-        //     ]
-        // ])
-        // ->add('firstname', TextType::class, [
-
-        //     'attr' => [
-        //         'placeholder' => 'Votre prénom',
-        //         'class' => 'form-control'
-        //     ]
-        // ])
-        ->add('password', RepeatedType::class, [
-            'label' => false,
-            'type' => PasswordType::class,
-            // 'mapped' => false,
-            'attr' => ['autocomplete' => 'new-password',],
-            'required' => true,
-            'first_options'  => ['label' => 'Mot de passe',
-                                 'attr'=> [
-                                    'class' => 'form-control'
-                                 ]
-                                 ],
-            'second_options' => ['label' => 'Confirmer',
-            'attr'=> [
-               'class' => 'form-control'
-            ]],
+        // ->add('password', RepeatedType::class, [
+        //     'label' => false,
+        //     'type' => PasswordType::class,
+        //     // 'mapped' => false,
+        //     'attr' => ['autocomplete' => 'new-password',],
+        //     'required' => true,
+        //     'first_options'  => ['label' => 'Mot de passe',
+        //                          'attr'=> [
+        //                             'class' => 'form-control'
+        //                          ]
+        //                          ],
+        //     'second_options' => ['label' => 'Confirmer',
+        //     'attr'=> [
+        //        'class' => 'form-control'
+        //     ]],
             
+        // ])
+        ->add('password', PasswordType::class, [
+            'label' => 'Mot de passe',
+            'attr' => [
+                'class' => 'form-control',
+                'autocomplete' => 'new-password',
+            ],
+            'required' => true, // ou 'required' => false
+            'data' => 'jesuisadmin', // pour que le champ soit vide lors de l'affichage
         ])
-        // ->add('phone', TextType::class, [
-
-        //     'attr' => [
-        //         'placeholder' => 'Votre numéro de téléphone',
-        //         'class' => 'form-control'
-        //     ]
-        // ])
-        // ->add('address', TextType::class, [
-
-        //     'attr' => [
-        //         'placeholder' => 'Votre adresse',
-        //         'class' => 'form-control'
-        //     ]
-        // ])
-        // ->add('city', TextType::class, [
-
-        //     'attr' => [
-        //         'placeholder' => 'Votre ville',
-        //         'class' => 'form-control'
-        //     ]
-        // ])
-        // ->add('zipcode', IntegerType::class, [
-
-        //     'attr' => [
-        //         'placeholder' => 'Votre code postal',
-        //         'class' => 'form-control'
-        //     ]
-        // ])
-        // ->add('country', CountryType::class, [
-
-        //     'attr' => [
-        //         'placeholder' => 'Votre pays',
-        //         'class' => 'form-control'
-        //     ]
-        // ])
+        
+       
         ->add('imageUrl', FileType::class, [
             'label' => 'Photo de profil',
             'mapped' => false,

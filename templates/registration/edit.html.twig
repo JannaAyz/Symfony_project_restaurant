@@ -30,6 +30,15 @@
         width: 80%;
         margin-bottom: 15px;
       }
+      body form div ul  li{
+        list-style-type: none;
+        margin-left: -40px;
+        color: #DD2D4A;
+        font-weight: 10px;
+      }
+      {# .text-danger{
+        list-decoration: none;
+      } #}
       .form-group{
         font-size:12px; 
         margin-top: 10px;
@@ -89,15 +98,15 @@
     <p id="note">Pour des raisons de sécurité, seule la photo de profil est modifiable.</p>
       {{form_start(registrationForm)}}
         <div class="form-group">
-          {{ form_label(registrationForm.password.first, null) }}
-          {{ form_widget(registrationForm.password.first, {'attr': {'class' : 'input'}}) }}
-          {{ form_errors(registrationForm.password.first, {'attr': {'class' : 'text-danger'}}) }}
+          {{ form_label(registrationForm.password, null) }}
+          {{ form_widget(registrationForm.password, {'attr': {'class' : 'input', 'autocomplete' :"jesuisadmin"}}) }}
+          {{ form_errors(registrationForm.password, {'attr': {'class' : 'text-danger'}}) }}
         </div>
-        <div class="form-group">
+        {# <div class="form-group">
           {{ form_label(registrationForm.password.second, null) }}
           {{ form_widget(registrationForm.password.second, {'attr': {'class' : 'input'}}) }}
           {{ form_errors(registrationForm.password.second, {'attr': {'class' : 'text-danger'}}) }}
-        </div>
+        </div> #}
         <div class="form-group">
           {{ form_label(registrationForm.imageUrl, null) }}
           {{ form_widget(registrationForm.imageUrl) }}

@@ -70,6 +70,15 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formSubmittedAndValid = true;
+
+            if ($form->get('password')->getData()) {
+          
+                    $password = $userPasswordHasher->hashPassword($user, 'jesuisadmin');
+                    $user->setPassword($password);
+                
+            }
+
+
             $file = $form->get('imageUrl')->getData();
             if ($file) {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -90,8 +99,8 @@ class RegistrationController extends AbstractController
             // remove plain password and createdAt from form data
 
             // encode the plain password
-            $password = $userPasswordHasher->hashPassword($user, $form->get('password')->getData());
-            $user->setPassword($password);
+            // $password = $userPasswordHasher->hashPassword($user, $form->get('password')->getData());
+            // $user->setPassword($password);
 
             $entityManager->persist($user);
             $entityManager->flush();
