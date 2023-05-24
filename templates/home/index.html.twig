@@ -3,44 +3,6 @@
 {% block title %}Hello HomeController!{% endblock %}
 {% block stylesheets %}
 <style>
-/*to modify depending on each page'a wanted percentage of zig-zags*/
-    {# #zig-zags {
-        display:none;
-    }
-    #footer::before {
-    content: '';
-    position: absolute!important;
-    z-index: -10!important;
-    overflow-x: hidden;
-    background: linear-gradient( #F08632 10%, #DD2D4A 90%);
-    -webkit-mask-image: url('{{ asset('IMG/zig-zags.png') }}');
-    mask-image: url('{{ asset('IMG/zig-zags.png') }}');
-    -webkit-mask-size: 100%;
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    height: 200%!important;
-    top: -98%!important;
-    /*top: -98%!important; SMALL*/
-    opacity: 1!important;
-    width: 1600px!important;
-    /*width: 1300px!important; SMALL*/
-    }
-    #footer {
-        position: relative;
-        height: 630px;
-        align-items: flex-end;
-    }
-
-    #footer > div {
-        width: 100vw;
-        left:0;
-    }
-    #footer::after {
-        bottom: -12%!important;
-    } #}
-/* zig-zags' modification ends here*/
-
 #background {
     height: 90vh;
     transform: translateY(75px);
@@ -129,15 +91,6 @@
     right: -13%;
     bottom:35%;
     animation: float 23s ease-in-out 1s infinite alternate;
-}
-
-@keyframes float {
-    from {
-        transform: translate(6%, 0%) rotate(-6deg);
-    } 
-    to {
-        transform: translate(-6%, 10%);
-    }
 }
 
 .presentation {
@@ -354,12 +307,13 @@ height: 100%;
     margin: 0;
     margin-bottom: -70px;
 }
-.button a {
+.button p{
     color: white;
     font-weight: 600;
     letter-spacing:6px; 
+    margin-bottom:0;
 }
-.button:hover a {
+.button:hover p{
     color:rgba(0, 0, 0, .7);
 }
 .button {
@@ -548,12 +502,6 @@ height: 100%;
     #background h1 {
         transform: translateY(50px);
     }
-    /*footer {
-        transform: translateY(35%);
-    }
-    #footer > div:nth-child(3) * , #footer > div:nth-child(2){
-        transform: translateY(-45%);
-    }*/
 }
 @media screen and (max-width: 768px) {
     .button-wrapper {
@@ -576,7 +524,6 @@ height: 100%;
         width: 95vw;
         left:0;
         top:-38%;
-        {# margin:20px; #}
     }
     #text1, #text2 {
         font-size:20px;
@@ -609,13 +556,6 @@ height: 100%;
         height: 0px;
         display: none;
     }
-    /*#footer > * {
-        transform: translateX(3%)!important;   
-    }
-    #footer::before {
-        width: 1300px!important; 
-        transform: translateX(-70px);
-    }*/
     .gallery > figure:nth-child(7) img, .gallery > figure:nth-child(7) > p,
     .gallery > figure:nth-child(8) img, .gallery > figure:nth-child(8) > p {
         height: 0%;
@@ -637,6 +577,14 @@ height: 100%;
     .gallery > figure:nth-child(8) img, .gallery > figure:nth-child(8) > p  {
         height: 0px;
         display: none;
+    }
+}
+@keyframes float {
+    from {
+        transform: translate(6%, 0%) rotate(-6deg);
+    } 
+    to {
+        transform: translate(-6%, 10%);
     }
 }
 </style>
@@ -676,7 +624,10 @@ height: 100%;
         </div>
     </section>
         <div class="button-wrapper">
-            <button class="button" role="button"><a href="{{ path('app_reservation') }}">Reserver</a></button>
+            <a href="{{ path('app_reservation') }}" class="button" role="button">
+                <p>Réserver</p>
+            </a>
+            {# <button class="button" role="button"><a href="{{ path('app_reservation') }}">Reserver</a></button> #}
         </div>
     <section class="gallery">
         <figure>

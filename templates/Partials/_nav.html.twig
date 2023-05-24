@@ -1,185 +1,179 @@
 {% block stylesheets %}
 <style>
-
-
-header {
-  background: var(--orange);
-  text-align: center;
-  position: fixed;
-  z-index: 30;
-  width: 100%;
-  /*margin-top: -90px;*/
-  box-shadow: 3px 0px 17px rgba(0, 0, 0, 0.1);
-}
-
-#logo {
-  width: 90px;
-  padding: 8px;
-}
-
-.nav-toggle {
-  position: absolute !important;
-  top: -9999px !important;
-  left: -9999px !important;
-}
-
-.nav-toggle:focus ~ .nav-toggle-label {
-  outline: 3px solid rgba(lightblue, .75);
-}
-
-.nav-toggle-label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 1em;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.nav-toggle-label span,
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-  display: block;
-  background: white;
-  height: 2px;
-  width: 2em;
-  border-radius: 2px;
-  position: relative;
-}
-
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-  content: '';
-  position: absolute;
-}
-
-.nav-toggle-label span::before {
-  bottom: 7px;
-}
-
-.nav-toggle-label span::after {
-  top: 7px;
-}
-
-nav {
-  position: absolute;
-  text-align: left;
-  top: 100%;
-  left: 0;
-  background: var(--orange);
-  width: 100%;
-  transform: scale(1, 0);
-  transform-origin: top;
-  transition: transform 400ms ease-in-out;
-  font-family: 'Montserrat', sans-serif;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-nav li {
-  margin-bottom: 1em;
-  margin-left: 1em;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 150ms ease-in-out;
-}
-
-nav a:hover {
-  color: var(--raisinBlack);
-}
-
-.nav-toggle-label {
-  cursor :pointer;
-}
-
-.nav-toggle:checked ~ nav {
-  transform: scale(1,1);
-}
-
-.nav-toggle:checked ~ nav a {
-  opacity: 1;
-  transition: opacity 250ms ease-in-out 250ms;
-}
-
-@media screen and (min-width: 800px) {
-  .nav-toggle-label {
-    display: none;
-  }
-
   header {
-    display: grid;
-    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+      background: var(--orange);
+      text-align: center;
+      position: fixed;
+      z-index: 30;
+      width: 100%;
+      box-shadow: 3px 0px 17px rgba(0, 0, 0, 0.1);
   }
 
   #logo {
-  display:none;
+      width: 90px;
+      padding: 8px;
   }
-  
+
+  .nav-toggle {
+      position: absolute !important;
+      top: -9999px !important;
+      left: -9999px !important;
+  }
+
+  .nav-toggle:focus~.nav-toggle-label {
+      outline: 3px solid rgba(lightblue, .75);
+  }
+
+  .nav-toggle-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: 1em;
+      height: 100%;
+      display: flex;
+      align-items: center;
+  }
+
+  .nav-toggle-label span,
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+      display: block;
+      background: white;
+      height: 2px;
+      width: 2em;
+      border-radius: 2px;
+      position: relative;
+  }
+
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+      content: '';
+      position: absolute;
+  }
+
+  .nav-toggle-label span::before {
+      bottom: 7px;
+  }
+
+  .nav-toggle-label span::after {
+      top: 7px;
+  }
+
   nav {
-    // all: unset; /* this causes issues with Edge, since it's unsupported */
-    /* the following lines are not from my video, but add Edge support */
-    position: relative;
-    text-align: left;
-    transition: none;
-    transform: scale(1,1);
-    background: none;
-    top: initial;
-    left: initial;
-    /* end Edge support stuff */
-    height: 75px; 
-    grid-column: 1/5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      position: absolute;
+      text-align: left;
+      top: 100%;
+      left: 0;
+      background: var(--orange);
+      width: 100%;
+      transform: scale(1, 0);
+      transform-origin: top;
+      transition: transform 400ms ease-in-out;
+      font-family: 'Montserrat', sans-serif;
   }
-  
+
   nav ul {
-    display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
   }
-  
+
   nav li {
-    margin-left: 3em;
-    margin-bottom: 0;
+      margin-bottom: 1em;
+      margin-left: 1em;
   }
-  
+
   nav a {
-    opacity: 1;
-    position: relative;
-    cursor: pointer;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+  }
 
+  nav a:hover {
+      color: var(--raisinBlack);
   }
-  
-  nav a::before {
-    content: '';
-    display: block;
-    height: 3px;/*5*/
-    width: 80%; 
-    background: var(--raisinBlack);
-    position: absolute;
-    bottom: -.75em;
-    left: 10%;
-    right: 0;
-    transform: scale(0, 1);
-    transition: transform ease-in-out 250ms;
-    opacity: .8;
-  }
-  
-  nav a:hover::before {
-    transform: scale(1,1);
-  }
-}
 
+  .nav-toggle-label {
+      cursor: pointer;
+  }
+
+  .nav-toggle:checked~nav {
+      transform: scale(1, 1);
+  }
+
+  .nav-toggle:checked~nav a {
+      opacity: 1;
+      transition: opacity 250ms ease-in-out 250ms;
+  }
+
+  @media screen and (min-width: 800px) {
+      .nav-toggle-label {
+          display: none;
+      }
+
+      header {
+          display: grid;
+          grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+      }
+
+      #logo {
+          display: none;
+      }
+
+      nav {
+          position: relative;
+          text-align: left;
+          transition: none;
+          transform: scale(1, 1);
+          background: none;
+          top: initial;
+          left: initial;
+          /* end Edge support*/
+          height: 75px;
+          grid-column: 1/5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      nav ul {
+          display: flex;
+      }
+
+      nav li {
+          margin-left: 3em;
+          margin-bottom: 0;
+      }
+
+      nav a {
+          opacity: 1;
+          position: relative;
+          cursor: pointer;
+
+      }
+
+      nav a::before {
+          content: '';
+          display: block;
+          height: 3px;
+          width: 80%;
+          background: var(--raisinBlack);
+          position: absolute;
+          bottom: -.75em;
+          left: 10%;
+          right: 0;
+          transform: scale(0, 1);
+          transition: transform ease-in-out 250ms;
+          opacity: .8;
+      }
+
+      nav a:hover::before {
+          transform: scale(1, 1);
+      }
+  }
 </style>
 {% endblock %}
 {% block body %}

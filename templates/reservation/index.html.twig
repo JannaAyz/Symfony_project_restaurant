@@ -1,181 +1,216 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 <style>
-.container {
-    margin-top: 170px;
-}
+    .container {
+        margin-top: 170px;
+    }
 
-#form {
-	padding: 5rem 0;
-}
-#principal > div > div.form-title > h1 {
-font-size: 2.1rem;
-margin-top:-55px;
-margin-bottom: -20px;
-}
-.form-title {
-	font-weight: 600;
-}
-.form-wrapper {
-	padding: 3rem 0;
-}
-.form-wrapper form {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 2rem;
-}
-.form-group .form__label {
-	font-weight: 500;
-}
-.form-group textarea {
-	resize: vertical;
-}
-.form-wrapper button[type='submit'] {
-	width: max-content;
-	border: none;
-	padding: 1rem 4rem;
-	font-weight: 500;
-	letter-spacing: 0.1rem;
-}
-#reservation_vip:checked {
-	background-color: var(--yellowGreen);
-    color: white;
-}
-#reservation_vip, .form-check-input {
-    width: 20px;
-	font-size: 20px;
-	font-weight: 600;
-	padding: 1.5rem;
-	border-radius: 2px;
-	margin-top: 0.5rem;
-	color: var(--raisinBlack);
-    border: 3px solid black;
-    background-color: rgba(240, 134, 50, .1);
-    backdrop-filter: blur(20px);
-}
-.form-check-input:focus {
-    border: 3px solid var(--yellowGreen);
-    background-color: rgba(232, 233, 243, .1); 
-    box-shadow: 0px 0px 0px black;
-    
-}
+    #form {
+        padding: 5rem 0;
+    }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
-	width: 100%;
-	font-size: 20px;
-	background-color: none;
-    background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
-	font-weight: 600;
-	padding: 1.5rem;
-	border-radius: 2px;
-	margin-top: 0.5rem;
-	color: var(--raisinBlack);
-    border: 3px solid black;
-}
-.form-group input,
-.form-group textarea,
-.form-group select {
-    background: rgba(240, 134, 50, .1);
-    backdrop-filter: blur(20px);
-    cursor: pointer;
-}
-#reservation_vip {
-    cursor: pointer;
-}
-    .form-group > input:focus , .form-group > *:focus , 
-    .form-group > input:hover, select:hover, select:active, .form-group > option,
-    .form-control > option {
+    #principal>div>div.form-title>h1 {
+        font-size: 2.1rem;
+        margin-top: -55px;
+        margin-bottom: -20px;
+    }
+
+    .form-title {
+        font-weight: 600;
+    }
+
+    .form-wrapper {
+        padding: 3rem 0;
+    }
+
+    .form-wrapper form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .form-group .form__label {
+        font-weight: 500;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+    }
+
+    .form-wrapper button[type='submit'] {
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: max-content;
+        border: none;
+        padding: 1rem 4rem;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+    }
+
+    #reservation_vip:checked {
+        background-color: var(--yellowGreen);
+        color: white;
+    }
+
+    #reservation_vip,
+    .form-check-input {
+        width: 20px;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 1.5rem;
+        border-radius: 2px;
+        margin-top: 0.5rem;
+        color: var(--raisinBlack);
+        border: 3px solid black;
+        background-color: rgba(240, 134, 50, .1);
+        -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+    }
+
+    .form-check-input:focus {
         border: 3px solid var(--yellowGreen);
-        background-color: rgba(232, 233, 243, .1); 
+        background-color: rgba(232, 233, 243, .1);
+        box-shadow: 0px 0px 0px black;
+
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        font-size: 20px;
+        background-color: none;
+        background: url('{{ asset(' IMG/orange-watercolor.jpg') }}');
+        font-weight: 600;
+        padding: 1.5rem;
+        border-radius: 2px;
+        margin-top: 0.5rem;
+        color: var(--raisinBlack);
+        border: 3px solid black;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        background: rgba(240, 134, 50, .1);
+        -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+        cursor: pointer;
+    }
+
+    #reservation_vip {
+        cursor: pointer;
+    }
+
+    .form-group>input:focus,
+    .form-group>*:focus,
+    .form-group>input:hover,
+    select:hover,
+    select:active,
+    .form-group>option,
+    .form-control>option {
+        border: 3px solid var(--yellowGreen);
+        background-color: rgba(232, 233, 243, .1);
         box-shadow: 0px 0px 0px black;
     }
-    
-    {# .form-group > option:focus, .form-control > option:focus {
-        background: rgba(232, 233, 243, .5);
-    } #}
 
-    .form-control > option, .form-select > option{
+    .form-control>option,
+    .form-select>option {
         font-size: 20px;
         background-color: #f7ecddcc;
         font-weight: 500;
     }
 
-select {
-    text-transform: none;
-    word-wrap: normal;
-}
-select -internal-list-box {
-    overflow: visible !important;
-    display:none;
-}
-
-.form-group label, .form-group-vip > label {
-	font-size: 1.6rem;
-}
-.form-group-vip > label {
-    margin-right: 10px;
-}
-
-@media only screen and (min-width: 768px) {
-    .form-title {
-        margin-bottom: -30px;
-    }
-    .form_widget {
-		font-size: 3.6rem;
-	}
-	.form-wrapper {
-		padding: 5rem 0;
-	}
-	.form-wrapper form {
-		grid-template-columns: 1fr 1fr;
-	}
-	.form-group-full {
-		grid-column: 1/3;
-	}
-	
-	.form-group input,
-	.form-group textarea,
-	.form-group select {
-		{# padding: 2rem; 
-		margin-top: 1.5rem;#}
-	}
-    
-    .form-group label, .form-group-vip > label {
-		font-size: 1.8rem;
+    select {
+        text-transform: none;
+        word-wrap: normal;
     }
 
-}
-@media screen and (max-width: 580px) {
-    .form-group input,
-	.form-group textarea,
-	.form-group select, 
-    .message-input,
-    .form-wrapper button[type='submit'] {
-        width: 90vw;
+    select -internal-list-box {
+        overflow: visible !important;
+        display: none;
     }
-}
-form button {
-    margin: 30px 0 50px;
-    font-size: 1.3rem!important;
-    color: black;
-    text-transform: uppercase;
-    border: 3px solid black!important;
-    font-weight: 500!important;
-    background: rgba(149, 198, 35, .8);
-    backdrop-filter: blur(10px);
-}
-form button:hover {
-    color: ;
-    background: rgba(232, 233, 243, .5);
-    border: 3px solid var(--yellowGreen)!important;
-    text-shadow: 2px 3px 1px var(--yellowGreen);
-}
-.form-group > * {
-    font-family: 'Montserrat', sans-serif;
-}
 
+    .form-group label,
+    .form-group-vip>label {
+        font-size: 1.6rem;
+    }
+
+    .form-group-vip>label {
+        margin-right: 10px;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .form-title {
+            margin-bottom: -30px;
+        }
+
+        .form_widget {
+            font-size: 3.6rem;
+        }
+
+        .form-wrapper {
+            padding: 5rem 0;
+        }
+
+        .form-wrapper form {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-group-full {
+            grid-column: 1/3;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+                {
+                # padding: 2rem;padding
+                margin-top: 1.5rem;
+                #
+            }
+        }
+
+        .form-group label,
+        .form-group-vip>label {
+            font-size: 1.8rem;
+        }
+
+    }
+
+    @media screen and (max-width: 580px) {
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select,
+        .message-input,
+        .form-wrapper button[type='submit'] {
+            width: 90vw;
+        }
+    }
+
+    form button {
+        margin: 30px 0 50px;
+        font-size: 1.3rem !important;
+        color: black;
+        text-transform: uppercase;
+        border: 3px solid black !important;
+        font-weight: 500 !important;
+        background: rgba(149, 198, 35, .8);
+        -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+    }
+
+    form button:hover {
+        color: ;
+        background: rgba(232, 233, 243, .5);
+        border: 3px solid var(--yellowGreen) !important;
+        text-shadow: 2px 3px 1px var(--yellowGreen);
+    }
+
+    .form-group>* {
+        font-family: 'Montserrat', sans-serif;
+    }
 {% include "partials/footer_version_classic.style.twig" %}
 </style>
 {% endblock %}

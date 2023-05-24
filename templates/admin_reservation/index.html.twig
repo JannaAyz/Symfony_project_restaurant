@@ -4,183 +4,179 @@
 {% block stylesheets %}
 {% include "partials/footer_version_classic.style.twig"%}
 <style>
-body {
+    body {
     background: none!important;
     width: 100vw;
-}
-#zig-zags::after {
-    display:none;
-}
-.container {
-    margin-top: 120px!important;
-    height: 100vh;
-    text-align: center;
-    animation: popUp 0ms!important;
-    display: flex;
-    flex-direction: column; 
-    margin-bottom: 50px;
-}
-#admins{
-    position: fixed;
-}
-.buttons {
-    display:flex;
-    justify-content: space-between;
-    padding-bottom: 30px;
-    position: relative;
-    margin-bottom: 20px;
-}
-.rsrvButton, .btn, .btn-secondary, .dropdown-toggle {
-    font-size: 1.3rem!important;
-    color: black;
-    border: 3px solid rgba(17, 17, 17, .6)!important;
-    font-weight: 500!important;
-    background: rgba(149, 198, 35, .8);
-    backdrop-filter: blur(10px);
-    padding: .7rem;
-    border-radius: 0;
-}
-.rsrvButton a, .btn-secondary a, .btn-secondary:hover a{
-    color: black;
-}
-.rsrvButton:hover, .btn-secondary:hover, .btn-secondary:active {
-    color: black;
-    background: rgba(232, 233, 243, .5);
-    border: 3px solid var(--yellowGreen)!important;
-    text-shadow: 2px 2px 1px var(--yellowGreen);
-}
-.buttons::after {
-    {# box-shadow: 0px 7px 3px grey;  #}
-    background: var(--orange);
-    position: absolute;
-    width: 80%;
-    height: 1px;
-    content: '';
-    bottom: 0;
-    left: 10%;
-}
-.dropdown-menu, .show {
-    border-radius:0;
-    text-align:center;
-}
-#dropdownMenuButton {
-    padding: 0.7rem 14px;
-}
-#admins > table > tbody > tr > td {
-    padding: 5px;
-}
-#admins > table > thead > tr > th,
-#admins > table > tbody > tr > td{
-    padding-left:15px;
-    font-size: 20px;
-}
-table > thead, table > tbody, #admins {
-    width: 900px;
-}
-#principal > div > table > tbody > tr{
-    opacity: 0;
-}
-#principal > div > table > tbody {
-    overflow-x: scroll;
-}
-.makeVisible {
-    animation: visible 80ms  forwards calc(var(--order)*40ms)!important;
-    {# animation-delay: calc(var(--order)*100ms); #}
-
-}
-#admins > table > tbody > tr > td:nth-child(6) {
-    text-align: center;
-}
-#edit, #star {
-    height: 30px;
-}
-#star {
-    margin-right: -35px;
-}
-@media screen and (max-width: 750px){
-    .container {
-        display:block;
-    } 
-    table {
-        display:flex;
-        flex-direction: column;
-        justify-content:center;
-        margin-left: 0;
     }
-    #admins {
-        width: 100vw;
-        height: 100%;
+    #zig-zags::after {
+        display:none;
+    }
+    .container {
+        margin-top: 120px!important;
+        height: 100vh;
+        text-align: center;
+        animation: popUp 0ms!important;
+        display: flex;
+        flex-direction: column; 
+        margin-bottom: 50px;
+    }
+    #admins{
+        position: fixed;
     }
     .buttons {
-        margin-top:30px;
+        display:flex;
+        justify-content: space-between;
+        padding-bottom: 30px;
+        position: relative;
+        margin-bottom: 20px;
     }
-    #admins > table {
-        width: 100vw;
-        {# margin-left:max(-40px, -18vw); #}
+    .rsrvButton, .btn, .btn-secondary, .dropdown-toggle {
+        font-size: 1.3rem!important;
+        color: black;
+        border: 3px solid rgba(17, 17, 17, .6)!important;
+        font-weight: 500!important;
+        background: rgba(149, 198, 35, .8);
+        backdrop-filter: blur(10px);
+        padding: .7rem;
+        border-radius: 0;
     }
-    #admins > table > tbody > tr > td,
-    #admins > table > thead > tr > th {
-        font-size: 14px;
+    .rsrvButton a, .btn-secondary a, .btn-secondary:hover a{
+        color: black;
     }
-    #admins > table > thead > tr > th:nth-child(3) {
-        padding-left: 65px;
+    .rsrvButton:hover, .btn-secondary:hover, .btn-secondary:active {
+        color: black;
+        background: rgba(232, 233, 243, .5);
+        border: 3px solid var(--yellowGreen)!important;
+        text-shadow: 2px 2px 1px var(--yellowGreen);
     }
-    #admins > table > thead > tr > th:nth-child(4) {
-        padding-left: 50px;
+    .buttons::after {
+        {# box-shadow: 0px 7px 3px grey;  #}
+        background: var(--orange);
+        position: absolute;
+        width: 80%;
+        height: 1px;
+        content: '';
+        bottom: 0;
+        left: 10%;
+    }
+    .dropdown-menu, .show {
+        border-radius:0;
+        text-align:center;
+    }
+    #dropdownMenuButton {
+        padding: 0.7rem 14px;
+    }
+    #admins > table > tbody > tr > td {
+        padding: 5px;
+    }
+    #admins > table > thead > tr > th,
+    #admins > table > tbody > tr > td{
+        padding-left:15px;
+        font-size: 20px;
+    }
+    table > thead, table > tbody, #admins {
+        width: 900px;
+    }
+    #principal > div > table > tbody > tr{
+        opacity: 0;
+    }
+    #principal > div > table > tbody {
+        overflow-x: scroll;
+    }
+    .makeVisible {
+        animation: visible 80ms  forwards calc(var(--order)*40ms)!important;
+        {# animation-delay: calc(var(--order)*100ms); #}
+
+    }
+    #admins > table > tbody > tr > td:nth-child(6) {
+        text-align: center;
+    }
+    #edit, #star {
+        height: 30px;
     }
     #star {
-        margin-right: 0px;
-        height: 20px;
+        margin-right: -35px;
     }
-}
-@media screen and (max-width: 530px) {
-    table {
-        margin-left: -10px;
+    #principal > div > table > tbody {
+        overflow: hidden;
     }
-    table > thead, table > tbody {
-        width:100vw;
+    #admins > table{
+        position: relative!important;
+        z-index: 0!important;
     }
-}
-#principal > div > table > tbody {
-    overflow: hidden;
-}
-#admins > table{
-    position: relative!important;
-    z-index: 0!important;
-}
-#admins > table > tbody > tr > td{
-    padding-left:3px;
-}
-#reservation-iframe, #admins > table > tbody > tr > td > iframe{ 
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    display: none;
-    scale: 1.5;
-    z-index: 10!important;
-    background-color: white;
-    height:390px;
-    transform: translateY(20%);
-    overflow: hidden;
-    box-shadow: 2px 2px 10px rgba(221, 45, 74, .5);
-    animation: visible 200ms ease-out;
-}
-#cross {
-    cursor: pointer;
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    display: none;
-    z-index: 11!important;
-    transform: translate(380%, -280%);
-}
-.unvisible {
-    display:none;
-}
-
-{# body > *:not(iframe) {
-    filter: blur(1.5rem);
-} #}
+    #admins > table > tbody > tr > td{
+        padding-left:3px;
+    }
+    #reservation-iframe, #admins > table > tbody > tr > td > iframe{ 
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        display: none;
+        scale: 1.5;
+        z-index: 10!important;
+        background-color: white;
+        height:390px;
+        transform: translateY(20%);
+        overflow: hidden;
+        box-shadow: 2px 2px 10px rgba(221, 45, 74, .5);
+        animation: visible 200ms ease-out;
+    }
+    #cross {
+        cursor: pointer;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        display: none;
+        z-index: 11!important;
+        transform: translate(380%, -280%);
+    }
+    .unvisible {
+        display:none;
+    }
+    @media screen and (max-width: 750px){
+        .container {
+            display:block;
+        } 
+        table {
+            display:flex;
+            flex-direction: column;
+            justify-content:center;
+            margin-left: 0;
+        }
+        #admins {
+            width: 100vw;
+            height: 100%;
+        }
+        .buttons {
+            margin-top:30px;
+        }
+        #admins > table {
+            width: 100vw;
+            {# margin-left:max(-40px, -18vw); #}
+        }
+        #admins > table > tbody > tr > td,
+        #admins > table > thead > tr > th {
+            font-size: 14px;
+        }
+        #admins > table > thead > tr > th:nth-child(3) {
+            padding-left: 65px;
+        }
+        #admins > table > thead > tr > th:nth-child(4) {
+            padding-left: 50px;
+        }
+        #star {
+            margin-right: 0px;
+            height: 20px;
+        }
+    }
+    @media screen and (max-width: 530px) {
+        table {
+            margin-left: -10px;
+        }
+        table > thead, table > tbody {
+            width:100vw;
+        }
+    }
 </style>
 {% endblock %}
 

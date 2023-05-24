@@ -1,34 +1,14 @@
 <style>
-    {# Supprimez les balises inutiles ci-dessous #}
-    {# #modalParent {
-        position: relative;
-    } #}
-
-    {# #modalParent {
-        position: fixed;
-        margin: 7vh 49vw 30vw auto; 
-        top: 0;
-        left:0;
-        z-index: 32;
-        transform: translate(50%, 50%);
-        padding: 2rem;
-        width: min(85vw, 480px);
-    } 
-    #modalParent::backdrop {
-        background: linear-gradient(45deg, var(--rustyRed), var(--orange));
-        opacity: .6;
-    } #}
     #modalParent {
         position: fixed;
         height: 100vh;
         width: 100vw;
-        {# display: flex; #}
         justify-content: center;
         align-items: top;
         z-index: 32;
         background: linear-gradient(25deg, rgba(240, 134, 50, 1), rgba(221, 45, 74, .3), rgba(0, 0, 0, .13));/*rose white orange*/
-        {# background: linear-gradient(30deg, rgba(221, 45, 74, .7), rgba(149, 198, 35, .8)); #}
-        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+                backdrop-filter: blur(7px);
     }
     #modalsContent {
         background-color: white;
@@ -54,13 +34,6 @@
         margin-bottom:55px;
         margin-top: 20px;
     }
-    {# #modalParent::before {
-        height: 100vh;
-        width: 100vw;
-        position: fixed;
-        z-index: 31;
-        background
-    } #}
     .button {
         margin: 10px;
     }
@@ -76,27 +49,36 @@
         position: fixed;
         z-index: 31;
     }
+    #dot1, #dot2, #dot3{
+        opacity:0;
+        -webkit-animation: dots 2s ease-in-out infinite;
+                animation: dots 2s ease-in-out infinite;
+    }
+    #dot2{
+        -webkit-animation-delay: 500ms;
+                animation-delay: 500ms;
+    }
+    #dot3{
+        -webkit-animation-delay: 1s;
+                animation-delay: 1s;
+    }
+    @-webkit-keyframes dots {
+        0%{
+            opacity:1;
+        } 
+        100%{
+            opacity:0;
+        }
+    }
+    @keyframes dots {
+        0%{
+            opacity:1;
+        } 
+        100%{
+            opacity:0;
+        }
+    }
 </style>
-
-<!-- Modal -->
-{# <dialog id='modalParent' class='dontDisplay'> #}
-{# <dialog open id='modalParent'>
-    <div class="modal" style="display: block" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">Merci pour votre message</h4>
-                </div>
-                <div class="modal-body">
-                    <h5>Nous reviendrons vers vous très prochainement !</h5><br>
-                    Redirection en cours...
-                </div>
-            </div>
-        </div>
-    </div>
-</dialog> #}
-
-{# <div id="dialog-wrapper"> #}
     <div id='modalParent' class='dontDisplay'>
         <div id="modalsContent">
             <div class="mdl-header">
@@ -104,25 +86,16 @@
             </div>
             <div class="mdl-body">
                 <h5>Nous reviendrons vers vous très prochainement !<h5>
-                <h4><span id="redirection">Redirection en cours...</span></h4>
+                <h4><span id="redirection">Redirection en cours<span id="dot1">.</span><span id="dot2">.</span><span id="dot3">.</span></span></h4>
             </div>
         </div>    
     </div>
-{# </div> #}
 
 <script>
     const MODAL = document.querySelector("#modalParent");
     function launchModal() {
-        /*MODAL.classList.remove("dontDisplay");
-        MODAL.classList.add("toDisplay");
-        MODAL.showModal();*/
         MODAL.classList.add("makeVisible");
         MODAL.style.animationDuration = "200ms";
         MODAL.style.display="flex";
-    }
-
-    function closeModal() {
-        /*MODAL.classList.remove("toDisplay");
-        MODAL.classList.add("dontDisplay");*/
     }
 </script>

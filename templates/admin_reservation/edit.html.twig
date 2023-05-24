@@ -2,10 +2,9 @@
 
 {% block stylesheets %}
 <style>
-#edit-wrapper {
-    height: 200px;
-}
-
+    #edit-wrapper {
+        height: 200px;
+    }
 </style>
 {% endblock %}
 {% block body %}
@@ -13,12 +12,4 @@
         {{ include('admin_reservation/_form.html.twig', {'button_label': 'Update'}) }}
         {{ include('admin_reservation/_delete_form.html.twig') }}
     </div>
-    {# <script>
-    var button = document.getElementById('myButton');
-    var parentUrl = window.frameElement.dataset.parentUrl; // Récupérer l'URL de la page parente depuis l'attribut de données
-
-    button.addEventListener('click', function() {
-        window.parent.postMessage('hideIframe', parentUrl);
-    });
-    </script> #}
 {% endblock %}

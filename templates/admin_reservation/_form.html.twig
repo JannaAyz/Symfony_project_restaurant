@@ -1,197 +1,144 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
 <style>
-body {
+    body {
     overflow: hidden;
-}
-.form-check-input {
-    background-color: yellow; 
-}
-#bottom {
-    display: none!important;
-}
-#reservation1{
-    display: flex;
-    flex-wrap: wrap;
-    height:390px;   
-}
-#form {
-	padding: 5rem 1rem;
-
-}
-
-{# .form-title {
-	font-weight: 600;
-} #}
-.form-wrapper {
-	padding: 0.6rem 0.1rem;
-    background: white;
-}
-.form-group {
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
-    width: 93vw;
-}
-.form-group, .form-group-vip, .buttons {
-    transform: translateX(10px);
-}
-.form-group textarea {
-	resize: vertical;
-}
-.btn {
-	width: max-content;
-	border: none;
-	padding: 0.8rem 0.75rem;
-	font-weight: 500;
-}
-.supprBtn {
-	padding: 0.8rem 0.45rem;
-}
-.form-check-inpt:checked {
-	background-color: var(--yellowGreen);
-    color: white;
-}
-
-.form-check-inpt:focus {
-    border: 3px solid var(--yellowGreen);
-    background-color: rgba(232, 233, 243, .1); 
-    box-shadow: 0px 0px 0px black;
-}
-.form-check-inpt, #reservation1_vip{
-    width: 40px;
-    padding: 1.5rem;
-    border-radius: 0px;
-    margin-top: 0.5rem;
-    border: 3px solid black;
-    background-color: rgba(240, 134, 50, .1);
-    background: var(--yellowGreen);
-    backdrop-filter: blur(20px);
-}
-.form-group input,
-.form-group textarea,
-.form-group select {
-	font-size: 14px;
-	padding: 5px;
-	border-radius: 0.5px;
-	margin-top: 0.5rem;
-    border: 1px solid black;
-    {# background: rgba(240, 134, 50, .1); #}
-    {# backdrop-filter: blur(20px); #}
-    cursor: pointer;
-}
-
-#reservation_vip {
-    cursor: pointer;
-}
-.form-group > input:focus , .form-group > *:focus , 
-.form-group > input:hover, select:hover, select:active, .form-group > option,
-.form-control > option {
-    border: 0.5px solid #95C623;
-    {# background-color: rgba(232, 233, 243, .1);  #}
-    box-shadow: 0px 0px 0px black;
-    color: black;
-}
-{# .form-control > option, .form-select > option{
-    font-size: 14px;
-    background-color: #f7ecddcc;
-    font-weight: 500;
-} #}
-select {
-    text-transform: none;
-    word-wrap: normal;
-}
-{# select -internal-list-box {
-    overflow: visible !important;
-    display:none;
-} #}
-
-{# .form-group label, .form-group-vip > label {
-	font-size: 1.6rem;
-} #}
-.form-group > label {
-    margin-right: 10px;
-}
-
-{# @media only screen and (min-width: 768px) {
-    .form-title {
-        margin-bottom: -30px;
     }
-    .form_widget {
-		font-size: 3.6rem;
-	}
-	.form-wrapper {
-		padding: 5rem 0;
-	}
-	.form-wrapper form {
-		grid-template-columns: 1fr 1fr;
-	}
-	.form-group-full {
-		grid-column: 1/3;
-	}
-	
-	.form-group input,
-	.form-group textarea,
-	.form-group select {
-		{# padding: 2rem; 
-		margin-top: 1.5rem;#}
-	
-    
-.form-group label, .form-group-vip > label {
-    margin-top: 10px;
-}
-
-.buttons > * , #reservation1_submit{
-    margin: 20px 0 0px;
-    font-size: 1.2rem!important;
-    color: black;
-    border-radius: 0;
-    text-transform: uppercase;
-    border: 3px solid black!important;
-    font-weight: 500!important;
-    background: rgba(149, 198, 35, .8);
-    backdrop-filter: blur(10px);
-}
-.buttons > *:hover , #reservation1_submit:hover{
-    background: rgba(232, 233, 243, .5);
-    border: 3px solid var(--yellowGreen)!important;
-    text-shadow: 2px 3px 1px var(--yellowGreen);
-}
-form .supprBtn {
-    background: var(--orange);
-}
-{# form .supprBtn:hover{
-    
-} #}
-.form-group input {
-    margin: 0;
-}
-#reservation1_date, #reservation1_heure {
-    background: none;
-    border: none;
-}
-#principal > div > form > label {
-    font-size: 8px;
-}
-.form-control, .form-select {
-    padding: 1px;
-    color: black;
-}
-.buttons {
-    display:flex;
-    width: 90vw;
-}
-#principal > div > form > div:nth-child(1) > ul > li {
-    font-size: 10px;
-    list-style-type: none;
-    position: absolute;
-    z-index: 20!important;
-    left: 0;
-    top:-23%;
-    color: #DD2D4A;
-    backdrop-filter: blur(10px);
-    padding: 70px auto;
-}
+    #bottom {
+        display: none!important;
+    }
+    #reservation1{
+        display: flex;
+        flex-wrap: wrap;
+        height:390px;   
+    }
+    #form {
+        padding: 5rem 1rem;
+    }
+    .form-wrapper {
+        padding: 0.6rem 0.1rem;
+        background: white;
+    }
+    .form-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+        width: 93vw;
+    }
+    .form-group, .form-group-vip, .buttons {
+        transform: translateX(10px);
+    }
+    .form-group textarea {
+        resize: vertical;
+    }
+    .btn {
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: max-content;
+        border: none;
+        padding: 0.8rem 0.75rem;
+        font-weight: 500;
+    }
+    .supprBtn {
+        padding: 0.8rem 0.45rem;
+    }
+    .form-check-inpt:checked {
+        background-color: var(--yellowGreen);
+        color: white;
+    }
+    .form-check-inpt:focus {
+        border: 3px solid var(--yellowGreen);
+        background-color: rgba(232, 233, 243, .1); 
+        box-shadow: 0px 0px 0px black;
+    }
+    .form-check-inpt, #reservation1_vip{
+        width: 40px;
+        padding: 1.5rem;
+        border-radius: 0px;
+        margin-top: 0.5rem;
+        border: 3px solid black;
+        background-color: rgba(240, 134, 50, .1);
+        background: var(--yellowGreen);
+        -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 0.5px;
+        margin-top: 0.5rem;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+    .form-group > input:focus , .form-group > *:focus , 
+    .form-group > input:hover, select:hover, select:active, .form-group > option,
+    .form-control > option {
+        border: 0.5px solid #95C623;
+        box-shadow: 0px 0px 0px black;
+        color: black;
+    }
+    select {
+        text-transform: none;
+        word-wrap: normal;
+    }
+    .form-group > label {
+        margin-right: 10px;
+    }   
+    .form-group label, .form-group-vip > label {
+        margin-top: 10px;
+    }
+    .buttons > * , #reservation1_submit{
+        margin: 20px 0 0px;
+        font-size: 1.2rem!important;
+        color: black;
+        border-radius: 0;
+        text-transform: uppercase;
+        border: 3px solid black!important;
+        font-weight: 500!important;
+        background: rgba(149, 198, 35, .8);
+        -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+    }
+    .buttons > *:hover , #reservation1_submit:hover{
+        background: rgba(232, 233, 243, .5);
+        border: 3px solid var(--yellowGreen)!important;
+        text-shadow: 2px 3px 1px var(--yellowGreen);
+    }
+    form .supprBtn {
+        background: var(--orange);
+    }
+    .form-group input {
+        margin: 0;
+    }
+    #reservation1_date, #reservation1_heure {
+        background: none;
+        border: none;
+    }
+    #principal > div > form > label {
+        font-size: 8px;
+    }
+    .form-control, .form-select {
+        padding: 1px;
+        color: black;
+    }
+    .buttons {
+        display:flex;
+        width: 90vw;
+    }
+    #principal > div > form > div:nth-child(1) > ul > li {
+        font-size: 10px;
+        list-style-type: none;
+        position: absolute;
+        z-index: 20!important;
+        left: 0;
+        top:-23%;
+        color: #DD2D4A;
+        -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+        padding: 70px auto;
+    }
 {% include "partials/footer_version_classic.style.twig" %}
 </style>
 {% endblock %}
