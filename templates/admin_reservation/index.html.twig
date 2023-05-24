@@ -219,9 +219,21 @@
             margin-right: 0px;
             height: 20px;
         }
+
+        #edit {
+            height: 15px;
+        }
     }
 
     @media screen and (max-width: 530px) {
+
+        .buttons {
+            width:100vw;
+            justify-content: center;
+            gap: 20px;
+            transform: translateX(-20px);
+        }
+
         table {
             margin-left: -10px;
         }
@@ -230,6 +242,7 @@
         table>tbody {
             width: 100vw;
         }
+
     }
 </style>
 {% endblock %}
