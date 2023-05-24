@@ -17,7 +17,7 @@ class Reservation
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\GreaterThan('today', message: 'Merci de choisir une date postérieure à celle-ci')]
+    #[Assert\GreaterThanOrEqual('today', message: "Merci de réserver pour aujourd'hui ou plus tard")]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
@@ -136,11 +136,11 @@ class Reservation
     public function generateHourOptions(): array
 {
     $heureOptions = [];
-    $h = 11;
+    $h = 10;
     $m = 0;
 
     // Boucle pour ajouter toutes les heures possibles
-    while ($h < 24 || ($h == 24 && $m == 0)) {
+    while ($h < 22 || ($h == 22 && $m == 0)) {
         $hour = str_pad($h, 2, '0', STR_PAD_LEFT);
         $min = str_pad($m, 2, '0', STR_PAD_LEFT);
         $heure = new \DateTime("{$hour}:{$min}");
@@ -151,7 +151,7 @@ class Reservation
             $h++;
         }
         // On s'arrête à 23H30
-        if ($h == 24 && $m == 0) {
+        if ($h == 22 && $m == 0) {
             break;
         }
     }
