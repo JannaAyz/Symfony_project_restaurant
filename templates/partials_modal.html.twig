@@ -1,0 +1,101 @@
+<style>
+    #modalParent {
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        align-items: top;
+        z-index: 32;
+        background: linear-gradient(25deg, rgba(240, 134, 50, 1), rgba(221, 45, 74, .3), rgba(0, 0, 0, .13));/*rose white orange*/
+        -webkit-backdrop-filter: blur(7px);
+                backdrop-filter: blur(7px);
+    }
+    #modalsContent {
+        background-color: white;
+        width: min(85vw, 500px);
+        padding: 2rem;
+        margin-left: -15px;
+        height: 300px;
+        margin-top: 90px;
+        text-align: center;
+        border-radius: 3px;
+        box-shadow: 1px 1px 1px rgba(0 0 0 1);
+    }
+    #redirection {
+        font-size: 32px;
+        color: var(--yellowGreen);
+    }
+    .mdl-header h4 {
+        font-size: 26px;
+        color: rgba(240, 134, 50, .76);
+        font-weight: 600;
+    }
+    .mdl-body h5{
+        margin-bottom:55px;
+        margin-top: 20px;
+    }
+    .button {
+        margin: 10px;
+    }
+    .toDisplay {
+        display: block;
+    }
+    .dontDisplay {
+        display: none;
+    }
+    #dialog-wrapper {
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        z-index: 31;
+    }
+    #dot1, #dot2, #dot3{
+        opacity:0;
+        -webkit-animation: dots 2s ease-in-out infinite;
+                animation: dots 2s ease-in-out infinite;
+    }
+    #dot2{
+        -webkit-animation-delay: 500ms;
+                animation-delay: 500ms;
+    }
+    #dot3{
+        -webkit-animation-delay: 1s;
+                animation-delay: 1s;
+    }
+    @-webkit-keyframes dots {
+        0%{
+            opacity:1;
+        } 
+        100%{
+            opacity:0;
+        }
+    }
+    @keyframes dots {
+        0%{
+            opacity:1;
+        } 
+        100%{
+            opacity:0;
+        }
+    }
+</style>
+    <div id='modalParent' class='dontDisplay'>
+        <div id="modalsContent">
+            <div class="mdl-header">
+                <h4 class="mdl-title" id="exampleModalLabel">Merci pour votre message</h4>
+            </div>
+            <div class="mdl-body">
+                <h5>Nous reviendrons vers vous très prochainement !<h5>
+                <h4><span id="redirection">Redirection en cours<span id="dot1">.</span><span id="dot2">.</span><span id="dot3">.</span></span></h4>
+            </div>
+        </div>    
+    </div>
+
+<script>
+    const MODAL = document.querySelector("#modalParent");
+    function launchModal() {
+        MODAL.classList.add("makeVisible");
+        MODAL.style.animationDuration = "200ms";
+        MODAL.style.display="flex";
+    }
+</script>

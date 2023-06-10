@@ -1,0 +1,36 @@
+{% block stylesheets %}
+<style>
+    footer {
+    margin-top:50px;
+    top:0;
+    }  
+    #bottom {
+        transform: translateY(-160vh);
+        display: block;
+    }
+    #zig-zags::after {
+        top:57%;
+    }
+    
+    #footer {
+        margin: 0;
+        background-image: url('{{ asset('IMG/grenade-orange-blurry.jpg') }}');
+        background-size: cover;
+        -webkit-backdrop-filter: blur(55px);
+        backdrop-filter: blur(55px);
+    }
+    #footer::before {
+        background-color: black;
+    }
+    #zig-zags {
+    }
+    /* zig-zags' modification ends here*/
+    body {
+        background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
+    }
+    #bottom {
+    height: 30vh!important;   
+    width: 100%;
+    }
+</style>
+{% endblock %}
