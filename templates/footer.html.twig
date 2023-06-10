@@ -1,0 +1,255 @@
+{% block stylesheets %}
+<style>
+footer {
+    position:absolute;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+#footer {
+    color: white;
+    padding: 70px;
+    position: relative;
+}
+#footer > * {
+    z-index: 3;    
+}
+
+#footer::before {
+    position:absolute;
+    content: '';
+    z-index: 2;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: .7;  
+}
+#zig-zags {
+    position: relative;
+    z-index: -10;
+    height: 150vh;
+    width: 1700px;
+    overflow-y: hidden;
+    flex-grow: 1;
+}
+#zig-zags::after {
+    content: '';
+    position: absolute;
+    z-index: -8;
+    width: 100%;
+    overflow-x: hidden;
+    background: linear-gradient( #F08632 10%, #DD2D4A 90%);
+    -webkit-mask-image: url('{{ asset('IMG/zig-zags.png') }}');
+    mask-image: url('{{ asset('IMG/zig-zags.png') }}');
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    height: 100%;
+    /*homePage*/
+}
+
+.social-network-icons > img {
+    height: 40px;
+    margin: 10px;
+    cursor: pointer;
+
+}
+
+#footer-logo {
+    height: 65px;
+    margin: 15px;
+}
+
+#logo-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+}
+
+#footer > div {
+    width: max(20vw, 250px);
+}
+#footer > div:nth-child(2) {
+    width: max(20vw, 350px);
+}
+
+#footer > div:nth-child(1) > *, footer > div:nth-child(2) > * , .footer-adresses-part > *{
+    text-align: center;
+} 
+
+#footer > div:nth-child(2) {
+    margin-top: 65px;
+}
+
+#footer::after {
+    content:'Par Jeanne Ayzatova';
+    color: white;
+    text-align: center;
+    background-color: black;
+    font-size: 18px;
+    width:100%;
+    bottom:-12%;
+    left:0;
+    position:absolute;
+    padding: 20px;
+    z-index: 1;
+}
+
+.social-network-icons {
+    margin-top: 20px;
+   
+}
+
+.footer-adresses-part > h4 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.footer-adresses-part p {
+    font-size: 18px; 
+    cursor: pointer;
+    position: relative;
+}
+
+.footer-adresses-part p::before {
+    content: '';
+    display: block;
+    height: 2px;/*5*/
+    width: 40%; 
+    background: white;
+    position: absolute;
+    bottom: -5px;;
+    left: 30%;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+    opacity: .8;
+}
+
+.footer-adresses-part p:hover::before {
+    transform: scale(1,1);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+h4 {
+    font-size: 28px;
+}
+
+h5 {
+    font-size: 24px;
+}
+@media screen and (max-width: 1120px) and (min-width: 801px) {
+    #footer > div:nth-child(3) {
+        transform: translateY(17%);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #footer {
+        flex-direction: column;
+    }
+    /*RESEVATION*/
+    /*#footer >* {
+        transform: translateX(-20px);
+    } */
+    #footer::before {
+        left:0;
+    }
+    #footer::after {
+        bottom: -9%;
+    } 
+    h3 {
+        font-size: 26px;
+    }
+    .footer-logo-part p {
+        display: none;
+    }
+    #footer > div, #footer > div:nth-child(2) {
+    width: 80vw;
+    }
+    .footer-contact-part {
+        text-align: center;
+    }
+    .footer-adresses-part p::before {
+        width: 20%;
+        left: 40%;
+    }
+
+    #footer > * {
+        transform: translateX(-10%);
+    }
+
+}
+</style>
+{% endblock %}
+{% block body %}
+
+<footer>
+    <div id='zig-zags'></div>
+    <div id='footer'>
+        <div class='footer-logo-part'>
+            <div id='logo-wrapper'>
+                <img id="footer-logo" src="{{ asset('IMG/laCocosine-logo.svg')}}" alt="">
+            </div>
+            <h3>La CoCosine</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+        </div>
+        <div class='footer-contact-part'>
+            <h4>Mardi - Samedi</h4>
+            <h5 class='centered-txt'>10h - 22h</h5>
+            <div class='social-network-icons'>
+                <img src="{{ asset('IMG/cocosine-fb-icon.svg')}}" alt="">
+                <img src="{{ asset('IMG/cocosine-twitter-icon.svg')}}" alt="">
+                <img src="{{ asset('IMG/cocosine-insta-icon.svg')}}" alt="">
+                <img src="{{ asset('IMG/cocosine-mail-icon.svg')}}" alt="">
+            </div>
+        </div>
+        <div class='footer-adresses-part'>
+            <h4>Restaurants</h4>
+            <a href='{{ path('app_contact') }}'><p>Paris 17 - Emile Level</p></a>
+            <a href='{{ path('app_contact') }}'><p>Paris 14 - Alesia</p></a>
+            <a href='{{ path('app_contact') }}'><p>Paris 5  - Monge</p></a>
+        </div>
+    </div>
+</footer>
+<script>
+
+let numberOfPixels;
+
+if (window.matchMedia("(max-width: 800px)").matches) {
+    numberOfPixels = 590;
+} else {
+    numberOfPixels = 180;
+}
+
+ window.addEventListener("scroll", function () {
+    const FOOTER = document.querySelectorAll("body #footer *");
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollFromBottom = documentHeight - (windowHeight + scrollTop);
+    /*const scrollFromBottom = (windowHeight + window.scrollY) - document.body.offsetHeight;*/
+    {# console.log(scrollFromBottom); #}
+    /*if (scrollFromBottom <= 250 && scrollFromBottom >= 1150) {*/
+    if (scrollFromBottom <= numberOfPixels) {
+        FOOTER.forEach(function(elmnt) {
+            elmnt.classList.add("makeVisible");
+            elmnt.style.opacity = "1";
+        })
+    } if (scrollFromBottom >= 330) {
+        FOOTER.forEach(function(elmnt) {
+            elmnt.classList.remove("makeVisible");
+            elmnt.style.opacity = "0";
+        })
+    }
+  });
+
+</script>
+{% endblock %}
