@@ -5,7 +5,6 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
-        "clue/reactphp-sqlite": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^2.0",
