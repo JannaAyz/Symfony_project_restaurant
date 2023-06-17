@@ -7,7 +7,7 @@
     content: '';
     position: absolute!important;
     z-index: -10!important;
-    overflow-x: hidden;
+    overflow: hidden;
     background: linear-gradient( #F08632 10%, #DD2D4A 90%);
     -webkit-mask-image: url('{{ asset('IMG/zig-zags.png') }}');
     mask-image: url('{{ asset('IMG/zig-zags.png') }}');
@@ -72,8 +72,9 @@
             transform: translateX(3%)!important;   
         }
         #footer::before {
-            width: 1300px!important; 
+            {# width: 1300px!important;  #}
             transform: translateX(-70px);
+            overflow-x: hidden;
         }
     }
 </style>
