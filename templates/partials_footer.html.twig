@@ -2,7 +2,7 @@
 <style>
 footer {
     position:absolute;
-    bottom: 0;
+    bottom: 0;/*DOUTE*/
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -197,7 +197,7 @@ h5 {
 {% endblock %}
 {% block body %}
 
-<footer>
+{# <footer> #}
     <div id='zig-zags'></div>
     <div id='footer'>
         <div class='footer-logo-part'>
@@ -224,7 +224,7 @@ h5 {
             <a href='{{ path('app_contact') }}'><p>Paris 5  - Monge</p></a>
         </div>
     </div>
-</footer>
+{# </footer> #}
 <script>
 
 let numberOfPixels;
