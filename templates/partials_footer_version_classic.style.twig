@@ -2,11 +2,14 @@
 <style>
     footer {
     margin-top:50px;
-    top:0;
+    {# top:0; #}
+    
     }  
     #bottom {
-        transform: translateY(-160vh);
+        {# transform: translateY(-160vh); #}
         display: block;
+        height: 30vh!important;   
+        width: 100%;
     }
     #zig-zags::after {
         top:57%;
@@ -28,10 +31,6 @@
     /* zig-zags' modification ends here*/
     body {
         background: url('{{ asset('IMG/orange-watercolor.jpg') }}');
-    }
-    #bottom {
-    height: 30vh!important;   
-    width: 100%;
     }
     @media screen and (max-width: 800px) {
         #footer {
