@@ -27,7 +27,7 @@
     }
     #footer {
         position: relative;
-        height: 600px;
+        {# height: 0px; #}
         align-items: flex-end;
         padding: 70px;
         width: 100vw!important;
@@ -39,6 +39,11 @@
     #footer::after {
         bottom: -12%!important;
     }
+    @media screen and (min-width: 2000px) {
+        #footer {
+        height: 660px;
+        }
+    }
     @media screen and (min-width: 1600px) {
         #footer::before {
             background: linear-gradient(rgba(240, 134, 50, .06), rgba(240, 134, 50, .15), #F08632, #DD2D4A);
@@ -47,7 +52,7 @@
             {# width: 100vw!important; #}
         }
         #footer {
-        height: 670px;
+        height: 550px;
         }
     }
     @media screen and (max-width: 1290px) {
