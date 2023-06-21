@@ -69,12 +69,17 @@
         footer {
             transform: translateY(15%);
         }
+        #footer {
+            width: 105vw!important;
+        }
         #footer > * {
             transform: translateX(0%)!important;   
         }
         #footer::before {
             {# width: 1300px!important;  #}
             {# transform: translateX(-150px); #}
+            -webkit-mask-size: 120%;
+            mask-size: 120%;
         }
     }
     @media screen and (max-width: 800px){
