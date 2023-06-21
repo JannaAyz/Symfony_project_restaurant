@@ -54,7 +54,6 @@
       flex-grow:1;
     }
     #bottom {
-      {# width: 100vw; #}
       position: relative;
       z-index: -10;
       display: flex;
@@ -168,6 +167,11 @@
           opacity: .5 ;
           transform: translateY(0);
         }
+    }
+    @media screen and (max-width: 800px) {
+      #botom {
+        margin-top: 500px;
+      }
     }
     </style>   
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}           
