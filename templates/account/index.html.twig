@@ -72,9 +72,12 @@ body {
   .unvisible {
     display:none;
   }
-  {# #bottom {
-    margin-top: 600px;
-  }  #}
+  
+  @media (min-width: 992px){
+    .col-lg-6 {
+      width: auto;
+  }
+  }
   @media (min-width: 769px){
     .cntnr {
       margin-top: 130px;
@@ -144,6 +147,9 @@ body {
       transform: translateY(60%);
     }
   }
+#principal > div > div > div > div > div {
+
+}
 </style>
 {% endblock %}
 {% block body %}
@@ -153,6 +159,7 @@ body {
   <div class="row d-flex justify-content-center h-100">
     <div class="col col-lg-6 mb-lg-6">
       <div class="card mb-3">
+        {# <div class="row"> #}
         <div class="row">
           <div class="col-md-4 gradient-custom text-center text-white">
             {% if user.imageUrl is not null %}
