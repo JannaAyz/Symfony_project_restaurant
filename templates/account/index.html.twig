@@ -67,8 +67,6 @@ body {
     margin: auto;
     display: none;
     z-index: 11!important;
-    top: -230px;
-    left: 260px;
   }
   .unvisible {
     display:none;
@@ -102,6 +100,10 @@ body {
       transform: translateY(30%);
       padding: 20px;
       gap: 13px;
+    }
+    #cross {
+      top: -356px;
+      left: 396px;
     }
     @-webkit-keyframes popUp {
       from {
@@ -156,10 +158,12 @@ body {
     #modification-iframe { 
       scale: 1;
     }
+    #cross {
+      scale: .9;
+      top: -230px;
+      left: 260px;
+    }
   }
-#principal > div > div > div > div > div {
-
-}
 </style>
 {% endblock %}
 {% block body %}
