@@ -72,18 +72,6 @@ body {
   .unvisible {
     display:none;
   }
-
-  @media (min-width: 2500px) {
-    #cross {
-      transform: translateY(max(-1vw, -35px));
-    }
-  }
-  @media (min-width: 1800px) {
-    #cross {
-      transform: translateY(max(-1vw, -10px));
-    }
-  }
-
   @media (min-width: 992px){
     .col-lg-6 {
       width: auto;
@@ -127,7 +115,7 @@ body {
         opacity: .5 ;
         transform: translateY(0);
       }
-  }
+    }
     @keyframes popUp {
       from {
         transform: translateY(20%);
@@ -137,8 +125,7 @@ body {
         opacity: .5 ;
         transform: translateY(0);
       }
-  }
-  
+    }
   }
   @media (max-width: 768px){
     .buttons a:nth-child(1){
@@ -175,6 +162,16 @@ body {
       scale: .8;
       top: -271px;
       left: 302px;
+    }
+  }
+  @media (min-width: 1800px) {
+    #cross {
+      transform: translateY(max(-1vw, -10px));
+    }
+  }
+  @media (min-width: 2500px) {
+    #cross {
+      transform: translateY(max(-1vw, -35px));
     }
   }
 </style>
