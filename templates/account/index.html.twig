@@ -45,7 +45,7 @@ body {
   .p-4 h6:nth-child(4), div.col-md-8 > div > h6:nth-child(1){
     font-size: 1.3rem;
   }
-  #modification-iframe{ 
+  #modification-iframe { 
     position: absolute;
     inset: 0;
     margin: auto;
@@ -67,8 +67,8 @@ body {
     margin: auto;
     display: none;
     z-index: 11!important;
-    transform: translateX(490%);
-    top: -58%;
+    top: -230px;
+    left: 260px;
   }
   .unvisible {
     display:none;
@@ -76,7 +76,7 @@ body {
   
   @media (min-width: 992px){
 
-    #modification-iframe{ 
+    #modification-iframe, #cross { 
       top: -10%;
     }
   }
@@ -152,6 +152,9 @@ body {
     }
     .buttons {
       transform: translateY(60%);
+    }
+    #modification-iframe { 
+      scale: 1;
     }
   }
 #principal > div > div > div > div > div {
