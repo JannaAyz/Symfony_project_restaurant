@@ -67,11 +67,6 @@
     }
 
     .buttons::after {
-            {
-            # box-shadow: 0px 7px 3px grey;box-shadow
-            #
-        }
-
         background: var(--orange);
         position: absolute;
         width: 80%;
@@ -206,16 +201,13 @@
             font-size: 14px;
         }
         #admins>table>thead>tr>th {
-            font-size: 10px;
+            font-size: 12px;
             padding-left: 9px;
         }
-
-        #admins>table>thead>tr>th:nth-child(3) {
-            padding-left: 15px;
-        }
-
-        #admins>table>thead>tr>th:nth-child(4) {
-            padding-left: 50px;
+        #admins > table > thead > tr {
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
         }
         .rsrvButton, .btn, .btn-secondary, .dropdown-toggle {
         font-size: 1rem !important;
