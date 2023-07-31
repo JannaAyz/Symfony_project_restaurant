@@ -193,18 +193,6 @@
         }
     }
 
-    @media screen and (max-width: 768px) {
-        #bottom {
-            margin-top: 715px!important;
-        }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 0.5rem;
-            margin-top: 0.1rem;
-        }
-    }
-
     @media screen and (max-width: 580px) {
         .form-group input,
         .form-group textarea,
@@ -215,6 +203,18 @@
         }
     }
 {% include "partials_footer_version_classic.style.twig" %}
+
+    @media screen and (max-width: 768px) {
+        #bottom {
+            margin-top: 715px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.5rem;
+            margin-top: 0.1rem;
+        }
+    }
 </style>
 {% endblock %}
 {% block title %}Formulaire de réservation{% endblock %}
