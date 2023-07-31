@@ -182,10 +182,8 @@
             flex-direction: column;
             justify-content: center;
             margin-left: 0;
-            position: unset!important;
-        }
-        .dropdown-menu {
-            z-index: 30!important;
+            {# position: unset!important; #}
+            z-index: -30!important;
         }
         #admins {
             width: 100vw;
@@ -324,7 +322,6 @@
         TABLE[i].setAttribute("style", `--order:${i}`);
         if(i % 2 === 0) {
         TABLE[i].style.background = "rgba(149, 198, 35, .45)";
-        TABLE[i].style.zIndex = "-10";
         }
     };
 
