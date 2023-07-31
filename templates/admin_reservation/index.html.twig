@@ -177,12 +177,15 @@
         .container {
             display: block;
         }
-
         table {
             display: flex;
             flex-direction: column;
             justify-content: center;
             margin-left: 0;
+            position: unset!important;
+        }
+        .dropdown-menu {
+            z-index: 30!important;
         }
         #admins {
             width: 100vw;
@@ -212,12 +215,6 @@
         }
         .rsrvButton, .btn, .btn-secondary, .dropdown-toggle {
         font-size: 1rem !important;
-        color: black;
-        border: 3px solid rgba(17, 17, 17, .6) !important;
-        font-weight: 500 !important;
-        background: rgba(149, 198, 35, .8);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
         padding: 0.7rem;
         }
         #admins > table > tbody > tr > td:nth-child(4) {
@@ -327,6 +324,7 @@
         TABLE[i].setAttribute("style", `--order:${i}`);
         if(i % 2 === 0) {
         TABLE[i].style.background = "rgba(149, 198, 35, .45)";
+        TABLE[i].style.zIndex = "-10";
         }
     };
 
