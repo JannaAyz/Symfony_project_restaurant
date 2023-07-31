@@ -133,68 +133,11 @@
 
     .form-group label,
     .form-group-vip>label {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
     }
 
     .form-group-vip>label {
         margin-right: 10px;
-    }
-
-    /*error message*/
-    #principal > div > div.form-wrapper > form > div:nth-child(1) > ul {
-        list-style-type: none;
-        padding-left: 0;
-        margin-top: 10px;
-        font-size: 18px;
-    }
-
-    @media only screen and (min-width: 768px) {
-        .form-title {
-            margin-bottom: -30px;
-        }
-
-        .form_widget {
-            font-size: 3.6rem;
-        }
-
-        .form-wrapper {
-            padding: 5rem 0;
-        }
-
-        .form-wrapper form {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .form-group-full {
-            grid-column: 1/3;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-                {
-                # padding: 2rem;padding
-                margin-top: 1.5rem;
-                #
-            }
-        }
-
-        .form-group label,
-        .form-group-vip>label {
-            font-size: 1.8rem;
-        }
-
-    }
-
-    @media screen and (max-width: 580px) {
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select,
-        .message-input,
-        .form-wrapper button[type='submit'] {
-            width: 90vw;
-        }
     }
 
     form button {
@@ -218,6 +161,58 @@
 
     .form-group>* {
         font-family: 'Montserrat', sans-serif;
+    }
+    
+    /*error message*/
+    #principal > div > div.form-wrapper > form > div:nth-child(1) > ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .form-title {
+            margin-bottom: -30px;
+        }
+        .form_widget {
+            font-size: 3.6rem;
+        }
+        .form-wrapper {
+            padding: 5rem 0;
+        }
+        .form-wrapper form {
+            grid-template-columns: 1fr 1fr;
+        }
+        .form-group-full {
+            grid-column: 1/3;
+        }
+        .form-group label,
+        .form-group-vip>label {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        #bottom {
+            margin-top: 715px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.5rem;
+            margin-top: 0.1rem;
+        }
+    }
+
+    @media screen and (max-width: 580px) {
+        .form-group input,
+        .form-group textarea,
+        .form-group select,
+        .message-input,
+        .form-wrapper button[type='submit'] {
+            width: 90vw;
+        }
     }
 {% include "partials_footer_version_classic.style.twig" %}
 </style>
