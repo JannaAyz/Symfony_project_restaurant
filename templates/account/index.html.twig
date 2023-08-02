@@ -202,7 +202,7 @@ body {
               alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
             {% else %}
             <img src="{{ asset('IMG/default.jpg') }}"
-              alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              alt="avatar" class="img-fluid my-5" style="width: 80px;" />
             {% endif %}
             <h5> {{ user.firstname }} {{ user.lastname }}</h5>
             <div class="buttons">
@@ -252,7 +252,7 @@ body {
   </div>
 </div>
 <iframe id="modification-iframe" src="{{ path('app_register_edit', {'id': user.id}) }}"></iframe>
-<img  style ="width:40px;" onclick="closeIframe()" id="cross" src="{{ asset('IMG/close.svg')}}" alt="cross logo"/>
+<img  style ="width:40px;" onclick="closeIframe()" id="cross" src="{{ asset('IMG/close.svg')}}" alt="closing_cross"/>
 {% endblock %}
 {% block javascripts %}
     <script>

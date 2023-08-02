@@ -305,13 +305,13 @@
                     <td>{{ selected.restaurant_name }}</td>
                     <td>{{ selected.number }}
                         {% if selected.vip == 1 %}
-                        <img id="star" src="{{ asset('IMG/star.svg') }}">
+                        <img id="star" src="{{ asset('IMG/star.svg') }}" alt="vip_mark">
                         {% endif %}
                     </td>
                     <td>{{ selected.email }}</td> 
                     <td id="toShowIframe">  
                         <a href="#" onclick="showIframe()">
-                            <img id="edit" src="{{ asset('IMG/edit.svg')}}">
+                            <img id="edit" src="{{ asset('IMG/edit.svg')}}" alt="edit">
                         </a>
                         <iframe id="reservation-iframe" src="{{ path('app_admin_reservation_edit', {'id': selected.id}) }}">
                         </iframe>
